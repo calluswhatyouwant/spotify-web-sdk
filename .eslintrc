@@ -1,0 +1,28 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "plugins": [
+        "flowtype",
+        "import"
+    ],
+    "rules": {
+        "max-len": ["error", {
+            "code": 80
+        }],
+        "linebreak-style": 0,
+        "indent": ["error", 4],
+        "import/extensions": [1, "never", {
+            "svg": "always"
+        }],
+        "import/no-extraneous-dependencies": ["error", {
+                "devDependencies": true,
+                "optionalDependencies": false,
+                "peerDependencies": false
+            }
+        ]
+    }
+}
