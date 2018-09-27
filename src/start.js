@@ -1,3 +1,5 @@
+/* @flow */
+
 import spotifyWebApiSdk from './lib';
 
 const main = async () => {
