@@ -7,6 +7,10 @@
   "scripts": {
     "start": "babel-node src/start.js"
   },
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
