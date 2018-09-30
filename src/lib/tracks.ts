@@ -1,5 +1,3 @@
-/* @flow */
-
 import { getAxiosSpotifyInstance } from './driver';
 
 export const getSeveralTracks = async (ids: Array<number | string>) => {

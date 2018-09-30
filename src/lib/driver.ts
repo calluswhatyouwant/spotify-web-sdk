@@ -1,10 +1,8 @@
-/* @flow */
-
 import axios from 'axios';
-import type { Axios } from 'axios';
+import { AxiosInstance } from 'axios';
 
-let spotifyToken;
-let spotifyAxiosInstance;
+let spotifyToken: string;
+let spotifyAxiosInstance: AxiosInstance;
 
 export const login = (token: string) => {
     spotifyToken = token;
@@ -19,7 +17,7 @@ export const getToken = () : string => {
     throw new Error('You must log in first');
 };
 
-export const getAxiosSpotifyInstance = () : Axios => {
+export const getAxiosSpotifyInstance = () : AxiosInstance => {
     if (spotifyAxiosInstance) return spotifyAxiosInstance;
     throw new Error('You must log in first');
 };
