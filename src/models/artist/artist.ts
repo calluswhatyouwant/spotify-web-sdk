@@ -1,21 +1,13 @@
-/* @flow */
-
 import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
 
-class PublicUser {
-    birthdate: string;
-
-    country: string;
-
-    displayName: string;
-
-    email: string;
-
+class Artist {
     externalUrls: ExternalUrl;
 
     followers: Followers;
+
+    genres: Array<string>;
 
     href: string;
 
@@ -23,29 +15,29 @@ class PublicUser {
 
     images: Array<Image>;
 
-    product: string;
+    name: string;
 
-    type: 'user';
+    popularity: number;
+
+    type: 'artist';
 
     uri: string;
 
     constructor(json: any) {
         if (json) {
-            this.birthdate = json.birthdate;
-            this.country = json.country;
-            this.displayName = json.display_name;
-            this.email = json.email;
             this.externalUrls = new ExternalUrl(json.external_urls);
             this.followers = new Followers(json.followers);
+            this.genres = json.genres;
             this.href = json.href;
             this.id = json.id;
             this.images = json.images
                 .map(imageJson => new Image(imageJson));
-            this.product = json.product;
+            this.name = json.name;
+            this.popularity = json.popularity;
             this.type = json.type;
             this.uri = json.uri;
         }
     }
 }
 
-export default PublicUser;
+export default Artist;

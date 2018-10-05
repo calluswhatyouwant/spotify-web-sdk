@@ -1,5 +1,3 @@
-/* @flow */
-
 import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
 import PublicUser from '../user/user-public';

@@ -1,5 +1,3 @@
-/* @flow */
-
 import Image from '../common/image';
 
 class Category {

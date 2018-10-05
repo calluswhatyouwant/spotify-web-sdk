@@ -1,5 +1,3 @@
-/* @flow */
-
 import ArtistSimplified from '../artist/artist-simplified';
 import ExternalUrl from '../common/external-url';
 

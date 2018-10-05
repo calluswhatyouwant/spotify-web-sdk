@@ -1,5 +1,3 @@
-/* @flow */
-
 class Paging<T> {
     href: string;
 

@@ -1,5 +1,3 @@
-/* @flow */
-
 import AlbumSimplified from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
 import ExternalId from '../common/external-id';

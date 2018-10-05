@@ -1,5 +1,3 @@
-/* @flow */
-
 import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';

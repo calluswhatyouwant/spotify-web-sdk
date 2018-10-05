@@ -1,5 +1,3 @@
-/* @flow */
-
 class AudioFeatures {
     acousticness: number;
 

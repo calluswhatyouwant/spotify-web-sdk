@@ -1,26 +1,17 @@
-/* @flow */
-
 import ArtistSimplified from '../artist/artist-simplified';
-import ExternalId from '../common/external-id';
-import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
-import Paging from '../paging/paging';
-import TrackSimplified from '../track/track-simplified';
+import ExternalUrl from '../common/external-url';
 
-class Album {
+class AlbumSimplified {
+    albumGroup: 'album' | 'single' | 'compilation' | 'appears_on';
+
     albumType: 'album' | 'single' | 'compilation';
 
     artists: Array<ArtistSimplified>;
 
     availableMarkets: Array<string>;
 
-    copyrights: Array<any>;
-
-    externalIds: ExternalId;
-
     externalUrls: ExternalUrl;
-
-    genres: Array<string>;
 
     href: string;
 
@@ -28,17 +19,13 @@ class Album {
 
     images: Array<Image>;
 
-    label: string;
-
     name: string;
-
-    popularity: number;
 
     releaseDate: string;
 
     releaseDatePrecision: 'year' | 'month' | 'day';
 
-    tracks: Paging<TrackSimplified>;
+    restrictions: any;
 
     type: 'album';
 
@@ -46,24 +33,20 @@ class Album {
 
     constructor(json: any) {
         if (json) {
+            this.albumGroup = json.album_group;
             this.albumType = json.album_type;
             this.artists = json.artists
                 .map(artistJson => new ArtistSimplified(artistJson));
             this.availableMarkets = json.available_markets;
-            this.copyrights = json.copyrights;
-            this.externalIds = new ExternalId(json.external_ids);
             this.externalUrls = new ExternalUrl(json.external_urls);
-            this.genres = json.genres;
             this.href = json.href;
             this.id = json.id;
             this.images = json.images
                 .map(imageJson => new Image(imageJson));
-            this.label = json.label;
             this.name = json.name;
-            this.popularity = json.popularity;
             this.releaseDate = json.release_date;
             this.releaseDatePrecision = json.release_date_precision;
-            this.tracks = new Paging(json.tracks);
+            this.restrictions = json.restrictions;
             this.type = json.type;
             this.uri = json.uri;
         }
@@ -83,4 +66,4 @@ class Album {
     }
 }
 
-export default Album;
+export default AlbumSimplified;

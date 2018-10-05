@@ -1,6 +1,4 @@
-/* @flow */
-
-class ExternalUrl {
+class ExternalId {
     key: string;
 
     value: string;
@@ -11,4 +9,4 @@ class ExternalUrl {
     }
 }
 
-export default ExternalUrl;
+export default ExternalId;

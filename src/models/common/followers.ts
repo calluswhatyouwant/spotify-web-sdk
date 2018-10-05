@@ -1,5 +1,3 @@
-/* @flow */
-
 class Followers {
     href: string;
 

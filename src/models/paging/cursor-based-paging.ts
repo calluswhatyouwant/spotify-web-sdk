@@ -1,5 +1,3 @@
-/* @flow */
-
 import Cursor from './cursor';
 
 class CursorPaging<T> {

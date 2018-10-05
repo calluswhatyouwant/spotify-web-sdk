@@ -1,5 +1,3 @@
-/* @flow */
-
 class Copyright {
     text: string;
 

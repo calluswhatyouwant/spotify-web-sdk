@@ -1,5 +1,3 @@
-/* @flow */
-
 class Cursor {
     after: string;
 

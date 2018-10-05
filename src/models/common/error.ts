@@ -1,5 +1,3 @@
-/* @flow */
-
 class Error {
     status: number;
 

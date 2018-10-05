@@ -1,5 +1,3 @@
-/* @flow */
-
 import Album from '../album/album';
 
 class SavedAlbum {

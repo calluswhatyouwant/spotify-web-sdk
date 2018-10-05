@@ -1,5 +1,3 @@
-/* @flow */
-
 import ExternalUrl from '../common/external-url';
 
 class ArtistSimplified {

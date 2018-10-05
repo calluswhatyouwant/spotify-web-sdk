@@ -1,5 +1,3 @@
-/* @flow */
-
 class Image {
     height: number;
 

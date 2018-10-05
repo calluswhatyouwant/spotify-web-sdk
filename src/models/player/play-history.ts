@@ -1,5 +1,3 @@
-/* @flow */
-
 import Context from './context';
 import Track from '../track/track';
 

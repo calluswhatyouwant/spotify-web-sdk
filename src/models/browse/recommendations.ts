@@ -1,5 +1,3 @@
-/* @flow */
-
 import RecommendationSeed from './recommendation-seed';
 import TrackSimplified from '../track/track-simplified';
 

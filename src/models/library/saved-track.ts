@@ -1,5 +1,3 @@
-/* @flow */
-
 import Track from '../track/track';
 
 class SavedTrack {

@@ -1,5 +1,3 @@
-/* @flow */
-
 class RecommendationSeed {
     afterFilteringSize: number;
 
