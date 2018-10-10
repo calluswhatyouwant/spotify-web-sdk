@@ -1,5 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-import Track from '../models/track/track';
+import Track from './models/track/track';
 
 export const getSeveralTracks = async (ids: Array<number | string>) => {
     const params = { params: { ids } };

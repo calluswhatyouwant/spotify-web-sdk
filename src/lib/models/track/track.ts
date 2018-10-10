@@ -45,29 +45,27 @@ class Track {
     isLocal: boolean;
 
     constructor(json: any) {
-        if (json) {
-            this.album = new AlbumSimplified(json.album);
-            this.artists = json.artists
-                .map(artistJson => new ArtistSimplified(artistJson));
-            this.availableMarkets = json.available_markets;
-            this.discNumber = json.disc_number;
-            this.durationMs = json.duration_ms;
-            this.explicit = json.explicit;
-            this.externalIds = new ExternalId(json.external_ids);
-            this.externalUrls = new ExternalUrl(json.external_urls);
-            this.href = json.href;
-            this.id = json.id;
-            this.isPlayable = json.is_playable;
-            this.linkedFrom = json.linked_from;
-            this.restrictions = json.restrictions;
-            this.name = json.name;
-            this.popularity = json.popularity;
-            this.previewUrl = json.preview_url;
-            this.trackNumber = json.track_number;
-            this.type = json.type;
-            this.uri = json.uri;
-            this.isLocal = json.isLocal;
-        }
+        this.album = new AlbumSimplified(json.album);
+        this.artists = json.artists
+            .map((artistJson: any) => new ArtistSimplified(artistJson));
+        this.availableMarkets = json.available_markets;
+        this.discNumber = json.disc_number;
+        this.durationMs = json.duration_ms;
+        this.explicit = json.explicit;
+        this.externalIds = new ExternalId(json.external_ids);
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.href = json.href;
+        this.id = json.id;
+        this.isPlayable = json.is_playable;
+        this.linkedFrom = json.linked_from;
+        this.restrictions = json.restrictions;
+        this.name = json.name;
+        this.popularity = json.popularity;
+        this.previewUrl = json.preview_url;
+        this.trackNumber = json.track_number;
+        this.type = json.type;
+        this.uri = json.uri;
+        this.isLocal = json.isLocal;
     }
 
     get albumName() {

@@ -32,24 +32,22 @@ class AlbumSimplified {
     uri: string;
 
     constructor(json: any) {
-        if (json) {
-            this.albumGroup = json.album_group;
-            this.albumType = json.album_type;
-            this.artists = json.artists
-                .map(artistJson => new ArtistSimplified(artistJson));
-            this.availableMarkets = json.available_markets;
-            this.externalUrls = new ExternalUrl(json.external_urls);
-            this.href = json.href;
-            this.id = json.id;
-            this.images = json.images
-                .map(imageJson => new Image(imageJson));
-            this.name = json.name;
-            this.releaseDate = json.release_date;
-            this.releaseDatePrecision = json.release_date_precision;
-            this.restrictions = json.restrictions;
-            this.type = json.type;
-            this.uri = json.uri;
-        }
+        this.albumGroup = json.album_group;
+        this.albumType = json.album_type;
+        this.artists = json.artists
+            .map((artistJson: any) => new ArtistSimplified(artistJson));
+        this.availableMarkets = json.available_markets;
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images
+            .map((imageJson: any) => new Image(imageJson));
+        this.name = json.name;
+        this.releaseDate = json.release_date;
+        this.releaseDatePrecision = json.release_date_precision;
+        this.restrictions = json.restrictions;
+        this.type = json.type;
+        this.uri = json.uri;
     }
 
     get stringArtists() {

@@ -8,9 +8,9 @@ class ExternalId {
 
     constructor(json: any) {
         this.seeds = json.seeds
-            .map(seedJson => new RecommendationSeed(seedJson));
+            .map((seedJson: any) => new RecommendationSeed(seedJson));
         this.tracks = json.tracks
-            .map(trackJson => new TrackSimplified(trackJson));
+            .map((trackJson: any) => new TrackSimplified(trackJson));
     }
 }
 

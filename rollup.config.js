@@ -8,10 +8,11 @@ export default {
         file: 'build/index.js',
         format: 'cjs'
     },
+    external: ["axios"],
     plugins: [
         resolve({
             main: true,
-            browser: true,
+            browser: false,
         }),
         commonjs(),
         typescript({

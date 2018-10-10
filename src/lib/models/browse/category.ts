@@ -11,7 +11,7 @@ class Category {
 
     constructor(json: any) {
         this.href = json.href;
-        this.icons = json.icons.map(iconJson => new Image(iconJson));
+        this.icons = json.icons.map((iconJson: any) => new Image(iconJson));
         this.id = json.id;
         this.name = json.name;
     }

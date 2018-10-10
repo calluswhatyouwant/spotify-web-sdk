@@ -5,7 +5,8 @@
     "axios": "^0.18.0"
   },
   "scripts": {
-    "start": "babel-node src/start.js"
+    "start": "babel-node src/start.js",
+    "build": "rollup -c rollup.config.js"
   },
   "files": [
     "build"
