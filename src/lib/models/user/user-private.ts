@@ -19,7 +19,7 @@ class PublicUser {
 
     id: string;
 
-    images: Array<Image>;
+    images: Image[];
 
     product: string;
 
@@ -37,8 +37,7 @@ class PublicUser {
             this.followers = new Followers(json.followers);
             this.href = json.href;
             this.id = json.id;
-            this.images = json.images
-                .map(imageJson => new Image(imageJson));
+            this.images = json.images.map(imageJson => new Image(imageJson));
             this.product = json.product;
             this.type = json.type;
             this.uri = json.uri;

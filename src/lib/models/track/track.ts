@@ -6,9 +6,9 @@ import ExternalUrl from '../common/external-url';
 class Track {
     album: AlbumSimplified;
 
-    artists: Array<ArtistSimplified>;
+    artists: ArtistSimplified[];
 
-    availableMarkets: Array<string>;
+    availableMarkets: string[];
 
     discNumber: number;
 
@@ -46,8 +46,9 @@ class Track {
 
     constructor(json: any) {
         this.album = new AlbumSimplified(json.album);
-        this.artists = json.artists
-            .map((artistJson: any) => new ArtistSimplified(artistJson));
+        this.artists = json.artists.map(
+            (artistJson: any) => new ArtistSimplified(artistJson)
+        );
         this.availableMarkets = json.available_markets;
         this.discNumber = json.disc_number;
         this.durationMs = json.duration_ms;

@@ -18,7 +18,7 @@ class Playlist {
 
     id: string;
 
-    images: Array<Image>;
+    images: Image[];
 
     name: string;
 
@@ -42,8 +42,7 @@ class Playlist {
             this.followers = new Followers(json.followers);
             this.href = json.href;
             this.id = json.id;
-            this.images = json.images
-                .map(imageJson => new Image(imageJson));
+            this.images = json.images.map(imageJson => new Image(imageJson));
             this.name = json.name;
             this.owner = new PublicUser(json.owner);
             this.public = json.public;

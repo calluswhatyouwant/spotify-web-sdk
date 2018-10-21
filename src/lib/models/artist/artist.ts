@@ -7,13 +7,13 @@ class Artist {
 
     followers: Followers;
 
-    genres: Array<string>;
+    genres: string[];
 
     href: string;
 
     id: string;
 
-    images: Array<Image>;
+    images: Image[];
 
     name: string;
 
@@ -29,8 +29,7 @@ class Artist {
         this.genres = json.genres;
         this.href = json.href;
         this.id = json.id;
-        this.images = json.images
-            .map((imageJson: any) => new Image(imageJson));
+        this.images = json.images.map((imageJson: any) => new Image(imageJson));
         this.name = json.name;
         this.popularity = json.popularity;
         this.type = json.type;

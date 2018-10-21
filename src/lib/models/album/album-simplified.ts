@@ -7,9 +7,9 @@ class AlbumSimplified {
 
     albumType: 'album' | 'single' | 'compilation';
 
-    artists: Array<ArtistSimplified>;
+    artists: ArtistSimplified[];
 
-    availableMarkets: Array<string>;
+    availableMarkets: string[];
 
     externalUrls: ExternalUrl;
 
@@ -17,7 +17,7 @@ class AlbumSimplified {
 
     id: string;
 
-    images: Array<Image>;
+    images: Image[];
 
     name: string;
 
@@ -34,14 +34,14 @@ class AlbumSimplified {
     constructor(json: any) {
         this.albumGroup = json.album_group;
         this.albumType = json.album_type;
-        this.artists = json.artists
-            .map((artistJson: any) => new ArtistSimplified(artistJson));
+        this.artists = json.artists.map(
+            (artistJson: any) => new ArtistSimplified(artistJson)
+        );
         this.availableMarkets = json.available_markets;
         this.externalUrls = new ExternalUrl(json.external_urls);
         this.href = json.href;
         this.id = json.id;
-        this.images = json.images
-            .map((imageJson: any) => new Image(imageJson));
+        this.images = json.images.map((imageJson: any) => new Image(imageJson));
         this.name = json.name;
         this.releaseDate = json.release_date;
         this.releaseDatePrecision = json.release_date_precision;

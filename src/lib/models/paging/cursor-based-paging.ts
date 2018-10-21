@@ -3,7 +3,7 @@ import Cursor from './cursor';
 class CursorPaging<T> {
     href: string;
 
-    items: Array<T>;
+    items: T[];
 
     limit: number;
 

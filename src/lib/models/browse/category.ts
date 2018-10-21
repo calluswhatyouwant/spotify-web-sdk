@@ -3,7 +3,7 @@ import Image from '../common/image';
 class Category {
     href: string;
 
-    icons: Array<Image>;
+    icons: Image[];
 
     id: string;
 
