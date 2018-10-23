@@ -7,7 +7,7 @@ declare class PublicUser {
     followers: Followers;
     href: string;
     id: string;
-    images: Array<Image>;
+    images: Image[];
     type: 'user';
     uri: string;
     constructor(json: any);

@@ -115,14 +115,12 @@ var AlbumSimplified = (function () {
     function AlbumSimplified(json) {
         this.albumGroup = json.album_group;
         this.albumType = json.album_type;
-        this.artists = json.artists
-            .map(function (artistJson) { return new ArtistSimplified(artistJson); });
+        this.artists = json.artists.map(function (artistJson) { return new ArtistSimplified(artistJson); });
         this.availableMarkets = json.available_markets;
         this.externalUrls = new ExternalUrl(json.external_urls);
         this.href = json.href;
         this.id = json.id;
-        this.images = json.images
-            .map(function (imageJson) { return new Image(imageJson); });
+        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
         this.name = json.name;
         this.releaseDate = json.release_date;
         this.releaseDatePrecision = json.release_date_precision;
@@ -166,8 +164,7 @@ var ExternalId = (function () {
 var Track = (function () {
     function Track(json) {
         this.album = new AlbumSimplified(json.album);
-        this.artists = json.artists
-            .map(function (artistJson) { return new ArtistSimplified(artistJson); });
+        this.artists = json.artists.map(function (artistJson) { return new ArtistSimplified(artistJson); });
         this.availableMarkets = json.available_markets;
         this.discNumber = json.disc_number;
         this.durationMs = json.duration_ms;
@@ -228,8 +225,7 @@ var getSeveralTracks = function (ids) { return __awaiter(_this, void 0, void 0, 
         switch (_a.label) {
             case 0:
                 params = { params: { ids: ids } };
-                return [4, getAxiosSpotifyInstance()
-                        .get('/tracks', params)];
+                return [4, getAxiosSpotifyInstance().get('/tracks', params)];
             case 1:
                 response = _a.sent();
                 return [2, response.data.tracks.map(function (trackJson) { return new Track(trackJson); })];
@@ -240,8 +236,7 @@ var getTrack = function (id) { return __awaiter(_this, void 0, void 0, function 
     var response;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4, getAxiosSpotifyInstance()
-                    .get("/tracks/" + id)];
+            case 0: return [4, getAxiosSpotifyInstance().get("/tracks/" + id)];
             case 1:
                 response = _a.sent();
                 return [2, new Track(response.data)];

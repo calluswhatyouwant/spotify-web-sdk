@@ -4,8 +4,8 @@ import ExternalId from '../common/external-id';
 import ExternalUrl from '../common/external-url';
 declare class Track {
     album: AlbumSimplified;
-    artists: Array<ArtistSimplified>;
-    availableMarkets: Array<string>;
+    artists: ArtistSimplified[];
+    availableMarkets: string[];
     discNumber: number;
     durationMs: number;
     explicit: boolean;

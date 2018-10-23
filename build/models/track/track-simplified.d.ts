@@ -1,8 +1,8 @@
 import ArtistSimplified from '../artist/artist-simplified';
 import ExternalUrl from '../common/external-url';
 declare class TrackSimplified {
-    artists: Array<ArtistSimplified>;
-    availableMarkets: Array<string>;
+    artists: ArtistSimplified[];
+    availableMarkets: string[];
     discNumber: number;
     durationMs: number;
     explicit: boolean;
