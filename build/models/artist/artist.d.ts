@@ -4,10 +4,10 @@ import Image from '../common/image';
 declare class Artist {
     externalUrls: ExternalUrl;
     followers: Followers;
-    genres: Array<string>;
+    genres: string[];
     href: string;
     id: string;
-    images: Array<Image>;
+    images: Image[];
     name: string;
     popularity: number;
     type: 'artist';

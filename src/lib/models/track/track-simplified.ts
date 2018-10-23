@@ -2,9 +2,9 @@ import ArtistSimplified from '../artist/artist-simplified';
 import ExternalUrl from '../common/external-url';
 
 class TrackSimplified {
-    artists: Array<ArtistSimplified>;
+    artists: ArtistSimplified[];
 
-    availableMarkets: Array<string>;
+    availableMarkets: string[];
 
     discNumber: number;
 
@@ -38,8 +38,9 @@ class TrackSimplified {
 
     constructor(json: any) {
         if (json) {
-            this.artists = json.artists
-                .map(artistJson => new ArtistSimplified(artistJson));
+            this.artists = json.artists.map(
+                artistJson => new ArtistSimplified(artistJson)
+            );
             this.availableMarkets = json.available_markets;
             this.discNumber = json.disc_number;
             this.durationMs = json.duration_ms;

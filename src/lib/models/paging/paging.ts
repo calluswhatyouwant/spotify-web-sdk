@@ -1,7 +1,7 @@
 class Paging<T> {
     href: string;
 
-    items: Array<T>;
+    items: T[];
 
     limit: number;
 

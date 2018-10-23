@@ -11,7 +11,7 @@ declare class Playlist {
     followers: Followers;
     href: string;
     id: string;
-    images: Array<Image>;
+    images: Image[];
     name: string;
     owner: PublicUser;
     public: boolean | null;

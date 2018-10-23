@@ -4,12 +4,12 @@ import ExternalUrl from '../common/external-url';
 declare class AlbumSimplified {
     albumGroup: 'album' | 'single' | 'compilation' | 'appears_on';
     albumType: 'album' | 'single' | 'compilation';
-    artists: Array<ArtistSimplified>;
-    availableMarkets: Array<string>;
+    artists: ArtistSimplified[];
+    availableMarkets: string[];
     externalUrls: ExternalUrl;
     href: string;
     id: string;
-    images: Array<Image>;
+    images: Image[];
     name: string;
     releaseDate: string;
     releaseDatePrecision: 'year' | 'month' | 'day';

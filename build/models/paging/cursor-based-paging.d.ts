@@ -1,7 +1,7 @@
 import Cursor from './cursor';
 declare class CursorPaging<T> {
     href: string;
-    items: Array<T>;
+    items: T[];
     limit: number;
     next: string;
     cursors: Cursor;
