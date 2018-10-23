@@ -10,7 +10,7 @@ declare class PublicUser {
     followers: Followers;
     href: string;
     id: string;
-    images: Array<Image>;
+    images: Image[];
     product: string;
     type: 'user';
     uri: string;

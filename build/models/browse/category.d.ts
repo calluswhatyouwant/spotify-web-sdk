@@ -1,7 +1,7 @@
 import Image from '../common/image';
 declare class Category {
     href: string;
-    icons: Array<Image>;
+    icons: Image[];
     id: string;
     name: string;
     constructor(json: any);

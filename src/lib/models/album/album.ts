@@ -8,23 +8,23 @@ import TrackSimplified from '../track/track-simplified';
 class Album {
     albumType: 'album' | 'single' | 'compilation';
 
-    artists: Array<ArtistSimplified>;
+    artists: ArtistSimplified[];
 
-    availableMarkets: Array<string>;
+    availableMarkets: string[];
 
-    copyrights: Array<any>;
+    copyrights: any[];
 
     externalIds: ExternalId;
 
     externalUrls: ExternalUrl;
 
-    genres: Array<string>;
+    genres: string[];
 
     href: string;
 
     id: string;
 
-    images: Array<Image>;
+    images: Image[];
 
     label: string;
 
@@ -45,8 +45,9 @@ class Album {
     constructor(json: any) {
         if (json) {
             this.albumType = json.album_type;
-            this.artists = json.artists
-                .map(artistJson => new ArtistSimplified(artistJson));
+            this.artists = json.artists.map(
+                artistJson => new ArtistSimplified(artistJson)
+            );
             this.availableMarkets = json.available_markets;
             this.copyrights = json.copyrights;
             this.externalIds = new ExternalId(json.external_ids);
@@ -54,8 +55,7 @@ class Album {
             this.genres = json.genres;
             this.href = json.href;
             this.id = json.id;
-            this.images = json.images
-                .map(imageJson => new Image(imageJson));
+            this.images = json.images.map(imageJson => new Image(imageJson));
             this.label = json.label;
             this.name = json.name;
             this.popularity = json.popularity;
