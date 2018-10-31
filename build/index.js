@@ -220,10 +220,14 @@ var Track = (function () {
 
 var _this = undefined;
 var getSeveralTracks = function (ids) { return __awaiter(_this, void 0, void 0, function () {
-    var params, response;
+    var exceptionLink, params, response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                if (ids.length > 50) {
+                    exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-tracks/';
+                    throw "The maximum number of tracks is 50. See " + exceptionLink + " for details";
+                }
                 params = { params: { ids: ids } };
                 return [4, getAxiosSpotifyInstance().get('/tracks', params)];
             case 1:
