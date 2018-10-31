@@ -6,9 +6,9 @@ export default {
     input: 'src/lib/index.ts',
     output: {
         file: 'build/index.js',
-        format: 'cjs'
+        format: 'cjs',
     },
-    external: ["axios"],
+    external: ['axios'],
     plugins: [
         resolve({
             main: true,
@@ -16,7 +16,12 @@ export default {
         }),
         commonjs(),
         typescript({
-            clean: true
-        })
-    ]
+            clean: true,
+            tsconfigOverride: {
+                compilerOptions: {
+                    module: 'es2015',
+                },
+            },
+        }),
+    ],
 };
