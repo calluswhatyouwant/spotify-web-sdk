@@ -69,7 +69,7 @@ function __generator(thisArg, body) {
 
 var spotifyToken;
 var spotifyAxiosInstance;
-var login = function (token) {
+var init = function (token) {
     spotifyToken = token;
     spotifyAxiosInstance = axios.create({
         baseURL: 'https://api.spotify.com/v1',
@@ -88,7 +88,7 @@ var getAxiosSpotifyInstance = function () {
 };
 
 var driver = /*#__PURE__*/Object.freeze({
-    login: login,
+    init: init,
     getToken: getToken,
     getAxiosSpotifyInstance: getAxiosSpotifyInstance
 });

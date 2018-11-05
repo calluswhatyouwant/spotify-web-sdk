@@ -5,7 +5,7 @@ declare const _default: {
     getRelatedArtists: (id: string | number) => Promise<any>;
     getSeveralTracks: (ids: number[] | string[]) => Promise<any>;
     getTrack: (id: string | number) => Promise<import("./models/track/track").default>;
-    login: (token: string) => void;
+    init: (token: string) => void;
     getToken: () => string;
     getAxiosSpotifyInstance: () => import("axios").AxiosInstance;
 };

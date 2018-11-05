@@ -1,6 +1,7 @@
 import { getAxiosSpotifyInstance } from './driver';
 import Artist from './models/artist/artist';
 import Album from './models/album/album';
+import Track from './models/track/track';
 
 export const getArtist = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);
@@ -34,4 +35,11 @@ export const getRelatedArtists = async (id: number | string) => {
     return response.data.artists.map(
         (artistJson: any) => new Artist(artistJson)
     );
+};
+
+export const getArtistTopTracks = async (id: number | string) => {
+    const response = await getAxiosSpotifyInstance().get(
+        `/artists/${id}/top-tracks`
+    );
+    return response.tracks.map(trackJson => new Track(trackJson));
 };
