@@ -24,12 +24,14 @@ export const getArtistAlbums = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`
     );
-    return response.items.map(albumJson => new Album(albumJson));
+    return response.data.items.map((albumJson: any) => new Album(albumJson));
 };
 
 export const getRelatedArtists = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/related-artists`
     );
-    return response.artists.map(artistJson => new Artist(artistJson));
+    return response.data.artists.map(
+        (artistJson: any) => new Artist(artistJson)
+    );
 };

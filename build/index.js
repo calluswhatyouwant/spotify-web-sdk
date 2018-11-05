@@ -4,32 +4,6 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var axios = _interopDefault(require('axios'));
 
-var spotifyToken;
-var spotifyAxiosInstance;
-var login = function (token) {
-    spotifyToken = token;
-    spotifyAxiosInstance = axios.create({
-        baseURL: 'https://api.spotify.com/v1',
-        headers: { Authorization: "Bearer " + token },
-    });
-};
-var getToken = function () {
-    if (spotifyToken)
-        return spotifyToken;
-    throw new Error('You must log in first');
-};
-var getAxiosSpotifyInstance = function () {
-    if (spotifyAxiosInstance)
-        return spotifyAxiosInstance;
-    throw new Error('You must log in first');
-};
-
-var driver = /*#__PURE__*/Object.freeze({
-    login: login,
-    getToken: getToken,
-    getAxiosSpotifyInstance: getAxiosSpotifyInstance
-});
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -44,6 +18,17 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 
 function __awaiter(thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -81,6 +66,32 @@ function __generator(thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 }
+
+var spotifyToken;
+var spotifyAxiosInstance;
+var login = function (token) {
+    spotifyToken = token;
+    spotifyAxiosInstance = axios.create({
+        baseURL: 'https://api.spotify.com/v1',
+        headers: { Authorization: "Bearer " + token },
+    });
+};
+var getToken = function () {
+    if (spotifyToken)
+        return spotifyToken;
+    throw new Error('You must log in first');
+};
+var getAxiosSpotifyInstance = function () {
+    if (spotifyAxiosInstance)
+        return spotifyAxiosInstance;
+    throw new Error('You must log in first');
+};
+
+var driver = /*#__PURE__*/Object.freeze({
+    login: login,
+    getToken: getToken,
+    getAxiosSpotifyInstance: getAxiosSpotifyInstance
+});
 
 var ExternalUrl = (function () {
     function ExternalUrl(json) {
@@ -253,9 +264,148 @@ var tracks = /*#__PURE__*/Object.freeze({
     getTrack: getTrack
 });
 
-var index = {
-    driver: driver,
-    tracks: tracks,
-};
+var Followers = (function () {
+    function Followers(json) {
+        this.href = json.href;
+        this.total = json.total;
+    }
+    return Followers;
+}());
+
+var Artist = (function () {
+    function Artist(json) {
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.followers = new Followers(json.followers);
+        this.genres = json.genres;
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
+        this.name = json.name;
+        this.popularity = json.popularity;
+        this.type = json.type;
+        this.uri = json.uri;
+    }
+    return Artist;
+}());
+
+var Paging = (function () {
+    function Paging(json) {
+        this.href = json.href;
+        this.items = json.items;
+        this.limit = json.limit;
+        this.next = json.next;
+        this.offset = json.offset;
+        this.previous = json.previous;
+        this.total = json.total;
+    }
+    return Paging;
+}());
+
+var Album = (function () {
+    function Album(json) {
+        this.albumType = json.album_type;
+        this.artists = json.artists.map(function (artistJson) { return new ArtistSimplified(artistJson); });
+        this.availableMarkets = json.available_markets;
+        this.copyrights = json.copyrights;
+        this.externalIds = new ExternalId(json.external_ids);
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.genres = json.genres;
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
+        this.label = json.label;
+        this.name = json.name;
+        this.popularity = json.popularity;
+        this.releaseDate = json.release_date;
+        this.releaseDatePrecision = json.release_date_precision;
+        this.tracks = new Paging(json.tracks);
+        this.type = json.type;
+        this.uri = json.uri;
+    }
+    Object.defineProperty(Album.prototype, "stringArtists", {
+        get: function () {
+            var artistNames = this.artists.map(function (artist) { return artist.name; });
+            return artistNames.join(', ');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Album.prototype, "releaseYear", {
+        get: function () {
+            return this.releaseDate.substring(0, 4);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Album.prototype, "imageUrl", {
+        get: function () {
+            return this.images[0].url;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Album;
+}());
+
+var _this$1 = undefined;
+var getArtist = function (id) { return __awaiter(_this$1, void 0, void 0, function () {
+    var response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, getAxiosSpotifyInstance().get("/artists/" + id)];
+            case 1:
+                response = _a.sent();
+                return [2, new Artist(response.data)];
+        }
+    });
+}); };
+var getSeveralArtists = function (ids) { return __awaiter(_this$1, void 0, void 0, function () {
+    var exceptionLink, params, response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (ids.length > 50) {
+                    exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/';
+                    throw "The maximum number of artists is 50. See " + exceptionLink + " for details";
+                }
+                params = { params: { ids: ids } };
+                return [4, getAxiosSpotifyInstance().get('/artists', params)];
+            case 1:
+                response = _a.sent();
+                return [2, response.data.artists.map(function (artistJson) { return new Artist(artistJson); })];
+        }
+    });
+}); };
+var getArtistAlbums = function (id) { return __awaiter(_this$1, void 0, void 0, function () {
+    var response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, getAxiosSpotifyInstance().get("/artists/" + id + "/albums")];
+            case 1:
+                response = _a.sent();
+                return [2, response.data.items.map(function (albumJson) { return new Album(albumJson); })];
+        }
+    });
+}); };
+var getRelatedArtists = function (id) { return __awaiter(_this$1, void 0, void 0, function () {
+    var response;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, getAxiosSpotifyInstance().get("/artists/" + id + "/related-artists")];
+            case 1:
+                response = _a.sent();
+                return [2, response.data.artists.map(function (artistJson) { return new Artist(artistJson); })];
+        }
+    });
+}); };
+
+var artists = /*#__PURE__*/Object.freeze({
+    getArtist: getArtist,
+    getSeveralArtists: getSeveralArtists,
+    getArtistAlbums: getArtistAlbums,
+    getRelatedArtists: getRelatedArtists
+});
+
+var index = __assign({}, driver, tracks, artists);
 
 module.exports = index;
