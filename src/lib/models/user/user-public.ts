@@ -20,16 +20,14 @@ class PublicUser {
     uri: string;
 
     constructor(json: any) {
-        if (json) {
-            this.displayName = json.display_name;
-            this.externalUrls = new ExternalUrl(json.external_urls);
-            this.followers = new Followers(json.followers);
-            this.href = json.href;
-            this.id = json.id;
-            this.images = json.images.map(imageJson => new Image(imageJson));
-            this.type = json.type;
-            this.uri = json.uri;
-        }
+        this.displayName = json.display_name;
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.followers = new Followers(json.followers);
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map((imageJson: any) => new Image(imageJson));
+        this.type = json.type;
+        this.uri = json.uri;
     }
 }
 

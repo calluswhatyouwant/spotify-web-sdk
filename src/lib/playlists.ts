@@ -2,21 +2,25 @@ import { getAxiosSpotifyInstance } from './driver';
 import Playlist from './models/playlist/playlist';
 import PlaylistTrack from './models/playlist/playlist-track';
 
-export const getPlaylist = async (id: number | string) => {
+export const getPlaylist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/plylists/${id}`);
     return new Playlist(response.data);
 };
 
-export const getPlaylistTracks = async (id: number | string) => {
+export const getPlaylistTracks = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/playlists/${id}/tracks`
     );
-    return response.items.map(trackJson => new PlaylistTrack(trackJson));
+    return response.data.items.map(
+        (trackJson: any) => new PlaylistTrack(trackJson)
+    );
 };
 
-export const getUserPlaylists = async (id: number | string) => {
+export const getUserPlaylists = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/users/${id}/playlists`
     );
-    return response.items.map(playlistJson => new Playlist(playlistJson));
+    return response.data.items.map(
+        (playlistJson: any) => new Playlist(playlistJson)
+    );
 };

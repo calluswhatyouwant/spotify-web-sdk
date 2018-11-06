@@ -1,7 +1,7 @@
 import { getAxiosSpotifyInstance } from './driver';
 import Track from './models/track/track';
 
-export const getSeveralTracks = async (ids: number[] | string[]) => {
+export const getSeveralTracks = async (ids: string[]) => {
     if (ids.length > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-tracks/';
@@ -12,7 +12,7 @@ export const getSeveralTracks = async (ids: number[] | string[]) => {
     return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };
 
-export const getTrack = async (id: number | string) => {
+export const getTrack = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/tracks/${id}`);
     return new Track(response.data);
 };

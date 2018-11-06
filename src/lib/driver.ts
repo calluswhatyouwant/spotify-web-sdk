@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 let spotifyToken: string;
 let spotifyAxiosInstance: AxiosInstance;
 
-export const login = (token: string) => {
+export const init = (token: string) => {
     spotifyToken = token;
     spotifyAxiosInstance = axios.create({
         baseURL: 'https://api.spotify.com/v1',

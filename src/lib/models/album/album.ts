@@ -43,28 +43,26 @@ class Album {
     uri: string;
 
     constructor(json: any) {
-        if (json) {
-            this.albumType = json.album_type;
-            this.artists = json.artists.map(
-                artistJson => new ArtistSimplified(artistJson)
-            );
-            this.availableMarkets = json.available_markets;
-            this.copyrights = json.copyrights;
-            this.externalIds = new ExternalId(json.external_ids);
-            this.externalUrls = new ExternalUrl(json.external_urls);
-            this.genres = json.genres;
-            this.href = json.href;
-            this.id = json.id;
-            this.images = json.images.map(imageJson => new Image(imageJson));
-            this.label = json.label;
-            this.name = json.name;
-            this.popularity = json.popularity;
-            this.releaseDate = json.release_date;
-            this.releaseDatePrecision = json.release_date_precision;
-            this.tracks = new Paging(json.tracks);
-            this.type = json.type;
-            this.uri = json.uri;
-        }
+        this.albumType = json.album_type;
+        this.artists = json.artists.map(
+            (artistJson: any) => new ArtistSimplified(artistJson)
+        );
+        this.availableMarkets = json.available_markets;
+        this.copyrights = json.copyrights;
+        this.externalIds = new ExternalId(json.external_ids);
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.genres = json.genres;
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map((imageJson: any) => new Image(imageJson));
+        this.label = json.label;
+        this.name = json.name;
+        this.popularity = json.popularity;
+        this.releaseDate = json.release_date;
+        this.releaseDatePrecision = json.release_date_precision;
+        this.tracks = new Paging(json.tracks);
+        this.type = json.type;
+        this.uri = json.uri;
     }
 
     get stringArtists() {

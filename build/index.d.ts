@@ -1,7 +1,22 @@
-import * as driver from './driver';
-import * as tracks from './tracks';
 declare const _default: {
-    driver: typeof driver;
-    tracks: typeof tracks;
+    getAlbum: (id: string) => Promise<import("./models/album/album").default>;
+    getSeveralAlbums: (ids: string[]) => Promise<any>;
+    getAlbumTracks: (id: string) => Promise<any>;
+    getPlaylist: (id: string) => Promise<import("./models/playlist/playlist").default>;
+    getPlaylistTracks: (id: string) => Promise<any>;
+    getUserPlaylists: (id: string) => Promise<any>;
+    getArtist: (id: string) => Promise<import("./models/artist/artist").default>;
+    getSeveralArtists: (ids: string[]) => Promise<any>;
+    getArtistAlbums: (id: string) => Promise<any>;
+    getRelatedArtists: (id: string) => Promise<any>;
+    getArtistTopTracks: (id: string) => Promise<any>;
+    getFollowedArtists: (limit?: number, after?: string | undefined) => Promise<import("./models/artist/artist").default[]>;
+    isFollowing: (type: string, ids: string[]) => Promise<boolean[]>;
+    checkUsersFollowingPlaylist: (playlistId: string, ids: string[]) => Promise<boolean[]>;
+    getSeveralTracks: (ids: string[]) => Promise<any>;
+    getTrack: (id: string) => Promise<import("./models/track/track").default>;
+    init: (token: string) => void;
+    getToken: () => string;
+    getAxiosSpotifyInstance: () => import("axios").AxiosInstance;
 };
 export default _default;
