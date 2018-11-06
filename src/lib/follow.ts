@@ -8,7 +8,9 @@ export const getFollowedArtists = async (
     if (limit < 1 || limit > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/';
-        throw `The limit must be between 1 and 50 (inclusive). See ${exceptionLink} for details`;
+        throw new Error(
+            `The limit must be between 1 and 50 (inclusive). See ${exceptionLink} for details`
+        );
     }
 
     const afterQuery = after ? after : null;
@@ -30,9 +32,13 @@ export const isFollowing = async (
     const exceptionLink =
         'https://developer.spotify.com/documentation/web-api/reference/follow/check-current-user-follows/';
     if (type !== 'artist' && type !== 'user') {
-        throw `The type must be either artist or user. See ${exceptionLink} for details`;
+        throw new Error(
+            `The type must be either artist or user. See ${exceptionLink} for details`
+        );
     } else if (ids.length > 50) {
-        throw `The maximum number of ids to check is 50. See ${exceptionLink} for details`;
+        throw new Error(
+            `The maximum number of ids to check is 50. See ${exceptionLink} for details`
+        );
     }
 
     const params = { params: { type, ids: ids.join() } };
@@ -51,7 +57,9 @@ export const checkUsersFollowingPlaylist = async (
     if (ids.length > 5) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/follow/check-user-following-playlist/';
-        throw `The maximum number of users to check is 5. See ${exceptionLink} for details`;
+        throw new Error(
+            `The maximum number of users to check is 5. See ${exceptionLink} for details`
+        );
     }
 
     const params = { params: { ids: ids.join() } };
