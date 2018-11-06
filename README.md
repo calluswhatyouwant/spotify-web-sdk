@@ -2,6 +2,17 @@
 
 A JavaScript SDK for the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Community](#community)
+    - [Suggest a new feature or report a bug](#suggest-a-new-feature-or-report-a-bug)
+    - [Do it yourself](#do-it-yourself)
+    - [Maintainers](#maintainers)
+    - [Hall of Fame](#hall-of-fame)
+- [License](#license)
+
 ## Features
 
 ### "Why should I use this?"
@@ -48,9 +59,7 @@ It might be something really simple, but we believe that such little things can 
 
 Even though I'm not certain you thought that right now, here's how to get started:
 
-## Getting started
-
-### Installation
+## Installation
 
 Run the following in your project:
 
@@ -58,7 +67,7 @@ Run the following in your project:
 
 We'll be soon making this an NPM package so that you can install this even more easily, but this might work for now.
 
-### Usage
+## Usage
 
 First of all, you will need a Spotify authorization token.
 For that, check Spotify Web API's [Authorization Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
@@ -66,7 +75,7 @@ Please note that you might need some specific authorization scopes depending on 
 
 And then you'll only need to import the function that implements the request you want to make.
 Remember that you'll need to run the init function passing your authorization token to authorize making the requests.
-There's an example of the usage at the beginning of this README.
+There's an example of the usage at the [beginning of this README](#features).
 
 ## Community
 
@@ -84,9 +93,15 @@ We're working on a CONTRIBUTING file and PR template.
 In the meantime, you can already create PRs, especially to help us create the requests that are still missing.
 Give the [Web API Reference](https://developer.spotify.com/documentation/web-api/reference/) a look to find out which endpoints are not supported by us yet.
 
-## Mantainers
+### Maintainers
 
 [@JoseRenan](http://github.com/JoseRenan) and [@JRobsonJr](http://github.com/JRobsonJr)
+
+### Hall of Fame
+
+[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/0)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/0)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/1)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/1)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/2)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/2)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/3)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/3)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/4)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/4)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/5)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/5)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/6)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/6)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/7)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/7)
+
+Made with [hall-of-fame](https://github.com/sourcerer-io/hall-of-fame).
 
 ## License
 
