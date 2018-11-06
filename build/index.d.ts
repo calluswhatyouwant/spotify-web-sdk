@@ -1,13 +1,13 @@
 declare const _default: {
     getAlbum: (id: string | number) => Promise<import("./models/album/album").default>;
     getSeveralAlbums: (ids: number[] | string[]) => Promise<any>;
-    getAlbumTracks: (id: string | number) => Promise<any>;
+    getAlbumTracks: (id: string | number, offset?: number, limit?: number) => Promise<import("./models/paging/page").default<import("./models/track/track-simplified").default>>;
     getPlaylist: (id: string | number) => Promise<import("./models/playlist/playlist").default>;
-    getPlaylistTracks: (id: string | number) => Promise<any>;
-    getUserPlaylists: (id: string | number) => Promise<any>;
+    getPlaylistTracks: (id: string | number, offset?: number, limit?: number) => Promise<import("./models/paging/page").default<import("./models/playlist/playlist-track").default>>;
+    getUserPlaylists: (id: string | number, offset?: number, limit?: number) => Promise<import("./models/paging/page").default<import("./models/playlist/playlist-simplified").default>>;
     getArtist: (id: string | number) => Promise<import("./models/artist/artist").default>;
     getSeveralArtists: (ids: number[] | string[]) => Promise<any>;
-    getArtistAlbums: (id: string | number) => Promise<any>;
+    getArtistAlbums: (id: string | number, offset?: number, limit?: number) => Promise<import("./models/paging/page").default<import("./models/album/album-simplified").default>>;
     getRelatedArtists: (id: string | number) => Promise<any>;
     getArtistTopTracks: (id: string | number) => Promise<any>;
     getFollowedArtists: (limit?: number, after?: string | undefined) => Promise<import("./models/artist/artist").default[]>;

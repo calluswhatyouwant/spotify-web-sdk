@@ -237,7 +237,7 @@ var getSeveralTracks = function (ids) { return __awaiter(_this, void 0, void 0, 
             case 0:
                 if (ids.length > 50) {
                     exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-tracks/';
-                    throw "The maximum number of tracks is 50. See " + exceptionLink + " for details";
+                    throw new Error("The maximum number of tracks is 50. See " + exceptionLink + " for details");
                 }
                 params = { params: { ids: ids } };
                 return [4, getAxiosSpotifyInstance().get('/tracks', params)];
@@ -298,7 +298,7 @@ var getFollowedArtists = function (limit, after) {
                 case 0:
                     if (limit < 1 || limit > 50) {
                         exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/';
-                        throw "The limit must be between 1 and 50 (inclusive). See " + exceptionLink + " for details";
+                        throw new Error("The limit must be between 1 and 50 (inclusive). See " + exceptionLink + " for details");
                     }
                     afterQuery = after ? after : null;
                     params = { params: { limit: limit, type: 'artist', after: afterQuery } };
@@ -317,10 +317,10 @@ var isFollowing = function (type, ids) { return __awaiter(_this$1, void 0, void 
             case 0:
                 exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/follow/check-current-user-follows/';
                 if (type !== 'artist' && type !== 'user') {
-                    throw "The type must be either artist or user. See " + exceptionLink + " for details";
+                    throw new Error("The type must be either artist or user. See " + exceptionLink + " for details");
                 }
                 else if (ids.length > 50) {
-                    throw "The maximum number of ids to check is 50. See " + exceptionLink + " for details";
+                    throw new Error("The maximum number of ids to check is 50. See " + exceptionLink + " for details");
                 }
                 params = { params: { type: type, ids: ids.join() } };
                 return [4, getAxiosSpotifyInstance().get('/me/following/contains', params)];
@@ -337,7 +337,7 @@ var checkUsersFollowingPlaylist = function (playlistId, ids) { return __awaiter(
             case 0:
                 if (ids.length > 5) {
                     exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/follow/check-user-following-playlist/';
-                    throw "The maximum number of users to check is 5. See " + exceptionLink + " for details";
+                    throw new Error("The maximum number of users to check is 5. See " + exceptionLink + " for details");
                 }
                 params = { params: { ids: ids.join() } };
                 return [4, getAxiosSpotifyInstance().get("/playlists/" + playlistId + "/followers/contains", params)];
@@ -354,63 +354,78 @@ var follow = /*#__PURE__*/Object.freeze({
     checkUsersFollowingPlaylist: checkUsersFollowingPlaylist
 });
 
-var Paging = (function () {
-    function Paging(json) {
-        this.href = json.href;
-        this.items = json.items;
+var Page = (function () {
+    function Page(json, t) {
+        this.t = t;
+        this.href = json.href.split('?')[0];
+        this.items = json.items.map(function (json) { return new t(json); });
         this.limit = json.limit;
-        this.next = json.next;
+        this.next = json.next ? json.next.split('?')[1] : null;
         this.offset = json.offset;
-        this.previous = json.previous;
+        this.previous = json.previous ? json.previous.split('?')[1] : null;
         this.total = json.total;
     }
-    return Paging;
-}());
-
-var Album = (function () {
-    function Album(json) {
-        this.albumType = json.album_type;
-        this.artists = json.artists.map(function (artistJson) { return new ArtistSimplified(artistJson); });
-        this.availableMarkets = json.available_markets;
-        this.copyrights = json.copyrights;
-        this.externalIds = new ExternalId(json.external_ids);
-        this.externalUrls = new ExternalUrl(json.external_urls);
-        this.genres = json.genres;
-        this.href = json.href;
-        this.id = json.id;
-        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
-        this.label = json.label;
-        this.name = json.name;
-        this.popularity = json.popularity;
-        this.releaseDate = json.release_date;
-        this.releaseDatePrecision = json.release_date_precision;
-        this.tracks = new Paging(json.tracks);
-        this.type = json.type;
-        this.uri = json.uri;
-    }
-    Object.defineProperty(Album.prototype, "stringArtists", {
-        get: function () {
-            var artistNames = this.artists.map(function (artist) { return artist.name; });
-            return artistNames.join(', ');
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Album.prototype, "releaseYear", {
-        get: function () {
-            return this.releaseDate.substring(0, 4);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Album.prototype, "imageUrl", {
-        get: function () {
-            return this.images[0].url;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return Album;
+    Page.prototype.getAxiosPageInstance = function () {
+        var instance = getAxiosSpotifyInstance();
+        instance.defaults.baseURL = this.href;
+        return instance;
+    };
+    Page.prototype.hasNext = function () {
+        return Boolean(this.next);
+    };
+    Page.prototype.hasPrevious = function () {
+        return Boolean(this.previous);
+    };
+    Page.prototype.getNextPage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var params, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.hasNext())
+                            throw new Error('There are no more pages');
+                        params = { limit: this.limit, offset: this.offset + this.limit };
+                        return [4, this.getAxiosPageInstance().get('/', { params: params })];
+                    case 1:
+                        response = _a.sent();
+                        return [2, new Page(response.data, this.t)];
+                }
+            });
+        });
+    };
+    Page.prototype.getPreviousPage = function (forceLimit) {
+        if (forceLimit === void 0) { forceLimit = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var limit, params, response, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.hasPrevious())
+                            throw new Error('There are no more pages');
+                        limit = this.limit;
+                        if (this.offset < this.limit && !forceLimit) {
+                            limit = this.offset;
+                        }
+                        params = { limit: limit, offset: 0 };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4, this.getAxiosPageInstance().get('/', {
+                                params: params,
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        return [2, new Page(response.data, this.t)];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3, 4];
+                    case 4: return [2];
+                }
+            });
+        });
+    };
+    return Page;
 }());
 
 var _this$2 = undefined;
@@ -432,7 +447,7 @@ var getSeveralArtists = function (ids) { return __awaiter(_this$2, void 0, void 
             case 0:
                 if (ids.length > 50) {
                     exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/';
-                    throw "The maximum number of artists is 50. See " + exceptionLink + " for details";
+                    throw new Error("The maximum number of artists is 50. See " + exceptionLink + " for details");
                 }
                 params = { params: { ids: ids } };
                 return [4, getAxiosSpotifyInstance().get('/artists', params)];
@@ -442,17 +457,23 @@ var getSeveralArtists = function (ids) { return __awaiter(_this$2, void 0, void 
         }
     });
 }); };
-var getArtistAlbums = function (id) { return __awaiter(_this$2, void 0, void 0, function () {
-    var response;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, getAxiosSpotifyInstance().get("/artists/" + id + "/albums")];
-            case 1:
-                response = _a.sent();
-                return [2, response.data.items.map(function (albumJson) { return new Album(albumJson); })];
-        }
+var getArtistAlbums = function (id, offset, limit) {
+    if (offset === void 0) { offset = 0; }
+    if (limit === void 0) { limit = 20; }
+    return __awaiter(_this$2, void 0, void 0, function () {
+        var params, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    params = { params: { offset: offset, limit: limit } };
+                    return [4, getAxiosSpotifyInstance().get("/artists/" + id + "/albums", params)];
+                case 1:
+                    response = _a.sent();
+                    return [2, new Page(response.data, AlbumSimplified)];
+            }
+        });
     });
-}); };
+};
 var getRelatedArtists = function (id) { return __awaiter(_this$2, void 0, void 0, function () {
     var response;
     return __generator(this, function (_a) {
@@ -524,6 +545,52 @@ var TrackSimplified = (function () {
     return TrackSimplified;
 }());
 
+var Album = (function () {
+    function Album(json) {
+        this.albumType = json.album_type;
+        this.artists = json.artists.map(function (artistJson) { return new ArtistSimplified(artistJson); });
+        this.availableMarkets = json.available_markets;
+        this.copyrights = json.copyrights;
+        this.externalIds = new ExternalId(json.external_ids);
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.genres = json.genres;
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
+        this.label = json.label;
+        this.name = json.name;
+        this.popularity = json.popularity;
+        this.releaseDate = json.release_date;
+        this.releaseDatePrecision = json.release_date_precision;
+        this.tracks = new Page(json.tracks, TrackSimplified);
+        this.type = json.type;
+        this.uri = json.uri;
+    }
+    Object.defineProperty(Album.prototype, "stringArtists", {
+        get: function () {
+            var artistNames = this.artists.map(function (artist) { return artist.name; });
+            return artistNames.join(', ');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Album.prototype, "releaseYear", {
+        get: function () {
+            return this.releaseDate.substring(0, 4);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Album.prototype, "imageUrl", {
+        get: function () {
+            return this.images[0].url;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Album;
+}());
+
 var _this$3 = undefined;
 var getAlbum = function (id) { return __awaiter(_this$3, void 0, void 0, function () {
     var response;
@@ -543,7 +610,7 @@ var getSeveralAlbums = function (ids) { return __awaiter(_this$3, void 0, void 0
             case 0:
                 if (ids.length > 20) {
                     exceptionLink = 'https://developer.spotify.com/documentation/web-api/reference/albums/get-several-albums/';
-                    throw "The maximum number of albums is 20. See " + exceptionLink + " for details";
+                    throw new Error("The maximum number of albums is 20. See " + exceptionLink + " for details");
                 }
                 params = { params: { ids: ids } };
                 return [4, getAxiosSpotifyInstance().get('/albums', params)];
@@ -553,17 +620,23 @@ var getSeveralAlbums = function (ids) { return __awaiter(_this$3, void 0, void 0
         }
     });
 }); };
-var getAlbumTracks = function (id) { return __awaiter(_this$3, void 0, void 0, function () {
-    var response;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, getAxiosSpotifyInstance().get("/albums/" + id + "/tracks")];
-            case 1:
-                response = _a.sent();
-                return [2, response.data.items.map(function (trackJson) { return new TrackSimplified(trackJson); })];
-        }
+var getAlbumTracks = function (id, offset, limit) {
+    if (offset === void 0) { offset = 0; }
+    if (limit === void 0) { limit = 20; }
+    return __awaiter(_this$3, void 0, void 0, function () {
+        var params, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    params = { params: { offset: offset, limit: limit } };
+                    return [4, getAxiosSpotifyInstance().get("/albums/" + id + "/tracks", params)];
+                case 1:
+                    response = _a.sent();
+                    return [2, new Page(response.data, TrackSimplified)];
+            }
+        });
     });
-}); };
+};
 
 var albums = /*#__PURE__*/Object.freeze({
     getAlbum: getAlbum,
@@ -585,6 +658,16 @@ var PublicUser = (function () {
     return PublicUser;
 }());
 
+var PlaylistTrack = (function () {
+    function PlaylistTrack(json) {
+        this.addedAt = json.added_at;
+        this.addedBy = new PublicUser(json.added_by);
+        this.isLocal = json.is_local;
+        this.track = new Track(json.track);
+    }
+    return PlaylistTrack;
+}());
+
 var Playlist = (function () {
     function Playlist(json) {
         this.collaborative = json.collaborative;
@@ -598,21 +681,36 @@ var Playlist = (function () {
         this.owner = new PublicUser(json.owner);
         this.public = json.public;
         this.snapshotId = json.snapshot_id;
-        this.tracks = new Paging(json.tracks);
+        this.tracks = new Page(json.tracks, PlaylistTrack);
         this.type = json.type;
         this.uri = json.uri;
     }
     return Playlist;
 }());
 
-var PlaylistTrack = (function () {
-    function PlaylistTrack(json) {
-        this.addedAt = json.added_at;
-        this.addedBy = new PublicUser(json.added_by);
-        this.isLocal = json.is_local;
-        this.track = new Track(json.track);
+var PlaylistSimplified = (function () {
+    function PlaylistSimplified(json) {
+        this.collaborative = json.collaborative;
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.href = json.href;
+        this.id = json.id;
+        this.images = json.images.map(function (imageJson) { return new Image(imageJson); });
+        this.name = json.name;
+        this.owner = new PublicUser(json.owner);
+        this.public = json.public;
+        this.snapshotId = json.snapshot_id;
+        this.tracks = json.tracks;
+        this.type = json.type;
+        this.uri = json.uri;
     }
-    return PlaylistTrack;
+    Object.defineProperty(PlaylistSimplified.prototype, "totalTracks", {
+        get: function () {
+            return this.tracks.total;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return PlaylistSimplified;
 }());
 
 var _this$4 = undefined;
@@ -627,28 +725,40 @@ var getPlaylist = function (id) { return __awaiter(_this$4, void 0, void 0, func
         }
     });
 }); };
-var getPlaylistTracks = function (id) { return __awaiter(_this$4, void 0, void 0, function () {
-    var response;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, getAxiosSpotifyInstance().get("/playlists/" + id + "/tracks")];
-            case 1:
-                response = _a.sent();
-                return [2, response.data.items.map(function (trackJson) { return new PlaylistTrack(trackJson); })];
-        }
+var getPlaylistTracks = function (id, offset, limit) {
+    if (offset === void 0) { offset = 0; }
+    if (limit === void 0) { limit = 20; }
+    return __awaiter(_this$4, void 0, void 0, function () {
+        var params, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    params = { params: { offset: offset, limit: limit } };
+                    return [4, getAxiosSpotifyInstance().get("/playlists/" + id + "/tracks", params)];
+                case 1:
+                    response = _a.sent();
+                    return [2, new Page(response.data, PlaylistTrack)];
+            }
+        });
     });
-}); };
-var getUserPlaylists = function (id) { return __awaiter(_this$4, void 0, void 0, function () {
-    var response;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4, getAxiosSpotifyInstance().get("/users/" + id + "/playlists")];
-            case 1:
-                response = _a.sent();
-                return [2, response.data.items.map(function (playlistJson) { return new Playlist(playlistJson); })];
-        }
+};
+var getUserPlaylists = function (id, offset, limit) {
+    if (offset === void 0) { offset = 0; }
+    if (limit === void 0) { limit = 20; }
+    return __awaiter(_this$4, void 0, void 0, function () {
+        var params, response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    params = { params: { offset: offset, limit: limit } };
+                    return [4, getAxiosSpotifyInstance().get("/users/" + id + "/playlists", params)];
+                case 1:
+                    response = _a.sent();
+                    return [2, new Page(response.data, PlaylistSimplified)];
+            }
+        });
     });
-}); };
+};
 
 var playlists = /*#__PURE__*/Object.freeze({
     getPlaylist: getPlaylist,
