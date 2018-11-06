@@ -5,12 +5,12 @@ import Track from './models/track/track';
 import Page from './models/paging/page';
 import AlbumSimplified from './models/album/album-simplified';
 
-export const getArtist = async (id: number | string) => {
+export const getArtist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);
     return new Artist(response.data);
 };
 
-export const getSeveralArtists = async (ids: number[] | string[]) => {
+export const getSeveralArtists = async (ids: string[]) => {
     if (ids.length > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/';
@@ -25,11 +25,7 @@ export const getSeveralArtists = async (ids: number[] | string[]) => {
     );
 };
 
-export const getArtistAlbums = async (
-    id: number | string,
-    offset = 0,
-    limit = 20
-) => {
+export const getArtistAlbums = async (id: string, offset = 0, limit = 20) => {
     const params = { params: { offset, limit } };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`,
@@ -38,7 +34,7 @@ export const getArtistAlbums = async (
     return new Page<AlbumSimplified>(response.data, AlbumSimplified);
 };
 
-export const getRelatedArtists = async (id: number | string) => {
+export const getRelatedArtists = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/related-artists`
     );
@@ -47,7 +43,7 @@ export const getRelatedArtists = async (id: number | string) => {
     );
 };
 
-export const getArtistTopTracks = async (id: number | string) => {
+export const getArtistTopTracks = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`
     );
