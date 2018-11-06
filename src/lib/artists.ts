@@ -41,5 +41,5 @@ export const getArtistTopTracks = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`
     );
-    return response.tracks.map(trackJson => new Track(trackJson));
+    return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };

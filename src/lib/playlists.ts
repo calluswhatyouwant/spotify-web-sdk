@@ -11,12 +11,16 @@ export const getPlaylistTracks = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/playlists/${id}/tracks`
     );
-    return response.items.map(trackJson => new PlaylistTrack(trackJson));
+    return response.data.items.map(
+        (trackJson: any) => new PlaylistTrack(trackJson)
+    );
 };
 
 export const getUserPlaylists = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/users/${id}/playlists`
     );
-    return response.items.map(playlistJson => new Playlist(playlistJson));
+    return response.data.items.map(
+        (playlistJson: any) => new Playlist(playlistJson)
+    );
 };

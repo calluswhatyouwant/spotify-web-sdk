@@ -22,5 +22,7 @@ export const getAlbumTracks = async (id: number | string) => {
     const response = await getAxiosSpotifyInstance().get(
         `/albums/${id}/tracks`
     );
-    return response.items.map(trackJson => new TrackSimplified(trackJson));
+    return response.data.items.map(
+        (trackJson: any) => new TrackSimplified(trackJson)
+    );
 };

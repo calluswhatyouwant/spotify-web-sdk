@@ -1,9 +1,22 @@
-import * as driver from './driver';
-import * as tracks from './tracks';
-import * as follow from './follow';
 declare const _default: {
-    driver: typeof driver;
-    tracks: typeof tracks;
-    follow: typeof follow;
+    getAlbum: (id: string | number) => Promise<import("./models/album/album").default>;
+    getSeveralAlbums: (ids: number[] | string[]) => Promise<any>;
+    getAlbumTracks: (id: string | number) => Promise<any>;
+    getPlaylist: (id: string | number) => Promise<import("./models/playlist/playlist").default>;
+    getPlaylistTracks: (id: string | number) => Promise<any>;
+    getUserPlaylists: (id: string | number) => Promise<any>;
+    getArtist: (id: string | number) => Promise<import("./models/artist/artist").default>;
+    getSeveralArtists: (ids: number[] | string[]) => Promise<any>;
+    getArtistAlbums: (id: string | number) => Promise<any>;
+    getRelatedArtists: (id: string | number) => Promise<any>;
+    getArtistTopTracks: (id: string | number) => Promise<any>;
+    getFollowedArtists: (limit?: number, after?: string | undefined) => Promise<import("./models/artist/artist").default[]>;
+    isFollowing: (type: string, ids: string[]) => Promise<boolean[]>;
+    checkUsersFollowingPlaylist: (playlistId: string, ids: string[]) => Promise<boolean[]>;
+    getSeveralTracks: (ids: number[] | string[]) => Promise<any>;
+    getTrack: (id: string | number) => Promise<import("./models/track/track").default>;
+    init: (token: string) => void;
+    getToken: () => string;
+    getAxiosSpotifyInstance: () => import("axios").AxiosInstance;
 };
 export default _default;

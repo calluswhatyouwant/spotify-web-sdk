@@ -34,7 +34,9 @@ class Playlist {
             this.externalUrls = new ExternalUrl(json.external_urls);
             this.href = json.href;
             this.id = json.id;
-            this.images = json.images.map(imageJson => new Image(imageJson));
+            this.images = json.images.map(
+                (imageJson: any) => new Image(imageJson)
+            );
             this.name = json.name;
             this.owner = new PublicUser(json.owner);
             this.public = json.public;
