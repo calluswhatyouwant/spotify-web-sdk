@@ -2,6 +2,8 @@ import { getAxiosSpotifyInstance } from './driver';
 import Artist from './models/artist/artist';
 import Album from './models/album/album';
 import Track from './models/track/track';
+import Page from './models/paging/page';
+import AlbumSimplified from './models/album/album-simplified';
 
 export const getArtist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);
@@ -12,7 +14,9 @@ export const getSeveralArtists = async (ids: string[]) => {
     if (ids.length > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/';
-        throw `The maximum number of artists is 50. See ${exceptionLink} for details`;
+        throw new Error(
+            `The maximum number of artists is 50. See ${exceptionLink} for details`
+        );
     }
     const params = { params: { ids } };
     const response = await getAxiosSpotifyInstance().get('/artists', params);
@@ -21,11 +25,13 @@ export const getSeveralArtists = async (ids: string[]) => {
     );
 };
 
-export const getArtistAlbums = async (id: string) => {
+export const getArtistAlbums = async (id: string, offset = 0, limit = 20) => {
+    const params = { params: { offset, limit } };
     const response = await getAxiosSpotifyInstance().get(
-        `/artists/${id}/albums`
+        `/artists/${id}/albums`,
+        params
     );
-    return response.data.items.map((albumJson: any) => new Album(albumJson));
+    return new Page<AlbumSimplified>(response.data, AlbumSimplified);
 };
 
 export const getRelatedArtists = async (id: string) => {

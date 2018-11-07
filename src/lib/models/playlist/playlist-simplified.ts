@@ -2,7 +2,7 @@ import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
 import PublicUser from '../user/user-public';
 
-class Playlist {
+class PlaylistSimplified {
     collaborative: boolean;
 
     externalUrls: ExternalUrl;
@@ -48,4 +48,4 @@ class Playlist {
     }
 }
 
-export default Playlist;
+export default PlaylistSimplified;
