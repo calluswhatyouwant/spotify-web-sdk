@@ -2,7 +2,7 @@ import ArtistSimplified from '../artist/artist-simplified';
 import ExternalId from '../common/external-id';
 import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
-import Paging from '../paging/paging';
+import Page from '../paging/page';
 import TrackSimplified from '../track/track-simplified';
 declare class Album {
     albumType: 'album' | 'single' | 'compilation';
@@ -20,7 +20,7 @@ declare class Album {
     popularity: number;
     releaseDate: string;
     releaseDatePrecision: 'year' | 'month' | 'day';
-    tracks: Paging<TrackSimplified>;
+    tracks: Page<TrackSimplified>;
     type: 'album';
     uri: string;
     constructor(json: any);

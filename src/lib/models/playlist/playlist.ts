@@ -1,9 +1,10 @@
 import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
-import Paging from '../paging/paging';
+import Page from '../paging/page';
 import PlaylistTrack from './playlist-track';
 import PublicUser from '../user/user-public';
+import Track from '../track/track';
 
 class Playlist {
     collaborative: boolean;
@@ -28,7 +29,7 @@ class Playlist {
 
     snapshotId: string;
 
-    tracks: Paging<PlaylistTrack>;
+    tracks: Page<PlaylistTrack>;
 
     type: 'playlist';
 
@@ -46,7 +47,7 @@ class Playlist {
         this.owner = new PublicUser(json.owner);
         this.public = json.public;
         this.snapshotId = json.snapshot_id;
-        this.tracks = new Paging(json.tracks);
+        this.tracks = new Page<PlaylistTrack>(json.tracks, PlaylistTrack);
         this.type = json.type;
         this.uri = json.uri;
     }

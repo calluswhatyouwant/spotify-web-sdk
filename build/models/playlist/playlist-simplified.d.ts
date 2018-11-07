@@ -1,7 +1,7 @@
 import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
 import PublicUser from '../user/user-public';
-declare class Playlist {
+declare class PlaylistSimplified {
     collaborative: boolean;
     externalUrls: ExternalUrl;
     href: string;
@@ -17,4 +17,4 @@ declare class Playlist {
     constructor(json: any);
     readonly totalTracks: any;
 }
-export default Playlist;
+export default PlaylistSimplified;

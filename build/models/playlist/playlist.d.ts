@@ -1,7 +1,7 @@
 import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
-import Paging from '../paging/paging';
+import Page from '../paging/page';
 import PlaylistTrack from './playlist-track';
 import PublicUser from '../user/user-public';
 declare class Playlist {
@@ -16,7 +16,7 @@ declare class Playlist {
     owner: PublicUser;
     public: boolean | null;
     snapshotId: string;
-    tracks: Paging<PlaylistTrack>;
+    tracks: Page<PlaylistTrack>;
     type: 'playlist';
     uri: string;
     constructor(json: any);

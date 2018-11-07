@@ -1,26 +1,28 @@
 import { getAxiosSpotifyInstance } from './driver';
 import Playlist from './models/playlist/playlist';
 import PlaylistTrack from './models/playlist/playlist-track';
+import Page from './models/paging/page';
+import PlaylistSimplified from './models/playlist/playlist-simplified';
 
 export const getPlaylist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/plylists/${id}`);
     return new Playlist(response.data);
 };
 
-export const getPlaylistTracks = async (id: string) => {
+export const getPlaylistTracks = async (id: string, offset = 0, limit = 20) => {
+    const params = { params: { offset, limit } };
     const response = await getAxiosSpotifyInstance().get(
-        `/playlists/${id}/tracks`
+        `/playlists/${id}/tracks`,
+        params
     );
-    return response.data.items.map(
-        (trackJson: any) => new PlaylistTrack(trackJson)
-    );
+    return new Page<PlaylistTrack>(response.data, PlaylistTrack);
 };
 
-export const getUserPlaylists = async (id: string) => {
+export const getUserPlaylists = async (id: string, offset = 0, limit = 20) => {
+    const params = { params: { offset, limit } };
     const response = await getAxiosSpotifyInstance().get(
-        `/users/${id}/playlists`
+        `/users/${id}/playlists`,
+        params
     );
-    return response.data.items.map(
-        (playlistJson: any) => new Playlist(playlistJson)
-    );
+    return new Page<PlaylistSimplified>(response.data, PlaylistSimplified);
 };

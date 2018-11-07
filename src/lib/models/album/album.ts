@@ -2,7 +2,7 @@ import ArtistSimplified from '../artist/artist-simplified';
 import ExternalId from '../common/external-id';
 import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
-import Paging from '../paging/paging';
+import Page from '../paging/page';
 import TrackSimplified from '../track/track-simplified';
 
 class Album {
@@ -36,7 +36,7 @@ class Album {
 
     releaseDatePrecision: 'year' | 'month' | 'day';
 
-    tracks: Paging<TrackSimplified>;
+    tracks: Page<TrackSimplified>;
 
     type: 'album';
 
@@ -60,7 +60,7 @@ class Album {
         this.popularity = json.popularity;
         this.releaseDate = json.release_date;
         this.releaseDatePrecision = json.release_date_precision;
-        this.tracks = new Paging(json.tracks);
+        this.tracks = new Page<TrackSimplified>(json.tracks, TrackSimplified);
         this.type = json.type;
         this.uri = json.uri;
     }
