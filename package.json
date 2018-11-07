@@ -11,7 +11,7 @@
     },
     "scripts": {
         "start": "ts-node src/start.ts",
-        "build": "rollup -c rollup.config.js",
+        "build": "rimraf build && tsc && webpack",
         "lint": "tslint -c tslint.json 'src/**/*.ts'"
     },
     "husky": {
@@ -22,19 +22,19 @@
     "files": [
         "build"
     ],
+    "types": "build/typings/index.d.ts",
     "main": "build/index.js",
     "devDependencies": {
         "husky": "^1.1.2",
         "prettier": "^1.14.3",
         "pretty-quick": "^1.8.0",
-        "rollup": "^0.66.2",
-        "rollup-plugin-commonjs": "^9.1.8",
-        "rollup-plugin-node-resolve": "^3.4.0",
-        "rollup-plugin-typescript2": "^0.17.0",
+        "rimraf": "^2.6.2",
+        "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
         "tslint-config-airbnb": "^5.11.0",
         "tslint-config-prettier": "^1.15.0",
         "typescript": "^3.0.3",
-        "ts-node": "^7.0.1"
+        "webpack": "^4.25.1",
+        "webpack-cli": "^3.1.2"
     }
 }

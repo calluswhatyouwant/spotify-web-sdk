@@ -1,4 +1,4 @@
-import spotify from './lib';
+import * as spotify from './lib';
 
 const main = async () => {
     spotify.init('YOUR TOKEN HERE');
