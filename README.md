@@ -1,17 +1,19 @@
 # Spotify Web SDK
 
 A JavaScript SDK for the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).
+Note that this project is still a BETA version.
 
 ## Table of Contents
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Community](#community)
-    - [Suggest a new feature or report a bug](#suggest-a-new-feature-or-report-a-bug)
-    - [Do it yourself](#do-it-yourself)
-    - [Maintainers](#maintainers)
-    - [Hall of Fame](#hall-of-fame)
-- [License](#license)
+
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Community](#community)
+    -   [Suggest a new feature or report a bug](#suggest-a-new-feature-or-report-a-bug)
+    -   [Do it yourself](#do-it-yourself)
+    -   [Maintainers](#maintainers)
+    -   [Hall of Fame](#hall-of-fame)
+-   [License](#license)
 
 ## Features
 
@@ -90,8 +92,8 @@ Check our [issue templates](.github/ISSUE_TEMPLATE).
 ### Do it yourself
 
 We're working on a CONTRIBUTING file and PR template.
-In the meantime, you can already create PRs, especially to help us create the requests that are still missing.
-Give the [Web API Reference](https://developer.spotify.com/documentation/web-api/reference/) a look to find out which endpoints are not supported by us yet.
+In the meantime, you can already create PRs, especially to help us create the requests that are still missing and test the ones we have implemented.
+Check [#21](/issues/21) for a list of GET endpoints we haven't got covered yet.
 
 ### Maintainers
 
