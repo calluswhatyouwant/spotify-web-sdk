@@ -1,41 +1,7 @@
-class AudioFeatures {
-    acousticness: number;
-
-    analysisUrl: string;
-
-    danceability: number;
-
-    durationMs: number;
-
-    energy: number;
-
-    id: string;
-
-    instrumentalness: number;
-
-    key: number;
-
-    liveness: number;
-
-    loudness: number;
-
-    mode: number;
-
-    speechiness: number;
-
-    tempo: number;
-
-    timeSignature: number;
-
-    trackHref: string;
-
-    type: 'audio_features';
-
-    uri: string;
-
-    valence: number;
-
-    constructor(json: any) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var AudioFeatures = (function () {
+    function AudioFeatures(json) {
         this.acousticness = json.acousticness;
         this.analysisUrl = json.analysis_url;
         this.danceability = json.danceability;
@@ -55,6 +21,6 @@ class AudioFeatures {
         this.uri = json.uri;
         this.valence = json.valence;
     }
-}
-
-export default AudioFeatures;
+    return AudioFeatures;
+}());
+exports.default = AudioFeatures;

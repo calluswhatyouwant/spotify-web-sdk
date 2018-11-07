@@ -1,8 +1,8 @@
-import SpotifyWebApi from './lib';
+import * as spotify from './lib';
 
 const main = async () => {
-    SpotifyWebApi.init('YOUR TOKEN HERE');
-    const track = await SpotifyWebApi.getTrack('11dFghVXANMlKmJXsNCbNl');
+    spotify.init('YOUR TOKEN HERE');
+    const track = await spotify.getTrack('11dFghVXANMlKmJXsNCbNl');
     console.log(track);
 };
 

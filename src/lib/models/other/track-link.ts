@@ -12,13 +12,11 @@ class TrackLink {
     uri: string;
 
     constructor(json: any) {
-        if (json) {
-            this.externalUrls = new ExternalUrl(json.external_urls);
-            this.href = json.href;
-            this.id = json.id;
-            this.type = json.type;
-            this.uri = json.uri;
-        }
+        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.href = json.href;
+        this.id = json.id;
+        this.type = json.type;
+        this.uri = json.uri;
     }
 }
 
