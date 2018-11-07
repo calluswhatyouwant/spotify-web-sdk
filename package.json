@@ -1,5 +1,10 @@
 {
     "name": "spotify-web-sdk",
+    "contributors": [
+        "José Renan <joserenansl99@gmail.com> (https://github.com/JoseRenan)",
+        "Robson Junior <jrobsonjr16@gmail.com> (https://github.com/JRobsonJr)"
+    ],
+    "license": "MIT",
     "version": "0.0.1-ALPHA",
     "dependencies": {
         "axios": "^0.18.0"
