@@ -17,6 +17,7 @@
     "files": [
         "build"
     ],
+    "types": "build/typings/index.d.ts",
     "main": "build/index.js",
     "devDependencies": {
         "husky": "^1.1.2",
