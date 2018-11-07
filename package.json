@@ -5,7 +5,7 @@
         "Robson Junior <jrobsonjr16@gmail.com> (https://github.com/JRobsonJr)"
     ],
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "dependencies": {
         "axios": "^0.18.0"
     },
