@@ -35,6 +35,7 @@ describe('Album tests', () => {
                 );
                 expect(response.genres).to.be.eql(albumResponse.genres);
                 expect(response.href).to.be.equal(albumResponse.href);
+                expect(response.id).to.be.equal(albumResponse.id);
                 expect(response.images).to.be.eql(albumResponse.images);
                 expect(response.label).to.be.equal(albumResponse.label);
                 expect(response.name).to.be.equal(albumResponse.name);
