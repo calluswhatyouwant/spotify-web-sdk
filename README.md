@@ -24,9 +24,9 @@ Even to make simple requests, such as to get information on a track, you'd need 
 Here is how you could do the same thing with our aid:
 
 ```javascript
-import { init, getTrack } from 'spotify-web-sdk';
-init('YOUR SPOTIFY TOKEN HERE!'); // You should only need to run this once.
-getTrack('3LOpHuEpjkL4T1Zcjhko8w'); // Or any other track id.
+import * as spotify from 'spotify-web-sdk';
+spotify.init('YOUR SPOTIFY TOKEN HERE!'); // You should only need to run this once.
+spotify.getTrack('3LOpHuEpjkL4T1Zcjhko8w'); // Or any other track id.
 ```
 
 Yes, it's as simple as that!
@@ -63,11 +63,17 @@ Even though I'm not certain you thought that right now, here's how to get starte
 
 ## Installation
 
-Run the following in your project:
+Using NPM:
 
-`yarn add https://github.com/calluswhatyouwant/spotify-web-sdk`
+```sh
+npm install spotify-web-sdk
+```
 
-We'll be soon making this an NPM package so that you can install this even more easily, but this might work for now.
+Using CDN:
+
+```html
+<script src="https://unpkg.com/spotify-web-sdk/build/dist/spotify-web-sdk.min.js"></script>
+```
 
 ## Usage
 
