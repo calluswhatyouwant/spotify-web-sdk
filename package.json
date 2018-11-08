@@ -17,7 +17,8 @@
     "scripts": {
         "start": "ts-node src/start.ts",
         "build": "rimraf build && tsc && webpack",
-        "lint": "tslint -c tslint.json 'src/**/*.ts'"
+        "lint": "tslint -c tslint.json 'src/**/*.ts'",
+        "test": "mocha -r ts-node/register test/*.test.ts"
     },
     "husky": {
         "hooks": {
@@ -30,7 +31,13 @@
     "types": "build/typings/index.d.ts",
     "main": "build/index.js",
     "devDependencies": {
+        "@types/chai": "^4.1.7",
+        "@types/mocha": "^5.2.5",
+        "@types/nock": "^9.3.0",
+        "chai": "^4.2.0",
         "husky": "^1.1.2",
+        "mocha": "^5.2.0",
+        "nock": "^10.0.2",
         "prettier": "^1.14.3",
         "pretty-quick": "^1.8.0",
         "rimraf": "^2.6.2",

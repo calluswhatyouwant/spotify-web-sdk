@@ -1,4 +1,3 @@
-import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
 
@@ -11,7 +10,7 @@ class PublicUser {
 
     email: string;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     followers: Followers;
 
@@ -32,7 +31,7 @@ class PublicUser {
         this.country = json.country;
         this.displayName = json.display_name;
         this.email = json.email;
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.followers = new Followers(json.followers);
         this.href = json.href;
         this.id = json.id;

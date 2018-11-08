@@ -1,7 +1,5 @@
 import AlbumSimplified from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
-import ExternalId from '../common/external-id';
-import ExternalUrl from '../common/external-url';
 
 class Track {
     album: AlbumSimplified;
@@ -16,9 +14,9 @@ class Track {
 
     explicit: boolean;
 
-    externalIds: ExternalId;
+    externalIds: any;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     href: string;
 
@@ -53,8 +51,8 @@ class Track {
         this.discNumber = json.disc_number;
         this.durationMs = json.duration_ms;
         this.explicit = json.explicit;
-        this.externalIds = new ExternalId(json.external_ids);
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalIds = json.external_ids;
+        this.externalUrls = json.external_urls;
         this.href = json.href;
         this.id = json.id;
         this.isPlayable = json.is_playable;
