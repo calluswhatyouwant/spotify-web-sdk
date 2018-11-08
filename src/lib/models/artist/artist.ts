@@ -1,9 +1,8 @@
-import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
 
 class Artist {
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     followers: Followers;
 
@@ -24,7 +23,7 @@ class Artist {
     uri: string;
 
     constructor(json: any) {
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.followers = new Followers(json.followers);
         this.genres = json.genres;
         this.href = json.href;

@@ -1,6 +1,5 @@
 import ArtistSimplified from '../artist/artist-simplified';
 import Image from '../common/image';
-import ExternalUrl from '../common/external-url';
 
 class AlbumSimplified {
     albumGroup: 'album' | 'single' | 'compilation' | 'appears_on';
@@ -11,7 +10,7 @@ class AlbumSimplified {
 
     availableMarkets: string[];
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     href: string;
 
@@ -38,7 +37,7 @@ class AlbumSimplified {
             (artistJson: any) => new ArtistSimplified(artistJson)
         );
         this.availableMarkets = json.available_markets;
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.href = json.href;
         this.id = json.id;
         this.images = json.images.map((imageJson: any) => new Image(imageJson));

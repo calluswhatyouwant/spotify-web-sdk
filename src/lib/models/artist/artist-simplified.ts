@@ -1,7 +1,5 @@
-import ExternalUrl from '../common/external-url';
-
 class ArtistSimplified {
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     href: string;
 
@@ -14,7 +12,7 @@ class ArtistSimplified {
     uri: string;
 
     constructor(json: any) {
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.href = json.href;
         this.id = json.id;
         this.name = json.name;

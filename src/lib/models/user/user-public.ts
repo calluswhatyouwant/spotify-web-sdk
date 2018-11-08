@@ -1,11 +1,10 @@
-import ExternalUrl from '../common/external-url';
 import Followers from '../common/followers';
 import Image from '../common/image';
 
 class PublicUser {
     displayName: string;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     followers: Followers;
 
@@ -21,7 +20,7 @@ class PublicUser {
 
     constructor(json: any) {
         this.displayName = json.display_name;
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.followers = new Followers(json.followers);
         this.href = json.href;
         this.id = json.id;

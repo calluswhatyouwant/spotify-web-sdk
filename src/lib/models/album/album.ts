@@ -1,6 +1,4 @@
 import ArtistSimplified from '../artist/artist-simplified';
-import ExternalId from '../common/external-id';
-import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
 import Page from '../paging/page';
 import TrackSimplified from '../track/track-simplified';
@@ -14,9 +12,9 @@ class Album {
 
     copyrights: any[];
 
-    externalIds: ExternalId;
+    externalIds: any;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     genres: string[];
 
@@ -49,8 +47,8 @@ class Album {
         );
         this.availableMarkets = json.available_markets;
         this.copyrights = json.copyrights;
-        this.externalIds = new ExternalId(json.external_ids);
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalIds = json.external_ids;
+        this.externalUrls = json.external_urls;
         this.genres = json.genres;
         this.href = json.href;
         this.id = json.id;
