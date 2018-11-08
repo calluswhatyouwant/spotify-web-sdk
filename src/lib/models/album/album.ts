@@ -34,6 +34,8 @@ class Album {
 
     releaseDatePrecision: 'year' | 'month' | 'day';
 
+    totalTracks: number;
+
     tracks: Page<TrackSimplified>;
 
     type: 'album';
@@ -58,21 +60,22 @@ class Album {
         this.popularity = json.popularity;
         this.releaseDate = json.release_date;
         this.releaseDatePrecision = json.release_date_precision;
+        this.totalTracks = json.total_tracks;
         this.tracks = new Page<TrackSimplified>(json.tracks, TrackSimplified);
         this.type = json.type;
         this.uri = json.uri;
     }
 
-    get stringArtists() {
+    get stringArtists(): string {
         const artistNames = this.artists.map(artist => artist.name);
         return artistNames.join(', ');
     }
 
-    get releaseYear() {
-        return this.releaseDate.substring(0, 4);
+    get releaseYear(): number {
+        return Number(this.releaseDate.substring(0, 4));
     }
 
-    get imageUrl() {
+    get imageUrl(): string {
         return this.images[0].url;
     }
 }
