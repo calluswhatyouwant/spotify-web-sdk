@@ -56,14 +56,10 @@ class Page<T> {
             limit = this.offset;
         }
         const params = { limit, offset: 0 };
-        try {
-            const response = await this.getAxiosPageInstance().get('/', {
-                params,
-            });
-            return new Page<T>(response.data, this.t);
-        } catch (e) {
-            console.log(e);
-        }
+        const response = await this.getAxiosPageInstance().get('/', {
+            params,
+        });
+        return new Page<T>(response.data, this.t);
     }
 }
 

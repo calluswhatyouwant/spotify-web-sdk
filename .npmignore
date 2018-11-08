@@ -1,0 +1,8 @@
+.vscode/
+src/
+.prettierrc
+.prettierignore
+webpack.config.js
+yarn.lock
+.github
+.circleci

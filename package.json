@@ -1,11 +1,16 @@
 {
     "name": "spotify-web-sdk",
+    "keywords": [
+        "spotify",
+        "sdk",
+        "spotify-web-api"
+    ],
     "contributors": [
         "José Renan <joserenansl99@gmail.com> (https://github.com/JoseRenan)",
         "Robson Junior <jrobsonjr16@gmail.com> (https://github.com/JRobsonJr)"
     ],
     "license": "MIT",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "dependencies": {
         "axios": "^0.18.0"
     },
