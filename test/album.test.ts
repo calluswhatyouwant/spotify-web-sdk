@@ -1,70 +1,64 @@
 import { expect } from 'chai';
 import nock from 'nock';
 
-import { albumResponse } from './mocks/album.response';
+import { albumMock } from './mocks/album.response';
 import { init, getAlbum } from '../src/lib';
 
-describe('Album tests', () => {
+describe('Album requests', () => {
     beforeEach(() => {
         init('SomeToken');
         nock('https://api.spotify.com/v1')
             .get('/albums/2iv4eCuGKJYsso1mDR48dt')
-            .reply(200, albumResponse);
+            .reply(200, albumMock);
     });
 
-    describe('getAlbum tests', () => {
-        it('response should match all album attributes', () => {
-            return getAlbum('2iv4eCuGKJYsso1mDR48dt').then(response => {
-                expect(response.albumType).to.be.equal(
-                    albumResponse.album_type
-                );
-                expect(response.artists).to.have.lengthOf(
-                    albumResponse.artists.length
-                );
-                expect(response.availableMarkets).to.be.eql(
-                    albumResponse.available_markets
-                );
-                expect(response.copyrights).to.have.lengthOf(
-                    albumResponse.copyrights.length
-                );
-                expect(response.externalIds).to.be.eql(
-                    albumResponse.external_ids
-                );
-                expect(response.externalUrls).to.be.eql(
-                    albumResponse.external_urls
-                );
-                expect(response.genres).to.be.eql(albumResponse.genres);
-                expect(response.href).to.be.equal(albumResponse.href);
-                expect(response.id).to.be.equal(albumResponse.id);
-                expect(response.images).to.be.eql(albumResponse.images);
-                expect(response.label).to.be.equal(albumResponse.label);
-                expect(response.name).to.be.equal(albumResponse.name);
-                expect(response.popularity).to.be.equal(
-                    albumResponse.popularity
-                );
-                expect(response.releaseDate).to.be.equal(
-                    albumResponse.release_date
-                );
-                expect(response.releaseDatePrecision).to.be.equal(
-                    albumResponse.release_date_precision
-                );
-                expect(response.totalTracks).to.be.equal(
-                    albumResponse.total_tracks
-                );
-                expect(response.tracks.total).to.be.equal(
-                    albumResponse.tracks.total
-                );
-                expect(response.type).to.be.equal(albumResponse.type);
-                expect(response.uri).to.be.equal(albumResponse.uri);
-            });
+    describe('#getAlbum()', () => {
+        it('response should match all album attributes', async () => {
+            const albumResponse = await getAlbum('2iv4eCuGKJYsso1mDR48dt');
+            expect(albumResponse.albumType).to.be.equal(albumMock.album_type);
+            expect(albumResponse.artists).to.have.lengthOf(
+                albumMock.artists.length
+            );
+            expect(albumResponse.availableMarkets).to.be.eql(
+                albumMock.available_markets
+            );
+            expect(albumResponse.copyrights).to.have.lengthOf(
+                albumMock.copyrights.length
+            );
+            expect(albumResponse.externalIds).to.be.eql(albumMock.external_ids);
+            expect(albumResponse.externalUrls).to.be.eql(
+                albumMock.external_urls
+            );
+            expect(albumResponse.genres).to.be.eql(albumMock.genres);
+            expect(albumResponse.href).to.be.equal(albumMock.href);
+            expect(albumResponse.id).to.be.equal(albumMock.id);
+            expect(albumResponse.images).to.be.eql(albumMock.images);
+            expect(albumResponse.label).to.be.equal(albumMock.label);
+            expect(albumResponse.name).to.be.equal(albumMock.name);
+            expect(albumResponse.popularity).to.be.equal(albumMock.popularity);
+            expect(albumResponse.releaseDate).to.be.equal(
+                albumMock.release_date
+            );
+            expect(albumResponse.releaseDatePrecision).to.be.equal(
+                albumMock.release_date_precision
+            );
+            expect(albumResponse.totalTracks).to.be.equal(
+                albumMock.total_tracks
+            );
+            expect(albumResponse.tracks.total).to.be.equal(
+                albumMock.tracks.total
+            );
+            expect(albumResponse.type).to.be.equal(albumMock.type);
+            expect(albumResponse.uri).to.be.equal(albumMock.uri);
         });
 
-        it('response should match custom attributes', () => {
-            return getAlbum('2iv4eCuGKJYsso1mDR48dt').then(response => {
-                expect(response.stringArtists).to.be.equal('AURORA');
-                expect(response.releaseYear).to.be.equal(2018);
-                expect(response.imageUrl).to.be.equal(response.images[0].url);
-            });
+        it('response should match custom attributes', async () => {
+            const albumResponse = await getAlbum('2iv4eCuGKJYsso1mDR48dt');
+            expect(albumResponse.stringArtists).to.be.equal('AURORA');
+            expect(albumResponse.releaseYear).to.be.equal(2018);
+            expect(albumResponse.imageUrl).to.be.equal(
+                albumResponse.images[0].url
+            );
         });
     });
 });

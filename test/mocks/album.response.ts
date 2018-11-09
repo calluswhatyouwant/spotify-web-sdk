@@ -1,4 +1,4 @@
-export const albumResponse = {
+export const albumMock = {
     album_type: 'album',
     artists: [
         {
