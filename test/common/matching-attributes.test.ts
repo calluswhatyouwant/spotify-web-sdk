@@ -36,12 +36,12 @@ export const checkMatchingArtistAttributes = (
     response: Artist,
     mock: ArtistMock
 ) => {
-    expect(response.externalUrls).to.be.equal(mock.external_urls);
-    expect(response.followers).to.be.equal(mock.followers);
-    expect(response.genres).to.be.equal(mock.genres);
+    expect(response.externalUrls).to.be.eql(mock.external_urls);
+    expect(response.followers).to.be.eql(mock.followers);
+    expect(response.genres).to.be.eql(mock.genres);
     expect(response.href).to.be.equal(mock.href);
     expect(response.id).to.be.equal(mock.id);
-    expect(response.images).to.be.equal(mock.images);
+    expect(response.images).to.be.eql(mock.images);
     expect(response.name).to.be.equal(mock.name);
     expect(response.popularity).to.be.equal(mock.popularity);
     expect(response.type).to.be.equal(mock.type);
