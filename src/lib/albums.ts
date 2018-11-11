@@ -24,7 +24,7 @@ export const getSeveralAlbums = async (
             `The maximum number of albums is 20. See ${exceptionLink} for details`
         );
     }
-    const params = { params: { ids: ids.join(','), market } };
+    const params = { params: { market, ids: ids.join(',') } };
     const response = await getAxiosSpotifyInstance().get('/albums', params);
 
     return response.data.albums.map((albumJson: any) => new Album(albumJson));
