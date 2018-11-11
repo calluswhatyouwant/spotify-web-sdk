@@ -1,4 +1,4 @@
-export const albumResponse = {
+export const albumMock = {
     album_type: 'album',
     artists: [
         {
@@ -939,3 +939,5 @@ export const albumResponse = {
     type: 'album',
     uri: 'spotify:album:2iv4eCuGKJYsso1mDR48dt',
 };
+
+export type AlbumMock = typeof albumMock;
