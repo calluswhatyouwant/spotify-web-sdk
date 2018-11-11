@@ -1,18 +1,16 @@
-import ExternalUrl from '../common/external-url';
-
 class Context {
     type: string;
 
     href: string;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     uri: string;
 
     constructor(json: any) {
         this.type = json.type;
         this.href = json.href;
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.uri = json.uri;
     }
 }

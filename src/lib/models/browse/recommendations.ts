@@ -1,7 +1,7 @@
 import RecommendationSeed from './recommendation-seed';
 import TrackSimplified from '../track/track-simplified';
 
-class ExternalId {
+class Recommendations {
     seeds: RecommendationSeed[];
 
     tracks: TrackSimplified[];
@@ -16,4 +16,4 @@ class ExternalId {
     }
 }
 
-export default ExternalId;
+export default Recommendations;

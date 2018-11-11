@@ -1,7 +1,5 @@
-import ExternalUrl from '../common/external-url';
-
 class TrackLink {
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     href: string;
 
@@ -12,7 +10,7 @@ class TrackLink {
     uri: string;
 
     constructor(json: any) {
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.href = json.href;
         this.id = json.id;
         this.type = json.type;

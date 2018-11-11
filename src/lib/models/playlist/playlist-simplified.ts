@@ -1,11 +1,10 @@
-import ExternalUrl from '../common/external-url';
 import Image from '../common/image';
 import PublicUser from '../user/user-public';
 
 class PlaylistSimplified {
     collaborative: boolean;
 
-    externalUrls: ExternalUrl;
+    externalUrls: any;
 
     href: string;
 
@@ -30,7 +29,7 @@ class PlaylistSimplified {
 
     constructor(json: any) {
         this.collaborative = json.collaborative;
-        this.externalUrls = new ExternalUrl(json.external_urls);
+        this.externalUrls = json.external_urls;
         this.href = json.href;
         this.id = json.id;
         this.images = json.images.map((imageJson: any) => new Image(imageJson));
