@@ -3,8 +3,9 @@ import nock from 'nock';
 
 import { albumMock, AlbumMock } from './mocks/album.response';
 import { severalAlbumsMock } from './mocks/several-albums.response';
+import { albumTracksMock } from './mocks/album-tracks.response';
 
-import { init, getAlbum, getSeveralAlbums } from '../src/lib';
+import { init, getAlbum, getSeveralAlbums, getAlbumTracks } from '../src/lib';
 import Album from '../src/lib/models/album/album';
 
 describe('Album requests', () => {
@@ -77,6 +78,48 @@ describe('Album requests', () => {
                 const albumMock: AlbumMock = severalAlbumsMock.albums[i];
                 checkMatchingAlbumAttributes(albumResponse, albumMock);
             }
+        });
+    });
+
+    describe('#getAlbumTracks()', () => {
+        beforeEach(() => {
+            nock('https://api.spotify.com/v1')
+                .get('/albums/3yGwYUrWqe6PHf0IcUdkbZ/tracks')
+                .query({ offset: 0, limit: 2 })
+                .reply(200, albumTracksMock);
+        });
+
+        it('response should match all paging object attributes', async () => {
+            const albumTracksResponse = await getAlbumTracks(
+                '3yGwYUrWqe6PHf0IcUdkbZ',
+                0,
+                2
+            );
+            expect(albumTracksResponse.href).to.be.equal(
+                albumTracksMock.href.split('?')[0]
+            );
+            expect(albumTracksResponse.items).to.have.lengthOf(
+                albumTracksMock.items.length
+            );
+            expect(albumTracksResponse.limit).to.be.equal(
+                albumTracksMock.limit
+            );
+            expect(albumTracksResponse.offset).to.be.equal(
+                albumTracksMock.offset
+            );
+            expect(albumTracksResponse.total).to.be.equal(
+                albumTracksMock.total
+            );
+        });
+
+        it('response should match all custom paging object attributes', async () => {
+            const albumTracksResponse = await getAlbumTracks(
+                '3yGwYUrWqe6PHf0IcUdkbZ',
+                0,
+                2
+            );
+            expect(albumTracksResponse.hasNext()).to.be.true;
+            expect(albumTracksResponse.hasPrevious()).to.be.false;
         });
     });
 });
