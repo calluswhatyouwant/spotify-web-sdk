@@ -27,9 +27,12 @@ export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
 export const getArtistAlbums = async (
     id: string,
     offset = 0,
-    limit = 20
+    limit = 20,
+    includeGroups?: string[],
+    market?: string
 ): Promise<Page<AlbumSimplified>> => {
-    const params = { params: { offset, limit } };
+    let params: any = { params: { offset, limit, market } };
+    if (includeGroups) params.params.include_groups = includeGroups.join(',');
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`,
         params
@@ -46,9 +49,14 @@ export const getRelatedArtists = async (id: string): Promise<Artist[]> => {
     );
 };
 
-export const getArtistTopTracks = async (id: string): Promise<Track> => {
+export const getArtistTopTracks = async (
+    id: string,
+    market?: string
+): Promise<Track> => {
+    const params = { params: { market } };
     const response = await getAxiosSpotifyInstance().get(
-        `/artists/${id}/top-tracks`
+        `/artists/${id}/top-tracks`,
+        params
     );
     return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };
