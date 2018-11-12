@@ -1,16 +1,15 @@
 import { getAxiosSpotifyInstance } from './driver';
 import Artist from './models/artist/artist';
-import Album from './models/album/album';
 import Track from './models/track/track';
 import Page from './models/paging/page';
 import AlbumSimplified from './models/album/album-simplified';
 
-export const getArtist = async (id: string) => {
+export const getArtist = async (id: string): Promise<Artist> => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);
     return new Artist(response.data);
 };
 
-export const getSeveralArtists = async (ids: string[]) => {
+export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
     if (ids.length > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/artists/get-several-artists/';
@@ -25,7 +24,11 @@ export const getSeveralArtists = async (ids: string[]) => {
     );
 };
 
-export const getArtistAlbums = async (id: string, offset = 0, limit = 20) => {
+export const getArtistAlbums = async (
+    id: string,
+    offset = 0,
+    limit = 20
+): Promise<Page<AlbumSimplified>> => {
     const params = { params: { offset, limit } };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`,
@@ -34,7 +37,7 @@ export const getArtistAlbums = async (id: string, offset = 0, limit = 20) => {
     return new Page<AlbumSimplified>(response.data, AlbumSimplified);
 };
 
-export const getRelatedArtists = async (id: string) => {
+export const getRelatedArtists = async (id: string): Promise<Artist[]> => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/related-artists`
     );
@@ -43,7 +46,7 @@ export const getRelatedArtists = async (id: string) => {
     );
 };
 
-export const getArtistTopTracks = async (id: string) => {
+export const getArtistTopTracks = async (id: string): Promise<Track> => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`
     );
