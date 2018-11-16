@@ -2,10 +2,14 @@ import nock from 'nock';
 
 import { artistMock } from './mocks/artist.response';
 import { severalArtistsMock } from './mocks/several-artists.response';
-import { checkMatchingArtistAttributes } from './common/matching-attributes.test';
+import { artistAlbumsMock } from './mocks/artist-albums.response';
+import {
+    checkMatchingArtistAttributes,
+    checkMatchingPagingObjectAttributes,
+} from './common/matching-attributes.test';
 
 import { init, getArtist } from '../src/lib';
-import { getSeveralArtists } from './../src/lib/artists';
+import { getSeveralArtists, getArtistAlbums } from './../src/lib/artists';
 
 describe('Artist requests', () => {
     beforeEach(() => {
@@ -46,6 +50,24 @@ describe('Artist requests', () => {
                 const artistMock = severalArtistsMock.artists[i];
                 checkMatchingArtistAttributes(artistResponse, artistMock);
             }
+        });
+    });
+
+    describe('#getArtistAlbums()', () => {
+        beforeEach(() => {
+            nock('https://api.spotify.com/v1')
+                .get('/artists/1WgXqy2Dd70QQOU7Ay074N/albums')
+                .reply(200, artistAlbumsMock);
+        });
+
+        it('response should match all artist attributes', async () => {
+            const artistAlbumsResponse = await getArtistAlbums(
+                '1WgXqy2Dd70QQOU7Ay074N'
+            );
+            checkMatchingPagingObjectAttributes(
+                artistAlbumsResponse,
+                artistAlbumsMock
+            );
         });
     });
 });
