@@ -57,12 +57,15 @@ describe('Artist requests', () => {
         beforeEach(() => {
             nock('https://api.spotify.com/v1')
                 .get('/artists/1WgXqy2Dd70QQOU7Ay074N/albums')
+                .query({ offset: 0, limit: 5 })
                 .reply(200, artistAlbumsMock);
         });
 
         it('response should match all artist attributes', async () => {
             const artistAlbumsResponse = await getArtistAlbums(
-                '1WgXqy2Dd70QQOU7Ay074N'
+                '1WgXqy2Dd70QQOU7Ay074N',
+                0,
+                5
             );
             checkMatchingPagingObjectAttributes(
                 artistAlbumsResponse,
