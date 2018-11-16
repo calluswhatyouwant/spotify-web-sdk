@@ -40,7 +40,9 @@ export const getArtistAlbums = async (
     return new Page<AlbumSimplified>(response.data, AlbumSimplified);
 };
 
-export const getRelatedArtists = async (id: string): Promise<Artist[]> => {
+export const getArtistRelatedArtists = async (
+    id: string
+): Promise<Artist[]> => {
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/related-artists`
     );
@@ -51,8 +53,8 @@ export const getRelatedArtists = async (id: string): Promise<Artist[]> => {
 
 export const getArtistTopTracks = async (
     id: string,
-    market?: string
-): Promise<Track> => {
+    market: string
+): Promise<Track[]> => {
     const params = { params: { market } };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`,
