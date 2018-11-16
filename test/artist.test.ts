@@ -1,15 +1,26 @@
 import nock from 'nock';
 
-import { artistMock } from './mocks/artist.mock';
+import { artistMock, ArtistMock } from './mocks/artist.mock';
 import { severalArtistsMock } from './mocks/several-artists.mock';
 import { artistAlbumsMock } from './mocks/artist-albums.mock';
+import { artistRelatedArtistsMock } from './mocks/artist-related-artists.mock';
+import { artistTopTracksMock, TrackMock } from './mocks/artist-top-tracks.mock';
 import {
     checkMatchingArtistAttributes,
     checkMatchingPagingObjectAttributes,
+    checkMatchingTrackAttributes,
 } from './common/matching-attributes.test';
 
-import { init, getArtist } from '../src/lib';
-import { getSeveralArtists, getArtistAlbums } from './../src/lib/artists';
+import {
+    init,
+    getArtist,
+    getSeveralArtists,
+    getArtistAlbums,
+    getArtistRelatedArtists,
+    getArtistTopTracks,
+} from '../src/lib';
+import Artist from '../src/lib/models/artist/artist';
+import Track from '../src/lib/models/track/track';
 
 describe('Artist requests', () => {
     beforeEach(() => {
@@ -61,7 +72,7 @@ describe('Artist requests', () => {
                 .reply(200, artistAlbumsMock);
         });
 
-        it('response should match all artist attributes', async () => {
+        it('response should match all albums attributes', async () => {
             const artistAlbumsResponse = await getArtistAlbums(
                 '1WgXqy2Dd70QQOU7Ay074N',
                 0,
@@ -71,6 +82,49 @@ describe('Artist requests', () => {
                 artistAlbumsResponse,
                 artistAlbumsMock
             );
+        });
+    });
+
+    describe('#getArtistRelatedArtists()', () => {
+        beforeEach(() => {
+            nock('https://api.spotify.com/v1')
+                .get('/artists/1WgXqy2Dd70QQOU7Ay074N/related-artists')
+                .reply(200, artistRelatedArtistsMock);
+        });
+
+        it('response should match all artists attributes', async () => {
+            const artistRelatedArtistsResponse = await getArtistRelatedArtists(
+                '1WgXqy2Dd70QQOU7Ay074N'
+            );
+
+            for (let i = 0; i < artistRelatedArtistsResponse.length; i++) {
+                const artistResponse: Artist = artistRelatedArtistsResponse[i];
+                const artistMock: ArtistMock =
+                    artistRelatedArtistsMock.artists[i];
+                checkMatchingArtistAttributes(artistResponse, artistMock);
+            }
+        });
+    });
+
+    describe('#getArtistTopTracks()', () => {
+        beforeEach(() => {
+            nock('https://api.spotify.com/v1')
+                .get('/artists/1WgXqy2Dd70QQOU7Ay074N/top-tracks')
+                .query({ market: 'BR' })
+                .reply(200, artistTopTracksMock);
+        });
+
+        it('response should match all tracks attributes', async () => {
+            const artistTopTracksResponse = await getArtistTopTracks(
+                '1WgXqy2Dd70QQOU7Ay074N',
+                'BR'
+            );
+
+            for (let i = 0; i < artistTopTracksResponse.length; i++) {
+                const topTrackResponse: Track = artistTopTracksResponse[i];
+                const topTrackMock: TrackMock = artistTopTracksMock.tracks[i];
+                checkMatchingTrackAttributes(topTrackResponse, topTrackMock);
+            }
         });
     });
 });
