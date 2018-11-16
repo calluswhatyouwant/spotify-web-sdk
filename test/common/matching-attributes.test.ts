@@ -47,3 +47,14 @@ export const checkMatchingArtistAttributes = (
     expect(response.type).to.be.equal(mock.type);
     expect(response.uri).to.be.equal(mock.uri);
 };
+
+export const checkMatchingPagingObjectAttributes = (
+    response: any,
+    mock: any
+) => {
+    expect(response.href).to.be.equal(mock.href.split('?')[0]);
+    expect(response.items).to.have.lengthOf(mock.items.length);
+    expect(response.limit).to.be.equal(mock.limit);
+    expect(response.offset).to.be.equal(mock.offset);
+    expect(response.total).to.be.equal(mock.total);
+};

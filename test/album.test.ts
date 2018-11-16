@@ -4,7 +4,10 @@ import nock from 'nock';
 import { albumMock, AlbumMock } from './mocks/album.response';
 import { severalAlbumsMock } from './mocks/several-albums.response';
 import { albumTracksMock } from './mocks/album-tracks.response';
-import { checkMatchingAlbumAttributes } from './common/matching-attributes.test';
+import {
+    checkMatchingAlbumAttributes,
+    checkMatchingPagingObjectAttributes,
+} from './common/matching-attributes.test';
 
 import { init, getAlbum, getSeveralAlbums, getAlbumTracks } from '../src/lib';
 import Album from '../src/lib/models/album/album';
@@ -72,20 +75,9 @@ describe('Album requests', () => {
                 0,
                 2
             );
-            expect(albumTracksResponse.href).to.be.equal(
-                albumTracksMock.href.split('?')[0]
-            );
-            expect(albumTracksResponse.items).to.have.lengthOf(
-                albumTracksMock.items.length
-            );
-            expect(albumTracksResponse.limit).to.be.equal(
-                albumTracksMock.limit
-            );
-            expect(albumTracksResponse.offset).to.be.equal(
-                albumTracksMock.offset
-            );
-            expect(albumTracksResponse.total).to.be.equal(
-                albumTracksMock.total
+            checkMatchingPagingObjectAttributes(
+                albumTracksResponse,
+                albumTracksMock
             );
         });
 
