@@ -31,7 +31,7 @@ export const getArtistAlbums = async (
     includeGroups?: string[],
     market?: string
 ): Promise<Page<AlbumSimplified>> => {
-    let params: any = { params: { offset, limit, market } };
+    const params: any = { params: { offset, limit, market } };
     if (includeGroups) params.params.include_groups = includeGroups.join(',');
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`,
