@@ -64,7 +64,7 @@ class Track {
         this.trackNumber = json.track_number;
         this.type = json.type;
         this.uri = json.uri;
-        this.isLocal = json.isLocal;
+        this.isLocal = json.is_local;
     }
 
     get albumName() {
