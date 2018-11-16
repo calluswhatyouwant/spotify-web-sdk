@@ -1,8 +1,8 @@
 import nock from 'nock';
 
-import { artistMock } from './mocks/artist.response';
-import { severalArtistsMock } from './mocks/several-artists.response';
-import { artistAlbumsMock } from './mocks/artist-albums.response';
+import { artistMock } from './mocks/artist.mock';
+import { severalArtistsMock } from './mocks/several-artists.mock';
+import { artistAlbumsMock } from './mocks/artist-albums.mock';
 import {
     checkMatchingArtistAttributes,
     checkMatchingPagingObjectAttributes,

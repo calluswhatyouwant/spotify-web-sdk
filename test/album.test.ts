@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import nock from 'nock';
 
-import { albumMock, AlbumMock } from './mocks/album.response';
-import { severalAlbumsMock } from './mocks/several-albums.response';
-import { albumTracksMock } from './mocks/album-tracks.response';
+import { albumMock, AlbumMock } from './mocks/album.mock';
+import { severalAlbumsMock } from './mocks/several-albums.mock';
+import { albumTracksMock } from './mocks/album-tracks.mock';
 import {
     checkMatchingAlbumAttributes,
     checkMatchingPagingObjectAttributes,

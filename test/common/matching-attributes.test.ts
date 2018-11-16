@@ -2,8 +2,8 @@ import { expect } from 'chai';
 
 import Album from '../../src/lib/models/album/album';
 import Artist from '../../src/lib/models/artist/artist';
-import { AlbumMock } from '../mocks/album.response';
-import { ArtistMock } from './../mocks/artist.response';
+import { AlbumMock } from '../mocks/album.mock';
+import { ArtistMock } from '../mocks/artist.mock';
 
 export const checkMatchingAlbumAttributes = (
     response: Album,
