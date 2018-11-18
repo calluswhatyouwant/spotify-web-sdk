@@ -13,7 +13,6 @@ const genericSearch = async (params: {
     limit?: number;
     offset?: number;
 }) => {
-    console.log(params.type);
     return getAxiosSpotifyInstance().get(`/search`, { params });
 };
 
