@@ -97,7 +97,7 @@ export const checkMatchingPagingObjectAttributes = (
     response: any,
     mock: any
 ) => {
-    expect(response.href).to.be.equal(mock.href.split('?')[0]);
+    expect(response.href).to.be.equal(mock.href);
     expect(response.items).to.have.lengthOf(mock.items.length);
     expect(response.limit).to.be.equal(mock.limit);
     expect(response.offset).to.be.equal(mock.offset);
