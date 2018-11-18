@@ -70,13 +70,12 @@ class Page<T> {
         return new Page<T>(response.data, this.t, this.wrapper);
     }
 
-    async getPreviousPage(forceLimit = false) {
+    async getPreviousPage(includeRepeated = false) {
         if (!this.hasPrevious()) throw new Error('There are no more pages');
         let limit = this.limit;
-        if (this.offset < this.limit && !forceLimit) {
-            limit = this.offset;
-        }
-        const params = { ...this.queryParams, limit, offset: 0 };
+        if (this.offset < this.limit && !includeRepeated) limit = this.offset;
+        let offset = Math.max(this.offset - this.limit, 0);
+        const params = { ...this.queryParams, limit, offset };
         const response = await this.getAxiosPageInstance().get('/', {
             params,
         });
