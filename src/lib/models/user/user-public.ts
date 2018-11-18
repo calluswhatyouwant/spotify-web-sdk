@@ -24,10 +24,11 @@ class PublicUser {
         if (json.followers) this.followers = new Followers(json.followers);
         this.href = json.href;
         this.id = json.id;
-        if (json.images)
+        if (json.images) {
             this.images = json.images.map(
                 (imageJson: any) => new Image(imageJson)
             );
+        }
         this.type = json.type;
         this.uri = json.uri;
     }
