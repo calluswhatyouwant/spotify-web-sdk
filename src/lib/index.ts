@@ -4,3 +4,4 @@ export * from './follow';
 export * from './artists';
 export * from './albums';
 export * from './playlists';
+export * from './player';
