@@ -6,13 +6,13 @@ class PublicUser {
 
     externalUrls: any;
 
-    followers: Followers;
+    followers?: Followers;
 
     href: string;
 
     id: string;
 
-    images: Image[];
+    images?: Image[];
 
     type: 'user';
 
@@ -21,10 +21,14 @@ class PublicUser {
     constructor(json: any) {
         this.displayName = json.display_name;
         this.externalUrls = json.external_urls;
-        this.followers = new Followers(json.followers);
+        if (json.followers) this.followers = new Followers(json.followers);
         this.href = json.href;
         this.id = json.id;
-        this.images = json.images.map((imageJson: any) => new Image(imageJson));
+        if (json.images) {
+            this.images = json.images.map(
+                (imageJson: any) => new Image(imageJson)
+            );
+        }
         this.type = json.type;
         this.uri = json.uri;
     }
