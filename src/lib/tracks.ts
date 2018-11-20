@@ -4,7 +4,10 @@ import Track from './models/track/track';
 import AudioAnalysis from './models/track/audio-analysis';
 import AudioFeatures from './models/track/audio-features';
 
-export const getSeveralTracks = async (ids: string[]) => {
+export const getSeveralTracks = async (
+    ids: string[],
+    params?: { market?: string }
+) => {
     if (ids.length > 50) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-tracks/';
@@ -12,13 +15,16 @@ export const getSeveralTracks = async (ids: string[]) => {
             `The maximum number of tracks is 50. See ${exceptionLink} for details`
         );
     }
-    const params = { ids: ids.join(',') };
-    const response = await getAxiosSpotifyInstance().get('/tracks', { params });
+    const response = await getAxiosSpotifyInstance().get('/tracks', {
+        params: { ids: ids.join(','), ...params },
+    });
     return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };
 
-export const getTrack = async (id: string) => {
-    const response = await getAxiosSpotifyInstance().get(`/tracks/${id}`);
+export const getTrack = async (id: string, params?: { market?: string }) => {
+    const response = await getAxiosSpotifyInstance().get(`/tracks/${id}`, {
+        params,
+    });
     return new Track(response.data);
 };
 
