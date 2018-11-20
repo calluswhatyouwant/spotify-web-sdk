@@ -9,8 +9,9 @@ export const getCurrentUserRecentlyPlayedTracks = async (params?: {
     before?: string;
     after?: string;
 }) => {
-    if (params && params.before && params.after)
+    if (params && params.before && params.after) {
         throw new Error("Only one of 'before' or 'after' should be specified");
+    }
     const response = await getAxiosSpotifyInstance().get(
         '/me/player/recently-played',
         { params }
