@@ -17,20 +17,42 @@ class Page<T> {
 
     total: number;
 
-    constructor(json: any, t: new (json: any) => T) {
+    wrapper?: string;
+
+    constructor(json: any, t: new (json: any) => T, wrapper?: string) {
+        this.wrapper = wrapper;
+        let unwrappedJson = json;
+        if (wrapper) unwrappedJson = unwrappedJson[wrapper];
         this.t = t;
-        this.href = json.href.split('?')[0];
-        this.items = json.items.map((json: any) => new t(json));
-        this.limit = json.limit;
-        this.next = json.next ? json.next.split('?')[1] : null;
-        this.offset = json.offset;
-        this.previous = json.previous ? json.previous.split('?')[1] : null;
-        this.total = json.total;
+        this.href = unwrappedJson.href;
+        this.items = unwrappedJson.items.map((json: any) => new t(json));
+        this.limit = unwrappedJson.limit;
+        this.next = unwrappedJson.next
+            ? unwrappedJson.next.split('?')[1]
+            : null;
+        this.offset = unwrappedJson.offset;
+        this.previous = unwrappedJson.previous
+            ? unwrappedJson.previous.split('?')[1]
+            : null;
+        this.total = unwrappedJson.total;
+    }
+
+    get queryParams(): any {
+        const queryString = this.href.split('?')[1];
+        const paramsString = queryString.split('&');
+        const queryParams: any = {};
+
+        for (const param of paramsString) {
+            const [name, value] = param.split('=');
+            queryParams[name] = value;
+        }
+
+        return queryParams;
     }
 
     private getAxiosPageInstance() {
         const instance = getAxiosSpotifyInstance();
-        instance.defaults.baseURL = this.href;
+        instance.defaults.baseURL = this.href.split('?')[0];
         return instance;
     }
 
@@ -44,22 +66,25 @@ class Page<T> {
 
     async getNextPage() {
         if (!this.hasNext()) throw new Error('There are no more pages');
-        const params = { limit: this.limit, offset: this.offset + this.limit };
+        const params = {
+            ...this.queryParams,
+            limit: this.limit,
+            offset: this.offset + this.limit,
+        };
         const response = await this.getAxiosPageInstance().get('/', { params });
-        return new Page<T>(response.data, this.t);
+        return new Page<T>(response.data, this.t, this.wrapper);
     }
 
-    async getPreviousPage(forceLimit = false) {
+    async getPreviousPage(includeRepeated = false) {
         if (!this.hasPrevious()) throw new Error('There are no more pages');
         let limit = this.limit;
-        if (this.offset < this.limit && !forceLimit) {
-            limit = this.offset;
-        }
-        const params = { limit, offset: 0 };
+        if (this.offset < this.limit && !includeRepeated) limit = this.offset;
+        const offset = Math.max(this.offset - this.limit, 0);
+        const params = { ...this.queryParams, limit, offset };
         const response = await this.getAxiosPageInstance().get('/', {
             params,
         });
-        return new Page<T>(response.data, this.t);
+        return new Page<T>(response.data, this.t, this.wrapper);
     }
 }
 
