@@ -1,8 +1,9 @@
-import { searchTracksMock } from './mocks/search-tracks.mock';
-import { searchPlaylistsMock } from './mocks/search-playlists.mock';
 import nock from 'nock';
 
-import { searchAlbumsMock } from './mocks/search-albums.mock';
+import { searchAlbumsMock } from './mocks/search/search-albums.mock';
+import { searchArtistsMock } from './mocks/search/search-artists.mock';
+import { searchPlaylistsMock } from './mocks/search/search-playlists.mock';
+import { searchTracksMock } from './mocks/search/search-tracks.mock';
 import { checkMatchingPagingObjectAttributes } from './common/matching-attributes.test';
 
 import {
@@ -12,7 +13,6 @@ import {
     searchPlaylists,
     searchTracks,
 } from '../src/lib';
-import { searchArtistsMock } from './mocks/search-artists.mock';
 
 describe('Search requests', () => {
     beforeEach(() => {

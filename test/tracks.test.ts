@@ -1,7 +1,7 @@
 import nock from 'nock';
 
-import { trackMock } from './mocks/track.mock';
-import { severalTracksMock } from './mocks/several-tracks.mock';
+import { trackMock } from './mocks/tracks/track.mock';
+import { severalTracksMock } from './mocks/tracks/several-tracks.mock';
 import { checkMatchingTrackAttributes } from './common/matching-attributes.test';
 
 import { init, getTrack, getSeveralTracks } from '../src/lib';

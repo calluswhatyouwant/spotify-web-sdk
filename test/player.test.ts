@@ -1,7 +1,7 @@
 import nock from 'nock';
 
-import { currentlyPlayingMock } from './mocks/currently-playing.mock';
-import { recentlyPlayedTracksMock } from './mocks/recently-played-tracks.mock';
+import { currentlyPlayingMock } from './mocks/player/currently-playing.mock';
+import { recentlyPlayedTracksMock } from './mocks/player/recently-played-tracks.mock';
 import {
     checkMatchingCurrentlyPlayingAttributes,
     checkMatchingCursorBasedPageAttributes,
