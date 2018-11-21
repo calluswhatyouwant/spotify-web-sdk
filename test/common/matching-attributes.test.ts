@@ -9,9 +9,9 @@ import CurrentlyPlaying from '../../src/lib/models/player/currently-playing';
 import Context from '../../src/lib/models/player/context';
 import CursorBasedPage from '../../src/lib/models/paging/cursor-based-page';
 
-import { AlbumMock } from '../mocks/album.mock';
-import { ArtistMock } from '../mocks/artist.mock';
-import { TrackMock } from './../mocks/artist-top-tracks.mock';
+import { AlbumMock } from '../mocks/albums/album.mock';
+import { ArtistMock } from '../mocks/artists/artist.mock';
+import { TrackMock } from '../mocks/artists/artist-top-tracks.mock';
 
 export const checkMatchingAlbumAttributes = (
     response: Album,

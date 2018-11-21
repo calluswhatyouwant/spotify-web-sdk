@@ -1,7 +1,7 @@
 import nock from 'nock';
 
-import { topArtistsMock } from './mocks/top-artists.mock';
-import { topTracksMock } from './mocks/top-tracks.mock';
+import { topArtistsMock } from './mocks/personalization/top-artists.mock';
+import { topTracksMock } from './mocks/personalization/top-tracks.mock';
 import { checkMatchingPagingObjectAttributes } from './common/matching-attributes.test';
 
 import {
