@@ -1,7 +1,7 @@
 import Context from './context';
 import Track from '../track/track';
 
-class PlaylistTrack {
+class PlayHistory {
     track: Track;
 
     playedAt: string; // Timestamp
@@ -15,4 +15,4 @@ class PlaylistTrack {
     }
 }
 
-export default PlaylistTrack;
+export default PlayHistory;
