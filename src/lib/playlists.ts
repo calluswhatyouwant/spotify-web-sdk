@@ -5,7 +5,7 @@ import Page from './models/paging/page';
 import PlaylistSimplified from './models/playlist/playlist-simplified';
 
 export const getPlaylist = async (id: string) => {
-    const response = await getAxiosSpotifyInstance().get(`/plylists/${id}`);
+    const response = await getAxiosSpotifyInstance().get(`/playlists/${id}`);
     return new Playlist(response.data);
 };
 

@@ -4,9 +4,14 @@ import Album from '../../src/lib/models/album/album';
 import AlbumSimplified from '../../src/lib/models/album/album-simplified';
 import Artist from '../../src/lib/models/artist/artist';
 import Track from '../../src/lib/models/track/track';
-import { AlbumMock } from '../mocks/album.mock';
-import { ArtistMock } from '../mocks/artist.mock';
-import { TrackMock } from './../mocks/artist-top-tracks.mock';
+import Page from '../../src/lib/models/paging/page';
+import CurrentlyPlaying from '../../src/lib/models/player/currently-playing';
+import Context from '../../src/lib/models/player/context';
+import CursorBasedPage from '../../src/lib/models/paging/cursor-based-page';
+
+import { AlbumMock } from '../mocks/albums/album.mock';
+import { ArtistMock } from '../mocks/artists/artist.mock';
+import { TrackMock } from '../mocks/artists/artist-top-tracks.mock';
 
 export const checkMatchingAlbumAttributes = (
     response: Album,
@@ -94,12 +99,49 @@ export const checkMatchingTrackAttributes = (
 };
 
 export const checkMatchingPagingObjectAttributes = (
-    response: any,
+    response: Page<any>,
     mock: any
 ) => {
-    expect(response.href).to.be.equal(mock.href.split('?')[0]);
+    expect(response.href).to.be.equal(mock.href);
     expect(response.items).to.have.lengthOf(mock.items.length);
     expect(response.limit).to.be.equal(mock.limit);
     expect(response.offset).to.be.equal(mock.offset);
+    expect(response.total).to.be.equal(mock.total);
+};
+
+export const checkMatchingCurrentlyPlayingAttributes = (
+    response: CurrentlyPlaying,
+    mock: any
+) => {
+    if (response.context)
+        checkMatchingContextAttributes(response.context, mock.context);
+    expect(response.currentlyPlayingType).to.be.equal(
+        mock.currently_playing_type
+    );
+    expect(response.isPlaying).to.be.equal(mock.is_playing);
+    if (response.item) checkMatchingTrackAttributes(response.item, mock.item);
+    expect(response.progressMs).to.be.equal(mock.progress_ms);
+    expect(response.timestamp).to.be.equal(mock.timestamp);
+};
+
+export const checkMatchingContextAttributes = (
+    response: Context,
+    mock: any
+) => {
+    expect(response.externalUrls).to.be.eql(mock.external_urls);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.type).to.be.equal(mock.type);
+    expect(response.uri).to.be.equal(mock.uri);
+};
+
+export const checkMatchingCursorBasedPageAttributes = (
+    response: CursorBasedPage<any>,
+    mock: any
+) => {
+    expect(response.cursors).to.be.eql(mock.cursors);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.items).to.have.lengthOf(mock.items.length);
+    expect(response.limit).to.be.equal(mock.limit);
+    expect(response.next).to.be.equal(mock.next.split('?')[1]);
     expect(response.total).to.be.equal(mock.total);
 };

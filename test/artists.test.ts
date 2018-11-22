@@ -1,10 +1,13 @@
 import nock from 'nock';
 
-import { artistMock, ArtistMock } from './mocks/artist.mock';
-import { severalArtistsMock } from './mocks/several-artists.mock';
-import { artistAlbumsMock } from './mocks/artist-albums.mock';
-import { artistRelatedArtistsMock } from './mocks/artist-related-artists.mock';
-import { artistTopTracksMock, TrackMock } from './mocks/artist-top-tracks.mock';
+import { artistMock, ArtistMock } from './mocks/artists/artist.mock';
+import { severalArtistsMock } from './mocks/artists/several-artists.mock';
+import { artistAlbumsMock } from './mocks/artists/artist-albums.mock';
+import { artistRelatedArtistsMock } from './mocks/artists/artist-related-artists.mock';
+import {
+    artistTopTracksMock,
+    TrackMock,
+} from './mocks/artists/artist-top-tracks.mock';
 import {
     checkMatchingArtistAttributes,
     checkMatchingPagingObjectAttributes,
