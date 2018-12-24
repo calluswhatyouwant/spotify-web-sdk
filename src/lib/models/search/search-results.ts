@@ -11,21 +11,26 @@ class SearchResults {
     tracks?: Page<Track>;
 
     constructor(json: any) {
-        if (json.albums)
+        if (json.albums) {
             this.albums = new Page<AlbumSimplified>(
                 json,
                 AlbumSimplified,
                 'albums'
             );
-        if (json.artists)
+        }
+        if (json.artists) {
             this.artists = new Page<Artist>(json, Artist, 'artists');
-        if (json.playlists)
+        }
+        if (json.playlists) {
             this.playlists = new Page<PlaylistSimplified>(
                 json,
                 PlaylistSimplified,
                 'playlists'
             );
-        if (json.tracks) this.tracks = new Page<Track>(json, Track, 'tracks');
+        }
+        if (json.tracks) {
+            this.tracks = new Page<Track>(json, Track, 'tracks');
+        }
     }
 }
 

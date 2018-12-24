@@ -22,7 +22,7 @@ export const search = async (
     type: string,
     options?: { market?: string; limit?: number; offset?: number }
 ): Promise<SearchResults> => {
-    const params = { q: query, type, ...options };
+    const params = { type, q: query, ...options };
     const searchResults = await genericSearch(params);
     return new SearchResults(searchResults.data);
 };
