@@ -6,12 +6,12 @@ class PlayHistory {
 
     playedAt: string; // Timestamp
 
-    context: Context;
+    context: Context | null;
 
     constructor(json: any) {
         this.track = new Track(json.track);
-        this.playedAt = json.added_at;
-        this.context = new Context(json.context);
+        this.playedAt = json.played_at;
+        this.context = json.context ? new Context(json.context) : null;
     }
 }
 
