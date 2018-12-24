@@ -1,8 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-
-import Page from './models/paging/page';
-import Artist from './models/artist/artist';
-import Track from './models/track/track';
+import { Artist, Page, Track } from './models';
 
 export const getCurrentUserTopArtists = async (params?: {
     limit?: number;

@@ -1,8 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-
-import PlayHistory from './models/player/play-history';
-import CursorBasedPage from './models/paging/cursor-based-page';
-import CurrentlyPlaying from './models/player/currently-playing';
+import { PlayHistory, CursorBasedPage, CurrentlyPlaying } from './models';
 
 export const getCurrentUserRecentlyPlayedTracks = async (params?: {
     limit?: number;
