@@ -1,5 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-import Artist from './models/artist/artist';
+import { Artist } from './models';
 
 export const getFollowedArtists = async (
     limit: number = 20,

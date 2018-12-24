@@ -1,7 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-import Album from './models/album/album';
-import TrackSimplified from './models/track/track-simplified';
-import Page from './models/paging/page';
+import { Album, TrackSimplified, Page } from './models';
 
 export const getAlbum = async (id: string, market?: string): Promise<Album> => {
     const params = { params: { market } };

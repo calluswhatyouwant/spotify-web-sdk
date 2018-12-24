@@ -1,11 +1,12 @@
 import { getAxiosSpotifyInstance } from './driver';
-
-import AlbumSimplified from './models/album/album-simplified';
-import Artist from './models/artist/artist';
-import Page from './models/paging/page';
-import PlaylistSimplified from './models/playlist/playlist-simplified';
-import Track from './models/track/track';
-import SearchResults from './models/search/search-results';
+import {
+    AlbumSimplified,
+    Artist,
+    Page,
+    PlaylistSimplified,
+    Track,
+    SearchResults,
+} from './models';
 
 const genericSearch = async (params: {
     q: string;

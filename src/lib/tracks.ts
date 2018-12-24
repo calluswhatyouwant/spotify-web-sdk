@@ -1,8 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-
-import Track from './models/track/track';
-import AudioAnalysis from './models/track/audio-analysis';
-import AudioFeatures from './models/track/audio-features';
+import { Track, AudioAnalysis, AudioFeatures } from './models';
 
 export const getSeveralTracks = async (
     ids: string[],
