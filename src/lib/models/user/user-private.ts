@@ -1,7 +1,7 @@
 import Followers from '../common/followers';
 import Image from '../common/image';
 
-class PublicUser {
+class PrivateUser {
     birthdate: string;
 
     country: string;
@@ -42,4 +42,4 @@ class PublicUser {
     }
 }
 
-export default PublicUser;
+export default PrivateUser;
