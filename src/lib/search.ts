@@ -1,10 +1,12 @@
 import { getAxiosSpotifyInstance } from './driver';
-
-import AlbumSimplified from './models/album/album-simplified';
-import Artist from './models/artist/artist';
-import Page from './models/paging/page';
-import PlaylistSimplified from './models/playlist/playlist-simplified';
-import Track from './models/track/track';
+import {
+    AlbumSimplified,
+    Artist,
+    Page,
+    PlaylistSimplified,
+    Track,
+    SearchResults,
+} from './models';
 
 const genericSearch = async (params: {
     q: string;
@@ -14,6 +16,16 @@ const genericSearch = async (params: {
     offset?: number;
 }) => {
     return getAxiosSpotifyInstance().get(`/search`, { params });
+};
+
+export const search = async (
+    query: string,
+    type: string,
+    options?: { market?: string; limit?: number; offset?: number }
+): Promise<SearchResults> => {
+    const params = { type, q: query, ...options };
+    const searchResults = await genericSearch(params);
+    return new SearchResults(searchResults.data);
 };
 
 export const searchAlbums = async (

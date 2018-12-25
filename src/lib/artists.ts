@@ -1,8 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-import Artist from './models/artist/artist';
-import Track from './models/track/track';
-import Page from './models/paging/page';
-import AlbumSimplified from './models/album/album-simplified';
+import { Artist, Track, Page, AlbumSimplified } from './models';
 
 export const getArtist = async (id: string): Promise<Artist> => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);

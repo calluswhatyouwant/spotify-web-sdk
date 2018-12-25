@@ -1,8 +1,5 @@
 import { getAxiosSpotifyInstance } from './driver';
-import Playlist from './models/playlist/playlist';
-import PlaylistTrack from './models/playlist/playlist-track';
-import Page from './models/paging/page';
-import PlaylistSimplified from './models/playlist/playlist-simplified';
+import { Playlist, PlaylistTrack, PlaylistSimplified, Page } from './models';
 
 export const getPlaylist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/playlists/${id}`);
