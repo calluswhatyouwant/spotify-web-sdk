@@ -8,7 +8,7 @@ import { init, getTrack, getSeveralTracks } from '../src/lib';
 
 describe('Track requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#getTrack()', () => {
