@@ -15,7 +15,7 @@ import {
 
 describe('Player requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#getCurrentUserRecentlyPlayedTracks()', () => {

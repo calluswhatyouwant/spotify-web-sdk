@@ -27,7 +27,7 @@ import Track from '../src/lib/models/track/track';
 
 describe('Artist requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#getArtist()', () => {
