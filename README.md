@@ -25,7 +25,7 @@ Here is how you could do the same thing with our aid:
 
 ```javascript
 import * as spotify from 'spotify-web-sdk';
-spotify.init('YOUR SPOTIFY TOKEN HERE!'); // You should only need to run this once.
+spotify.init({ token: 'YOUR SPOTIFY TOKEN HERE!' }); // You should only need to run this once.
 spotify.getTrack('3LOpHuEpjkL4T1Zcjhko8w'); // Or any other track id.
 ```
 
