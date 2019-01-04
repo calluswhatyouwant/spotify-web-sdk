@@ -14,7 +14,7 @@ import Album from '../src/lib/models/album/album';
 
 describe('Album requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#getAlbum()', () => {

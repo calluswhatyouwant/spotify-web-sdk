@@ -16,7 +16,7 @@ import {
 
 describe('Search requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#searchAlbums()', () => {

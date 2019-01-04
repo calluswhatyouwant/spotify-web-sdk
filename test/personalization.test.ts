@@ -12,7 +12,7 @@ import {
 
 describe('Personalization requests', () => {
     beforeEach(() => {
-        init('SomeToken');
+        init({ token: 'SomeToken' });
     });
 
     describe('#getCurrentUserTopArtists()', () => {
