@@ -14,8 +14,8 @@ export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
             `The maximum number of artists is 50. See ${exceptionLink} for details`
         );
     }
-    const params = { params: { ids } };
-    const response = await getAxiosSpotifyInstance().get('/artists', params);
+    const config = { params: { ids } };
+    const response = await getAxiosSpotifyInstance().get('/artists', config);
     return response.data.artists.map(
         (artistJson: any) => new Artist(artistJson)
     );
@@ -61,10 +61,10 @@ export const getArtistTopTracks = async (
     id: string,
     market: string
 ): Promise<Track[]> => {
-    const params = { params: { market } };
+    const config = { params: { market } };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`,
-        params
+        config
     );
     return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };
