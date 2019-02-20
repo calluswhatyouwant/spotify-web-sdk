@@ -1,19 +1,20 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Album, TrackSimplified, Page } from './models';
 
-export const getAlbum = async (id: string, market?: string): Promise<Album> => {
-    const params = { params: { market } };
-    const response = await getAxiosSpotifyInstance().get(
-        `/albums/${id}`,
-        params
-    );
+export const getAlbum = async (
+    id: string,
+    params?: { market?: string }
+): Promise<Album> => {
+    const response = await getAxiosSpotifyInstance().get(`/albums/${id}`, {
+        params,
+    });
 
     return new Album(response.data);
 };
 
 export const getSeveralAlbums = async (
     ids: string[],
-    market?: string
+    params?: { market?: string }
 ): Promise<Album[]> => {
     if (ids.length > 20) {
         const exceptionLink =
@@ -22,22 +23,23 @@ export const getSeveralAlbums = async (
             `The maximum number of albums is 20. See ${exceptionLink} for details`
         );
     }
-    const params = { params: { market, ids: ids.join(',') } };
-    const response = await getAxiosSpotifyInstance().get('/albums', params);
+    const config = { params: { ...params, ids: ids.join(',') } };
+    const response = await getAxiosSpotifyInstance().get('/albums', config);
 
     return response.data.albums.map((albumJson: any) => new Album(albumJson));
 };
 
 export const getAlbumTracks = async (
     id: string,
-    offset = 0,
-    limit = 20,
-    market?: string
+    params?: {
+        offset?: number;
+        limit?: number;
+        market?: string;
+    }
 ): Promise<Page<TrackSimplified>> => {
-    const params = { params: { offset, limit, market } };
     const response = await getAxiosSpotifyInstance().get(
         `/albums/${id}/tracks`,
-        params
+        { params }
     );
     return new Page<TrackSimplified>(response.data, TrackSimplified);
 };

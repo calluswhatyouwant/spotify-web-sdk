@@ -14,8 +14,8 @@ export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
             `The maximum number of artists is 50. See ${exceptionLink} for details`
         );
     }
-    const params = { params: { ids } };
-    const response = await getAxiosSpotifyInstance().get('/artists', params);
+    const config = { params: { ids } };
+    const response = await getAxiosSpotifyInstance().get('/artists', config);
     return response.data.artists.map(
         (artistJson: any) => new Artist(artistJson)
     );
@@ -23,16 +23,25 @@ export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
 
 export const getArtistAlbums = async (
     id: string,
-    offset = 0,
-    limit = 20,
-    includeGroups?: string[],
-    market?: string
+    params?: {
+        offset?: number;
+        limit?: number;
+        includeGroups?: string[];
+        market?: string;
+    }
 ): Promise<Page<AlbumSimplified>> => {
-    const params: any = { params: { offset, limit, market } };
-    if (includeGroups) params.params.include_groups = includeGroups.join(',');
+    const config = {
+        params: {
+            ...params,
+            include_groups:
+                params && params.includeGroups
+                    ? params.includeGroups.join(',')
+                    : '',
+        },
+    };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/albums`,
-        params
+        config
     );
     return new Page<AlbumSimplified>(response.data, AlbumSimplified);
 };
@@ -52,10 +61,10 @@ export const getArtistTopTracks = async (
     id: string,
     market: string
 ): Promise<Track[]> => {
-    const params = { params: { market } };
+    const config = { params: { market } };
     const response = await getAxiosSpotifyInstance().get(
         `/artists/${id}/top-tracks`,
-        params
+        config
     );
     return response.data.tracks.map((trackJson: any) => new Track(trackJson));
 };
