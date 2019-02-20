@@ -72,8 +72,7 @@ describe('Album requests', () => {
         it('response should match all paging object attributes', async () => {
             const albumTracksResponse = await getAlbumTracks(
                 '3yGwYUrWqe6PHf0IcUdkbZ',
-                0,
-                2
+                { offset: 0, limit: 2 }
             );
             checkMatchingPagingObjectAttributes(
                 albumTracksResponse,
@@ -84,8 +83,7 @@ describe('Album requests', () => {
         it('response should match all custom paging object attributes', async () => {
             const albumTracksResponse = await getAlbumTracks(
                 '3yGwYUrWqe6PHf0IcUdkbZ',
-                0,
-                2
+                { offset: 0, limit: 2 }
             );
             expect(albumTracksResponse.hasNext()).to.be.true;
             expect(albumTracksResponse.hasPrevious()).to.be.false;
