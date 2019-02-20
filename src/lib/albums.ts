@@ -30,14 +30,15 @@ export const getSeveralAlbums = async (
 
 export const getAlbumTracks = async (
     id: string,
-    offset = 0,
-    limit = 20,
-    market?: string
+    params?: {
+        offset?: number;
+        limit?: number;
+        market?: string;
+    }
 ): Promise<Page<TrackSimplified>> => {
-    const params = { params: { offset, limit, market } };
     const response = await getAxiosSpotifyInstance().get(
         `/albums/${id}/tracks`,
-        params
+        { params }
     );
     return new Page<TrackSimplified>(response.data, TrackSimplified);
 };
