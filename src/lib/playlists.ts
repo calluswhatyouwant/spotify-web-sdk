@@ -6,20 +6,32 @@ export const getPlaylist = async (id: string) => {
     return new Playlist(response.data);
 };
 
-export const getPlaylistTracks = async (id: string, offset = 0, limit = 20) => {
-    const params = { params: { offset, limit } };
+export const getPlaylistTracks = async (
+    id: string,
+    params?: {
+        fields?: string;
+        limit?: number;
+        offset?: number;
+        market?: string;
+    }
+) => {
     const response = await getAxiosSpotifyInstance().get(
         `/playlists/${id}/tracks`,
-        params
+        { params }
     );
     return new Page<PlaylistTrack>(response.data, PlaylistTrack);
 };
 
-export const getUserPlaylists = async (id: string, offset = 0, limit = 20) => {
-    const params = { params: { offset, limit } };
+export const getUserPlaylists = async (
+    id: string,
+    params?: {
+        limit?: number;
+        offset?: number;
+    }
+) => {
     const response = await getAxiosSpotifyInstance().get(
         `/users/${id}/playlists`,
-        params
+        { params }
     );
     return new Page<PlaylistSimplified>(response.data, PlaylistSimplified);
 };

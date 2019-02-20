@@ -1,11 +1,11 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Artist } from './models';
 
-export const getFollowedArtists = async (
-    limit: number = 20,
-    after?: string
-): Promise<Artist[]> => {
-    if (limit < 1 || limit > 50) {
+export const getFollowedArtists = async (params?: {
+    limit?: number;
+    after?: string;
+}): Promise<Artist[]> => {
+    if (params && params.limit && (params.limit < 1 || params.limit > 50)) {
         const exceptionLink =
             'https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/';
         throw new Error(
@@ -13,11 +13,10 @@ export const getFollowedArtists = async (
         );
     }
 
-    const afterQuery = after ? after : null;
-    const params = { params: { limit, type: 'artist', after: afterQuery } };
+    const config = { params: { ...params, type: 'artist' } };
     const response = await getAxiosSpotifyInstance().get(
         '/me/following',
-        params
+        config
     );
 
     return response.data.artists.items.map(
@@ -41,10 +40,10 @@ export const isFollowing = async (
         );
     }
 
-    const params = { params: { type, ids: ids.join() } };
+    const config = { params: { type, ids: ids.join() } };
     const response = await getAxiosSpotifyInstance().get(
         '/me/following/contains',
-        params
+        config
     );
 
     return response.data;
@@ -62,10 +61,10 @@ export const checkUsersFollowingPlaylist = async (
         );
     }
 
-    const params = { params: { ids: ids.join() } };
+    const config = { params: { ids: ids.join() } };
     const response = await getAxiosSpotifyInstance().get(
         `/playlists/${playlistId}/followers/contains`,
-        params
+        config
     );
 
     return response.data;

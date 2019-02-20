@@ -40,10 +40,11 @@ export const getAudioFeaturesForTrack = async (id: string) => {
 };
 
 export const getAudioFeaturesForSeveralTracks = async (ids: string[]) => {
-    const params = { ids: ids.join(',') };
-    const response = await getAxiosSpotifyInstance().get(`/audio-features`, {
-        params,
-    });
+    const config = { params: { ids: ids.join(',') } };
+    const response = await getAxiosSpotifyInstance().get(
+        `/audio-features`,
+        config
+    );
     return response.data.audio_features.map(
         (audioFeaturesJson: any) => new AudioFeatures(audioFeaturesJson)
     );
