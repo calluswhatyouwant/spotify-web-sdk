@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import AlbumSimplified from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
 
@@ -69,6 +71,14 @@ class Track {
 
     get albumName() {
         return this.album.name;
+    }
+
+    get mainArtists(): ArtistSimplified[] {
+        return _.intersectionBy(this.artists, this.album.artists, 'id');
+    }
+
+    get featuredArtists(): ArtistSimplified[] {
+        return _.differenceBy(this.artists, this.album.artists, 'id');
     }
 
     get stringArtists() {
