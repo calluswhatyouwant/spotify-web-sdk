@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import ArtistSimplified from '../artist/artist-simplified';
 import Image from '../common/image';
 import Page from '../paging/page';
@@ -77,6 +79,30 @@ class Album {
 
     get imageUrl(): string {
         return this.images[0].url;
+    }
+
+    async getAllTracks(): Promise<TrackSimplified[]> {
+        return this.getAllTracksRecursive([], this.tracks);
+    }
+
+    private async getAllTracksRecursive(
+        tracks: TrackSimplified[],
+        page: Page<TrackSimplified>
+    ): Promise<TrackSimplified[]> {
+        if (page.hasNext()) {
+            const nextPage = await page.getNextPage();
+            return this.getAllTracksRecursive(
+                tracks.concat(page.items),
+                nextPage
+            );
+        }
+
+        return tracks.concat(page.items);
+    }
+
+    async getDurationMs(): Promise<number> {
+        const tracks = await this.getAllTracks();
+        return _.sum(tracks.map(track => track.durationMs));
     }
 }
 
