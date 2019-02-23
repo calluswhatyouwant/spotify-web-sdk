@@ -22,7 +22,6 @@ class PlaylistSimplified {
 
     tracks: any;
 
-    // { href: string, total: number }
     type: 'playlist';
 
     uri: string;
