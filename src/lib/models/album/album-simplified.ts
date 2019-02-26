@@ -49,16 +49,16 @@ class AlbumSimplified {
         this.uri = json.uri;
     }
 
-    get stringArtists() {
+    get stringArtists(): string {
         const artistNames = this.artists.map(artist => artist.name);
         return artistNames.join(', ');
     }
 
-    get releaseYear() {
-        return this.releaseDate.substring(0, 4);
+    get releaseYear(): number {
+        return Number(this.releaseDate.substring(0, 4));
     }
 
-    get imageUrl() {
+    get imageUrl(): string {
         return this.images[0].url;
     }
 }

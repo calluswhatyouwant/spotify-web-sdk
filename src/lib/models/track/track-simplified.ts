@@ -54,15 +54,15 @@ class TrackSimplified {
         this.trackNumber = json.track_number;
         this.type = json.type;
         this.uri = json.uri;
-        this.isLocal = json.isLocal;
+        this.isLocal = json.is_local;
     }
 
-    get stringArtists() {
+    get stringArtists(): string {
         const artistNames = this.artists.map(artist => artist.name);
         return artistNames.join(', ');
     }
 
-    get length() {
+    get length(): string {
         const minutes = Math.floor(this.durationMs / 60000);
         const seconds = Math.floor((this.durationMs % 60000) / 1000);
 

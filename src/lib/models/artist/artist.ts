@@ -1,38 +1,26 @@
+import ArtistSimplified from './artist-simplified';
 import Followers from '../common/followers';
 import Image from '../common/image';
 
-class Artist {
-    externalUrls: any;
-
+class Artist extends ArtistSimplified {
     followers: Followers;
 
     genres: string[];
 
-    href: string;
-
-    id: string;
-
     images: Image[];
-
-    name: string;
 
     popularity: number;
 
-    type: 'artist';
-
-    uri: string;
-
     constructor(json: any) {
-        this.externalUrls = json.external_urls;
+        super(json);
         this.followers = new Followers(json.followers);
         this.genres = json.genres;
-        this.href = json.href;
-        this.id = json.id;
         this.images = json.images.map((imageJson: any) => new Image(imageJson));
-        this.name = json.name;
         this.popularity = json.popularity;
-        this.type = json.type;
-        this.uri = json.uri;
+    }
+
+    get imageUrl(): string {
+        return this.images[0].url;
     }
 }
 
