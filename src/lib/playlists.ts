@@ -1,5 +1,11 @@
 import { getAxiosSpotifyInstance } from './driver';
-import { Playlist, PlaylistTrack, PlaylistSimplified, Page } from './models';
+import {
+    Playlist,
+    PlaylistTrack,
+    PlaylistSimplified,
+    Page,
+    Image,
+} from './models';
 
 export const getPlaylist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/playlists/${id}`);
@@ -34,4 +40,21 @@ export const getUserPlaylists = async (
         { params }
     );
     return new Page<PlaylistSimplified>(response.data, PlaylistSimplified);
+};
+
+export const getCurrentUserPlaylists = async (params?: {
+    limit?: number;
+    offset?: number;
+}) => {
+    const response = await getAxiosSpotifyInstance().get('/me/playlists', {
+        params,
+    });
+    return new Page<PlaylistSimplified>(response.data, PlaylistSimplified);
+};
+
+export const getPlaylistCoverImage = async (id: string) => {
+    const response = await getAxiosSpotifyInstance().get(
+        `playlists/${id}/images`
+    );
+    return response.data.map((imageJson: any) => new Image(imageJson));
 };
