@@ -8,4 +8,5 @@ export * from './playlists';
 export * from './player';
 export * from './search';
 export * from './tracks';
+export * from './users-profile';
 export * from './models';
