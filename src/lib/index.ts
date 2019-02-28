@@ -1,5 +1,6 @@
 export * from './albums';
 export * from './artists';
+export * from './browse';
 export * from './driver';
 export * from './follow';
 export * from './personalization';
