@@ -3,6 +3,7 @@ export * from './artists';
 export * from './browse';
 export * from './driver';
 export * from './follow';
+export * from './library';
 export * from './personalization';
 export * from './playlists';
 export * from './player';
