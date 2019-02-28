@@ -12,7 +12,9 @@
     "license": "MIT",
     "version": "0.3.0",
     "dependencies": {
-        "axios": "^0.18.0"
+        "@types/lodash": "^4.14.121",
+        "axios": "^0.18.0",
+        "lodash": "^4.17.11"
     },
     "scripts": {
         "start": "ts-node src/start.ts",
