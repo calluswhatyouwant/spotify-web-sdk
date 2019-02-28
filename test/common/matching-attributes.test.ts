@@ -1,13 +1,17 @@
 import { expect } from 'chai';
 
-import Album from '../../src/lib/models/album/album';
-import AlbumSimplified from '../../src/lib/models/album/album-simplified';
-import Artist from '../../src/lib/models/artist/artist';
-import Track from '../../src/lib/models/track/track';
-import Page from '../../src/lib/models/paging/page';
-import CurrentlyPlaying from '../../src/lib/models/player/currently-playing';
-import Context from '../../src/lib/models/player/context';
-import CursorBasedPage from '../../src/lib/models/paging/cursor-based-page';
+import {
+    Album,
+    AlbumSimplified,
+    Artist,
+    Track,
+    Page,
+    CurrentlyPlaying,
+    Context,
+    CursorBasedPage,
+    PrivateUser,
+    PublicUser,
+} from '../../src/lib/models';
 
 import { AlbumMock } from '../mocks/albums/album.mock';
 import { ArtistMock } from '../mocks/artists/artist.mock';
@@ -144,4 +148,36 @@ export const checkMatchingCursorBasedPageAttributes = (
     expect(response.limit).to.be.equal(mock.limit);
     expect(response.next).to.be.equal(mock.next.split('?')[1]);
     expect(response.total).to.be.equal(mock.total);
+};
+
+export const checkMatchingPrivateUserAttributes = (
+    response: PrivateUser,
+    mock: any
+) => {
+    expect(response.birthdate).to.be.equal(mock.birthdate);
+    expect(response.country).to.be.equal(mock.country);
+    expect(response.displayName).to.be.equal(mock.display_name);
+    expect(response.email).to.be.equal(mock.email);
+    expect(response.externalUrls).to.be.eql(mock.external_urls);
+    expect(response.followers).to.be.eql(mock.followers);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.images).to.be.eql(mock.images);
+    expect(response.product).to.be.equal(mock.product);
+    expect(response.type).to.be.equal(mock.type);
+    expect(response.uri).to.be.equal(mock.uri);
+};
+
+export const checkMatchingPublicUserAttributes = (
+    response: PublicUser,
+    mock: any
+) => {
+    expect(response.displayName).to.be.equal(mock.display_name);
+    expect(response.externalUrls).to.be.eql(mock.external_urls);
+    expect(response.followers).to.be.eql(mock.followers);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.images).to.be.eql(mock.images);
+    expect(response.type).to.be.equal(mock.type);
+    expect(response.uri).to.be.equal(mock.uri);
 };
