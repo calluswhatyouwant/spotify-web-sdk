@@ -78,7 +78,7 @@ export const addTracksToPlaylist = async (
     trackUris: string[],
     position?: number
 ) => {
-    const data = { uris: trackUris, position };
+    const data = { position, uris: trackUris };
     const response = await getAxiosSpotifyInstance().post(
         `/playlists/${playlistId}/tracks`,
         data
@@ -132,7 +132,8 @@ export const replacePlaylistTracks = async (
 export const uploadPlaylistCoverImage = async (id: string, imageData: any) => {
     const response = await getAxiosSpotifyInstance().put(
         `/playlists/${id}/images`,
-        { imageData }
+        { imageData },
+        { headers: { 'Content-Type': 'image/jpeg' } }
     );
     return response.data;
 };
