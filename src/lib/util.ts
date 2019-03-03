@@ -5,9 +5,9 @@ export const propertiesToSnakeCase = (object: any, bodyParams?: boolean) => {
     const keys = _.keys(object);
     keys.forEach((key: any) => {
         const value = object[key];
-        if (_.isArray(value) && !bodyParams)
+        if (_.isArray(value) && !bodyParams) {
             updatedObject[_.snakeCase(key)] = value.join();
-        else updatedObject[_.snakeCase(key)] = value;
+        } else updatedObject[_.snakeCase(key)] = value;
     });
     return updatedObject;
 };
