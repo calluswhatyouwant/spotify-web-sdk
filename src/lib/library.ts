@@ -34,3 +34,24 @@ export const getCurrentUserSavedTracks = async (params?: {
     });
     return new Page<SavedTrack>(response.data, SavedTrack);
 };
+
+export const saveAlbumsOrTracksForCurrentUser = async (
+    ids: string[],
+    type: 'albums' | 'tracks'
+) => {
+    const response = await getAxiosSpotifyInstance().put(`/me/${type}`, {
+        ids,
+    });
+    return response.data;
+};
+
+export const removeAlbumsOrTracksForCurrentUser = async (
+    ids: string[],
+    type: 'albums' | 'tracks'
+) => {
+    const data = { ids };
+    const response = await getAxiosSpotifyInstance().delete(`/me/${type}`, {
+        data,
+    });
+    return response.data;
+};
