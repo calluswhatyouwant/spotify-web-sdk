@@ -16,6 +16,10 @@ export { default as CursorBasedPage } from './paging/cursor-based-page';
 export { default as Page } from './paging/page';
 export { default as Context } from './player/context';
 export { default as CurrentlyPlaying } from './player/currently-playing';
+export {
+    default as CurrentlyPlayingContext,
+} from './player/currently-playing-context';
+export { default as Device } from './player/device';
 export { default as PlayHistory } from './player/play-history';
 export { default as Playlist } from './playlist/playlist';
 export { default as PlaylistSimplified } from './playlist/playlist-simplified';
