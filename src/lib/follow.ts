@@ -69,3 +69,44 @@ export const checkUsersFollowingPlaylist = async (
 
     return response.data;
 };
+
+export const followArtistsOrUsers = async (
+    ids: string[],
+    type: 'artist' | 'user'
+) => {
+    const params = { type };
+    const response = await getAxiosSpotifyInstance().put(
+        '/me/following',
+        { ids },
+        { params }
+    );
+    return response.data;
+};
+
+export const followPlaylist = async (id: string, publicFollow?: boolean) => {
+    const response = await getAxiosSpotifyInstance().put(
+        `/playlists/${id}/followers`,
+        { public: publicFollow }
+    );
+    return response.data;
+};
+
+export const unfollowArtistsOrUsers = async (
+    ids: string[],
+    type: 'artist' | 'user'
+) => {
+    const params = { type };
+    const data = { ids };
+    const response = await getAxiosSpotifyInstance().delete('/me/following', {
+        params,
+        data,
+    });
+    return response.data;
+};
+
+export const unfollowPlaylist = async (id: string) => {
+    const response = await getAxiosSpotifyInstance().delete(
+        `/playlists/${id}/followers`
+    );
+    return response.data;
+};
