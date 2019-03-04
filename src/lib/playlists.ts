@@ -6,6 +6,7 @@ import {
     Page,
     Image,
 } from './models';
+import { propertiesToSnakeCase } from './util';
 
 export const getPlaylist = async (id: string) => {
     const response = await getAxiosSpotifyInstance().get(`/playlists/${id}`);
@@ -57,4 +58,102 @@ export const getPlaylistCoverImage = async (id: string) => {
         `playlists/${id}/images`
     );
     return response.data.map((imageJson: any) => new Image(imageJson));
+};
+
+export const createPlaylist = async (
+    userId: string,
+    name: string,
+    params?: { public?: boolean; collaborative?: boolean; description?: string }
+) => {
+    const data = { name, ...params };
+    const response = await getAxiosSpotifyInstance().post(
+        `/users/${userId}/playlists`,
+        data
+    );
+    return new Playlist(response.data);
+};
+
+export const addTracksToPlaylist = async (
+    playlistId: string,
+    trackUris: string[],
+    position?: number
+) => {
+    const data = { position, uris: trackUris };
+    const response = await getAxiosSpotifyInstance().post(
+        `/playlists/${playlistId}/tracks`,
+        data
+    );
+    return response.data;
+};
+
+export const changePlaylistDetails = async (
+    id: string,
+    params?: {
+        name?: string;
+        public?: boolean;
+        collaborative?: boolean;
+        description?: string;
+    }
+) => {
+    const response = await getAxiosSpotifyInstance().put(`/playlists/${id}`, {
+        ...params,
+    });
+    return response.data;
+};
+
+export const reorderPlaylistTracks = async (
+    id: string,
+    rangeStart: number,
+    params?: {
+        rangeLength?: number;
+        insertBefore?: number;
+        snapshotId?: string;
+    }
+) => {
+    const data = propertiesToSnakeCase({ rangeStart, ...params });
+    const response = await getAxiosSpotifyInstance().put(
+        `/playlists/${id}/tracks`,
+        data
+    );
+    return response.data;
+};
+
+export const replacePlaylistTracks = async (
+    id: string,
+    trackUris: string[]
+) => {
+    const response = await getAxiosSpotifyInstance().put(
+        `/playlists/${id}/tracks`,
+        { uris: trackUris }
+    );
+    return response.data;
+};
+
+export const uploadPlaylistCoverImage = async (id: string, imageData: any) => {
+    const response = await getAxiosSpotifyInstance().put(
+        `/playlists/${id}/images`,
+        { imageData },
+        { headers: { 'Content-Type': 'image/jpeg' } }
+    );
+    return response.data;
+};
+
+type TrackToBeRemoved = {
+    uri: string;
+    positions?: number[];
+};
+
+export const removeTracksFromPlaylist = async (
+    id: string,
+    tracks: TrackToBeRemoved[],
+    snapshotId?: string
+) => {
+    const data = { tracks, snapshot_id: snapshotId };
+    const response = await getAxiosSpotifyInstance().delete(
+        `/playlists/${id}/tracks`,
+        {
+            data,
+        }
+    );
+    return response.data;
 };
