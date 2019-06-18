@@ -50,10 +50,8 @@ class Page<T> {
         return queryParams;
     }
 
-    private getAxiosPageInstance() {
-        const instance = getAxiosSpotifyInstance();
-        instance.defaults.baseURL = this.href.split('?')[0];
-        return instance;
+    private getPagingUrl() {
+        return this.href.split('?')[0];
     }
 
     hasNext() {
@@ -71,7 +69,10 @@ class Page<T> {
             limit: this.limit,
             offset: this.offset + this.limit,
         };
-        const response = await this.getAxiosPageInstance().get('/', { params });
+        const response = await getAxiosSpotifyInstance().get(
+            `${this.getPagingUrl()}/`,
+            { params }
+        );
         return new Page<T>(response.data, this.t, this.wrapper);
     }
 
@@ -81,9 +82,12 @@ class Page<T> {
         if (this.offset < this.limit && !includeRepeated) limit = this.offset;
         const offset = Math.max(this.offset - this.limit, 0);
         const params = { ...this.queryParams, limit, offset };
-        const response = await this.getAxiosPageInstance().get('/', {
-            params,
-        });
+        const response = await getAxiosSpotifyInstance().get(
+            `${this.getPagingUrl()}/`,
+            {
+                params,
+            }
+        );
         return new Page<T>(response.data, this.t, this.wrapper);
     }
 }
