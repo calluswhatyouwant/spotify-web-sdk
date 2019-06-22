@@ -32,10 +32,8 @@ class CursorBasedPage<T> {
         return queryParams;
     }
 
-    private getAxiosPageInstance() {
-        const instance = getAxiosSpotifyInstance();
-        instance.defaults.baseURL = this.href.split('?')[0];
-        return instance;
+    private getPagingUrl() {
+        return this.href.split('?')[0];
     }
 
     hasNext() {
@@ -44,7 +42,9 @@ class CursorBasedPage<T> {
 
     async getNextPage() {
         if (!this.hasNext()) throw new Error('There are no more pages');
-        const response = await this.getAxiosPageInstance().get(`?${this.next}`);
+        const response = await getAxiosSpotifyInstance().get(
+            `${this.getPagingUrl()}?${this.next}`
+        );
         return new CursorBasedPage<T>(response.data, this.t);
     }
 }
