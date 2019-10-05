@@ -113,9 +113,12 @@ export const checkMatchingCurrentlyPlayingAttributes = (
     response: CurrentlyPlaying,
     mock: any
 ) => {
-    if (response.context)
+    if (response.context) {
         checkMatchingContextAttributes(response.context, mock.context);
-    if (response.item) checkMatchingTrackAttributes(response.item, mock.item);
+    }
+    if (response.item) {
+        checkMatchingTrackAttributes(response.item, mock.item);
+    }
     const attributes = [
         'currentlyPlayingType',
         'isPlaying',

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import nock from 'nock';
 
-import { albumMock, AlbumMock } from './mocks/albums/album.mock';
+import { albumMock } from './mocks/albums/album.mock';
 import { severalAlbumsMock } from './mocks/albums/several-albums.mock';
 import { albumTracksMock } from './mocks/albums/album-tracks.mock';
 import {
@@ -53,9 +53,9 @@ describe('Album requests', () => {
                 '3dB0bCgmpEgCSr3aU1bOtv',
             ]);
 
-            for (let i = 0; i < severalAlbumsResponse.length; i++) {
+            for (let i = 0; i < severalAlbumsResponse.length; i += 1) {
                 const albumResponse: Album = severalAlbumsResponse[i];
-                const albumMock: AlbumMock = severalAlbumsMock.albums[i];
+                const albumMock: any = severalAlbumsMock.albums[i];
                 checkMatchingAlbumAttributes(albumResponse, albumMock);
             }
         });
