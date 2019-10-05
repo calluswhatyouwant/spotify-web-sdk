@@ -16,10 +16,6 @@ import {
 
 import _ from 'lodash';
 
-import { AlbumMock } from '../mocks/albums/album.mock';
-import { ArtistMock } from '../mocks/artists/artist.mock';
-import { TrackMock } from '../mocks/artists/artist-top-tracks.mock';
-
 export const checkMatchingArtistSimplifiedAttributes = (
     response: ArtistSimplified,
     mock: any

@@ -884,5 +884,3 @@ export const artistTopTracksMock = {
         },
     ],
 };
-
-export type TrackMock = typeof artistTopTracksMock.tracks[0];

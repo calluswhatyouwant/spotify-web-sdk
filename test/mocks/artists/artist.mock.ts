@@ -34,5 +34,3 @@ export const artistMock = {
     type: 'artist',
     uri: 'spotify:artist:1WgXqy2Dd70QQOU7Ay074N',
 };
-
-export type ArtistMock = typeof artistMock;
