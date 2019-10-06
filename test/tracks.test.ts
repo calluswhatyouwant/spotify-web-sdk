@@ -41,7 +41,7 @@ describe('Track requests', () => {
 
         it('response should match all tracks attributes', async () => {
             const tracksResponse = await getSeveralTracks(tracks, params);
-            for (let i = 0; i < tracksResponse.length; i++) {
+            for (let i = 0; i < tracksResponse.length; i += 1) {
                 const trackResponse = tracksResponse[i];
                 const trackMock = severalTracksMock.tracks[i];
                 checkMatchingTrackAttributes(trackResponse, trackMock);

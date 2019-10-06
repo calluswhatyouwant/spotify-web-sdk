@@ -1,13 +1,10 @@
 import nock from 'nock';
 
-import { artistMock, ArtistMock } from './mocks/artists/artist.mock';
+import { artistMock } from './mocks/artists/artist.mock';
 import { severalArtistsMock } from './mocks/artists/several-artists.mock';
 import { artistAlbumsMock } from './mocks/artists/artist-albums.mock';
 import { artistRelatedArtistsMock } from './mocks/artists/artist-related-artists.mock';
-import {
-    artistTopTracksMock,
-    TrackMock,
-} from './mocks/artists/artist-top-tracks.mock';
+import { artistTopTracksMock } from './mocks/artists/artist-top-tracks.mock';
 import {
     checkMatchingArtistAttributes,
     checkMatchingPagingObjectAttributes,
@@ -59,7 +56,7 @@ describe('Artist requests', () => {
                 '1WgXqy2Dd70QQOU7Ay074N',
             ]);
 
-            for (let i = 0; i < severalArtistsResponse.length; i++) {
+            for (let i = 0; i < severalArtistsResponse.length; i += 1) {
                 const artistResponse = severalArtistsResponse[i];
                 const artistMock = severalArtistsMock.artists[i];
                 checkMatchingArtistAttributes(artistResponse, artistMock);
@@ -99,10 +96,9 @@ describe('Artist requests', () => {
                 '1WgXqy2Dd70QQOU7Ay074N'
             );
 
-            for (let i = 0; i < artistRelatedArtistsResponse.length; i++) {
+            for (let i = 0; i < artistRelatedArtistsResponse.length; i += 1) {
                 const artistResponse: Artist = artistRelatedArtistsResponse[i];
-                const artistMock: ArtistMock =
-                    artistRelatedArtistsMock.artists[i];
+                const artistMock: any = artistRelatedArtistsMock.artists[i];
                 checkMatchingArtistAttributes(artistResponse, artistMock);
             }
         });
@@ -122,9 +118,9 @@ describe('Artist requests', () => {
                 'BR'
             );
 
-            for (let i = 0; i < artistTopTracksResponse.length; i++) {
+            for (let i = 0; i < artistTopTracksResponse.length; i += 1) {
                 const topTrackResponse: Track = artistTopTracksResponse[i];
-                const topTrackMock: TrackMock = artistTopTracksMock.tracks[i];
+                const topTrackMock = artistTopTracksMock.tracks[i];
                 checkMatchingTrackAttributes(topTrackResponse, topTrackMock);
             }
         });

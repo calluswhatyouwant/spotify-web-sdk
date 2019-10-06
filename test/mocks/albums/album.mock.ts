@@ -939,5 +939,3 @@ export const albumMock = {
     type: 'album',
     uri: 'spotify:album:2iv4eCuGKJYsso1mDR48dt',
 };
-
-export type AlbumMock = typeof albumMock;
