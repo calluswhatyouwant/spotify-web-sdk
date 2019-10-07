@@ -20,7 +20,21 @@
         "start": "ts-node src/start.ts",
         "build": "rimraf build && tsc && webpack",
         "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
-        "test": "mocha -r ts-node/register test/*.test.ts"
+        "test": "mocha -r ts-node/register test/*.test.ts",
+        "test-with-coverage": "nyc --reporter=html mocha -r ts-node/register test/*.test.ts"
+    },
+    "nyc": {
+        "extension": [
+            ".ts",
+            ".tsx"
+        ],
+        "exclude": [
+            "**/*.d.ts"
+        ],
+        "reporter": [
+            "html"
+        ],
+        "all": true
     },
     "husky": {
         "hooks": {
@@ -40,6 +54,7 @@
         "husky": "^1.1.2",
         "mocha": "^5.2.0",
         "nock": "^10.0.2",
+        "nyc": "^14.1.1",
         "prettier": "^1.14.3",
         "pretty-quick": "^1.8.0",
         "rimraf": "^2.6.2",
