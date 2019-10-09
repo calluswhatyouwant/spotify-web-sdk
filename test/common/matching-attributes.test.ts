@@ -5,12 +5,15 @@ import {
     AlbumSimplified,
     Artist,
     Track,
+    TrackSimplified,
     Page,
     CurrentlyPlaying,
     Context,
     CursorBasedPage,
     PrivateUser,
     PublicUser,
+    Category,
+    RecommendationSeed,
 } from '../../src/lib/models';
 
 import { AlbumMock } from '../mocks/albums/album.mock';
@@ -102,6 +105,29 @@ export const checkMatchingTrackAttributes = (
     expect(response.uri).to.be.equal(mock.uri);
 };
 
+export const checkMatchingTrackSimplifiedAttributes = (
+    response: TrackSimplified,
+    mock: any
+) => {
+    expect(response.artists).to.have.lengthOf(mock.artists.length);
+    expect(response.availableMarkets).to.be.eql(mock.availableMarkets);
+    expect(response.discNumber).to.be.equal(mock.disc_number);
+    expect(response.durationMs).to.be.equal(mock.duration_ms);
+    expect(response.explicit).to.be.equal(mock.explicit);
+    expect(response.externalUrls).to.be.eql(mock.external_urls);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.isPlayable).to.be.equal(mock.is_playable);
+    expect(response.linkedFrom).to.be.eql(mock.linkedFrom);
+    expect(response.restrictions).to.be.eql(mock.restrictions);
+    expect(response.name).to.be.equal(mock.name);
+    expect(response.previewUrl).to.be.equal(mock.preview_url);
+    expect(response.trackNumber).to.be.equal(mock.track_number);
+    expect(response.type).to.be.equal(mock.type);
+    expect(response.uri).to.be.equal(mock.uri);
+    expect(response.isLocal).to.be.equal(mock.is_local);
+};
+
 export const checkMatchingPagingObjectAttributes = (
     response: Page<any>,
     mock: any
@@ -180,4 +206,26 @@ export const checkMatchingPublicUserAttributes = (
     expect(response.images).to.be.eql(mock.images);
     expect(response.type).to.be.equal(mock.type);
     expect(response.uri).to.be.equal(mock.uri);
+};
+
+export const checkMatchingCategoryAttributes = (
+    response: Category,
+    mock: any
+) => {
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.icons).to.be.eql(mock.icons);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.name).to.be.equal(mock.name);
+};
+
+export const checkMatchingRecommendationSeedAttributes = (
+    response: RecommendationSeed,
+    mock: any
+) => {
+    expect(response.initialPoolSize).to.be.equal(mock.initialPoolSize);
+    expect(response.afterFilteringSize).to.be.equal(mock.afterFilteringSize);
+    expect(response.afterRelinkingSize).to.be.equal(mock.afterRelinkingSize);
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.type).to.be.equal(mock.type);
 };
