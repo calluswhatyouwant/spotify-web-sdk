@@ -110,7 +110,7 @@ export const checkMatchingTrackSimplifiedAttributes = (
     mock: any
 ) => {
     expect(response.artists).to.have.lengthOf(mock.artists.length);
-    expect(response.availableMarkets).to.be.eql(mock.availableMarkets);
+    expect(response.availableMarkets).to.be.eql(mock.available_markets);
     expect(response.discNumber).to.be.equal(mock.disc_number);
     expect(response.durationMs).to.be.equal(mock.duration_ms);
     expect(response.explicit).to.be.equal(mock.explicit);
@@ -118,7 +118,7 @@ export const checkMatchingTrackSimplifiedAttributes = (
     expect(response.href).to.be.equal(mock.href);
     expect(response.id).to.be.equal(mock.id);
     expect(response.isPlayable).to.be.equal(mock.is_playable);
-    expect(response.linkedFrom).to.be.eql(mock.linkedFrom);
+    expect(response.linkedFrom).to.be.eql(mock.linked_from);
     expect(response.restrictions).to.be.eql(mock.restrictions);
     expect(response.name).to.be.equal(mock.name);
     expect(response.previewUrl).to.be.equal(mock.preview_url);
