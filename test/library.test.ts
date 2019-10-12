@@ -13,6 +13,7 @@ import {
     SavedAlbum,
     getCurrentUserSavedTracks,
     SavedTrack,
+    areSavedToCurrentUserLibrary,
 } from '../src/lib';
 import { savedAlbumsMock } from './mocks/library/saved-albums.mock';
 import { savedTracksMock } from './mocks/library/saved-tracks.mock';
@@ -20,6 +21,42 @@ import { savedTracksMock } from './mocks/library/saved-tracks.mock';
 describe('Library requests', () => {
     beforeEach(() => {
         init({ token: 'SomeToken' });
+    });
+
+    describe('#areSavedToCurrentUserLibrary()', () => {
+        describe('type tracks', () => {
+            beforeEach(() => {
+                nock('https://api.spotify.com/v1')
+                    .get('/me/tracks/contains')
+                    .query({ ids: '2jpDioAB9tlYXMdXDK3BGl' })
+                    .reply(200, [true]);
+            });
+
+            it('response should be true if track is found', async () => {
+                const areSavedRespones = await areSavedToCurrentUserLibrary(
+                    ['2jpDioAB9tlYXMdXDK3BGl'],
+                    'tracks'
+                );
+                expect(areSavedRespones).to.be.eql([true]);
+            });
+        });
+
+        describe('type albums', () => {
+            beforeEach(() => {
+                nock('https://api.spotify.com/v1')
+                    .get('/me/albums/contains')
+                    .query({ ids: '3VNWq8rTnQG6fM1eldSpZ0' })
+                    .reply(200, [true]);
+            });
+
+            it('response should be true if album is found', async () => {
+                const areSavedResponse = await areSavedToCurrentUserLibrary(
+                    ['3VNWq8rTnQG6fM1eldSpZ0'],
+                    'albums'
+                );
+                expect(areSavedResponse).to.be.eql([true]);
+            });
+        });
     });
 
     describe('#getCurrentUserSavedAlbums()', () => {
