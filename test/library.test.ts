@@ -14,6 +14,7 @@ import {
     getCurrentUserSavedTracks,
     SavedTrack,
     areSavedToCurrentUserLibrary,
+    saveAlbumsOrTracksForCurrentUser,
 } from '../src/lib';
 import { savedAlbumsMock } from './mocks/library/saved-albums.mock';
 import { savedTracksMock } from './mocks/library/saved-tracks.mock';
@@ -128,6 +129,40 @@ describe('Library requests', () => {
                     savedTrackMock.added_at
                 );
             }
+        });
+    });
+
+    describe('#saveAlbumsOrTracksForCurrentUser()', () => {
+        describe('type tracks', () => {
+            beforeEach(() => {
+                nock('https://api.spotify.com/v1')
+                    .put('/me/tracks', { ids: ['2jpDioAB9tlYXMdXDK3BGl'] })
+                    .reply(201);
+            });
+
+            it('response should be empty', async () => {
+                const savedResponse = await saveAlbumsOrTracksForCurrentUser(
+                    ['2jpDioAB9tlYXMdXDK3BGl'],
+                    'tracks'
+                );
+                expect(savedResponse).to.be.empty;
+            });
+        });
+
+        describe('type albums', () => {
+            beforeEach(() => {
+                nock('https://api.spotify.com/v1')
+                    .put('/me/albums', { ids: ['3VNWq8rTnQG6fM1eldSpZ0'] })
+                    .reply(201);
+            });
+
+            it('response should be empty', async () => {
+                const savedResponse = await saveAlbumsOrTracksForCurrentUser(
+                    ['3VNWq8rTnQG6fM1eldSpZ0'],
+                    'albums'
+                );
+                expect(savedResponse).to.be.empty;
+            });
         });
     });
 });
