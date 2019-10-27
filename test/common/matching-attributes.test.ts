@@ -7,6 +7,7 @@ import {
     Track,
     TrackSimplified,
     Page,
+    Playlist,
     CurrentlyPlaying,
     Context,
     CursorBasedPage,
@@ -228,4 +229,14 @@ export const checkMatchingRecommendationSeedAttributes = (
     expect(response.href).to.be.equal(mock.href);
     expect(response.id).to.be.equal(mock.id);
     expect(response.type).to.be.equal(mock.type);
+};
+
+export const checkMatchingPlaylistAttributes = (
+    response: Category,
+    mock: any
+) => {
+    expect(response.href).to.be.equal(mock.href);
+    expect(response.icons).to.be.eql(mock.icons);
+    expect(response.id).to.be.equal(mock.id);
+    expect(response.name).to.be.equal(mock.name);
 };
