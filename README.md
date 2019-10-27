@@ -63,6 +63,12 @@ Even though I'm not certain you thought that right now, here's how to get starte
 
 ## Installation
 
+Using Yarn:
+
+```sh
+yarn add spotify-web-sdk
+```
+
 Using NPM:
 
 ```sh
@@ -93,13 +99,11 @@ Please, note that we have a [Code of Conduct](.github/CODE_OF_CONDUCT.md), which
 
 ### Suggest a new feature or report a bug
 
-Check our [issue templates](.github/ISSUE_TEMPLATE).
+If you notice any other bugs or you have any ideas to improve our SDK, feel free to create an issue. We'll be more than happy to discuss it! Check our [issue templates](.github/ISSUE_TEMPLATE).
 
 ### Do it yourself
 
-We're working on a CONTRIBUTING file and PR template.
-In the meantime, you can already create PRs, especially to help us create the requests that are still missing and test the ones we have implemented.
-Check [#21](/issues/21) for a list of GET endpoints we haven't got covered yet.
+Check out our [CONTRIBUTING](./CONTRIBUTING.md) file!
 
 ### Maintainers
 
@@ -113,4 +117,4 @@ Made with [hall-of-fame](https://github.com/sourcerer-io/hall-of-fame).
 
 ## License
 
-MIT
+[MIT](./LICENSE)
