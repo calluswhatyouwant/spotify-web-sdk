@@ -28,4 +28,8 @@ Our continuous integration setup runs `tslint` and it'll break if there are rema
 
 ## Creating a PR
 
-We have a simple PR template that should appear once you create a PR. Try to be the most descriptive you can when creating your PR so that we have an easier and more complete overview of what you've made. Thank you for contributing to our project!
+We have a simple PR template that should appear once you create a PR. Try to be the most descriptive you can when creating your PR so that we have an easier and more complete overview of what you've made.
+
+Be aware that all PRs should be made to the most recent version branch (currently, `v0.5.x`). Only the repository maintainers can send PRs straight to the `master` branch, as it reflects on the most recent version published to npm.
+
+Thank you for contributing to our project!
