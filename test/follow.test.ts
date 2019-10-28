@@ -65,7 +65,7 @@ describe('Follow requests', () => {
             const followedArtistsResponse = await getFollowedArtists({
                 limit: 20,
             });
-            for (let i = 0; i < followedArtistsResponse.length; i++) {
+            for (let i = 0; i < followedArtistsResponse.length; i += 1) {
                 const artistResponse = followedArtistsResponse[i];
                 const artistMock = followedArtistsMock.artists.items[i];
                 checkMatchingArtistAttributes(artistResponse, artistMock);

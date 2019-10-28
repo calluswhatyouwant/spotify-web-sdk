@@ -141,7 +141,7 @@ describe('Browse requests', () => {
 
         it('response should match all tracks attributes', async () => {
             const recommendationsResponse = await getRecommendations(params);
-            for (let i = 0; i < recommendationsResponse.tracks.length; i++) {
+            for (let i = 0; i < recommendationsResponse.tracks.length; i += 1) {
                 const trackResponse = recommendationsResponse.tracks[i];
                 const trackMock = recommendationsMock.tracks[i];
                 checkMatchingTrackSimplifiedAttributes(
@@ -153,7 +153,7 @@ describe('Browse requests', () => {
 
         it('response should match all seeds attributes', async () => {
             const recommendationsResponse = await getRecommendations(params);
-            for (let i = 0; i < recommendationsResponse.seeds.length; i++) {
+            for (let i = 0; i < recommendationsResponse.seeds.length; i += 1) {
                 const seedResponse = recommendationsResponse.seeds[i];
                 const seedMock = recommendationsMock.seeds[i];
                 checkMatchingRecommendationSeedAttributes(
