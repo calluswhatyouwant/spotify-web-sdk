@@ -135,8 +135,10 @@ describe('Player requests', () => {
             nock('https://api.spotify.com/v1')
                 .put('/me/player/play', {
                     context_uri: 'spotify:album:1Je1IMUlBXcx1Fz0WE7oPT',
-                    uris:
-                        'spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M',
+                    uris: [
+                        'spotify:track:4iV5W9uYEdYUVa79Axb7Rh',
+                        'spotify:track:1301WleyT98MSxVHPZCA6M',
+                    ],
                     offset: { position: 5 },
                     position_ms: 1234,
                 })
