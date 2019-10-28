@@ -64,7 +64,7 @@ workflows:
   build-test-deploy:
     jobs:
         - config
-        - build
+        - build:
             requires:
                 -config
         - test:
