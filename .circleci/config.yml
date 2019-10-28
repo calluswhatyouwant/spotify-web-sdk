@@ -63,10 +63,13 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
+        - config
         - build
+            requires:
+                -config
         - test:
             requires:
-                - build
+                - config
             filters:
                 tags:
                     ignore: /.*/
