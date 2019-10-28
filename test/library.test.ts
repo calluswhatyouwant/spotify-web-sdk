@@ -78,7 +78,7 @@ describe('Library requests', () => {
 
         it('response should match all album attributes', async () => {
             const savedAlbumsResponse = await getCurrentUserSavedAlbums();
-            for (let i = 0; i < savedAlbumsResponse.items.length; i++) {
+            for (let i = 0; i < savedAlbumsResponse.items.length; i += 1) {
                 const albumResponse: SavedAlbum = savedAlbumsResponse.items[i];
                 const albumMock = savedAlbumsMock.items[i].album;
                 checkMatchingAlbumAttributes(albumResponse.album, albumMock);
@@ -87,7 +87,7 @@ describe('Library requests', () => {
 
         it('response should match custom attributes', async () => {
             const savedAlbumsResponse = await getCurrentUserSavedAlbums();
-            for (let i = 0; i < savedAlbumsResponse.items.length; i++) {
+            for (let i = 0; i < savedAlbumsResponse.items.length; i += 1) {
                 const albumResponse: SavedAlbum = savedAlbumsResponse.items[i];
                 const savedAlbumMock = savedAlbumsMock.items[i];
                 expect(albumResponse.addedAt).to.be.equal(
@@ -114,7 +114,7 @@ describe('Library requests', () => {
 
         it('response should match all track attributes', async () => {
             const savedTracksResponse = await getCurrentUserSavedTracks();
-            for (let i = 0; i < savedTracksResponse.items.length; i++) {
+            for (let i = 0; i < savedTracksResponse.items.length; i += 1) {
                 const trackResponse: SavedTrack = savedTracksResponse.items[i];
                 const trackMock = savedTracksMock.items[i].track;
                 checkMatchingTrackAttributes(trackResponse.track, trackMock);
@@ -123,7 +123,7 @@ describe('Library requests', () => {
 
         it('response should match custom attributes', async () => {
             const savedTracksResponse = await getCurrentUserSavedTracks();
-            for (let i = 0; i < savedTracksResponse.items.length; i++) {
+            for (let i = 0; i < savedTracksResponse.items.length; i += 1) {
                 const trackResponse: SavedTrack = savedTracksResponse.items[i];
                 const savedTrackMock = savedTracksMock.items[i];
                 expect(trackResponse.addedAt).to.be.equal(

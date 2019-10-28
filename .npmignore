@@ -1,5 +1,8 @@
 .vscode/
 src/
+coverage/
+.nyc_output/
+test/
 .prettierrc
 .prettierignore
 webpack.config.js

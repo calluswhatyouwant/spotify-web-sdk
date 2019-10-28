@@ -110,7 +110,7 @@ export const startUserPlayback = async (params?: {
     positionMs?: number;
 }) => {
     const queryParams = propertiesToSnakeCase(_.pick(params, 'deviceId'));
-    const bodyParams = propertiesToSnakeCase(_.omit(params, 'deviceId'));
+    const bodyParams = propertiesToSnakeCase(_.omit(params, 'deviceId'), true);
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/play',
         bodyParams,
