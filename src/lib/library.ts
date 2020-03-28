@@ -1,9 +1,9 @@
 import { getAxiosSpotifyInstance } from './driver';
-import { Page, SavedAlbum, SavedTrack } from './models';
+import { Page, SavedAlbum, SavedShow, SavedTrack } from './models';
 
 export const areSavedToCurrentUserLibrary = async (
     ids: string[],
-    type: 'tracks' | 'albums'
+    type: 'tracks' | 'albums' | 'shows'
 ) => {
     const params = { ids: ids.join() };
     const response = await getAxiosSpotifyInstance().get(
@@ -35,9 +35,20 @@ export const getCurrentUserSavedTracks = async (params?: {
     return new Page<SavedTrack>(response.data, SavedTrack);
 };
 
-export const saveAlbumsOrTracksForCurrentUser = async (
+export const getCurrentUserSavedShows = async (params?: {
+    limit?: number;
+    offset?: number;
+    market?: string;
+}) => {
+    const response = await getAxiosSpotifyInstance().get('/me/shows', {
+        params,
+    });
+    return new Page<SavedShow>(response.data, SavedShow);
+};
+
+export const saveToCurrentUserLibrary = async (
     ids: string[],
-    type: 'albums' | 'tracks'
+    type: 'albums' | 'tracks' | 'shows'
 ) => {
     const response = await getAxiosSpotifyInstance().put(`/me/${type}`, {
         ids,
@@ -45,9 +56,9 @@ export const saveAlbumsOrTracksForCurrentUser = async (
     return response.data;
 };
 
-export const removeAlbumsOrTracksForCurrentUser = async (
+export const removeFromCurrentUserLibrary = async (
     ids: string[],
-    type: 'albums' | 'tracks'
+    type: 'albums' | 'tracks' | 'shows'
 ) => {
     const data = { ids };
     const response = await getAxiosSpotifyInstance().delete(`/me/${type}`, {
