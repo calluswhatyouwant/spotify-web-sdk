@@ -9,6 +9,8 @@ export { default as Copyright } from './common/copyright';
 export { default as Error } from './common/error';
 export { default as Followers } from './common/followers';
 export { default as Image } from './common/image';
+export { default as Episode } from './episode/episode';
+export { default as EpisodeSimplified } from './episode/episode-simplified';
 export { default as SavedAlbum } from './library/saved-album';
 export { default as SavedShow } from './library/saved-show';
 export { default as SavedTrack } from './library/saved-track';
