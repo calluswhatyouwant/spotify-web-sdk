@@ -146,7 +146,7 @@ export const checkMatchingCurrentlyPlayingAttributes = (
     if (response.context) {
         checkMatchingContextAttributes(response.context, mock.context);
     }
-    if (response.item) {
+    if (response.item && response.item instanceof Track) {
         checkMatchingTrackAttributes(response.item, mock.item);
     }
     const attributes = [
