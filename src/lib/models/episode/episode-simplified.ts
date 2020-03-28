@@ -29,7 +29,7 @@ class EpisodeSimplified {
 
     releaseDatePrecision: 'year' | 'month' | 'day';
 
-    resumePoint: ResumePoint;
+    resumePoint?: ResumePoint;
 
     type: 'episode';
 
@@ -50,7 +50,8 @@ class EpisodeSimplified {
         this.name = json.name;
         this.releaseDate = json.release_date;
         this.releaseDatePrecision = json.release_date_precision;
-        this.resumePoint = new ResumePoint(json.resume_point);
+        if (json.resume_point)
+            this.resumePoint = new ResumePoint(json.resume_point);
         this.type = json.type;
         this.uri = json.uri;
     }
