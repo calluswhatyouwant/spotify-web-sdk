@@ -9,6 +9,7 @@ export * from './personalization';
 export * from './playlists';
 export * from './player';
 export * from './search';
+export * from './shows';
 export * from './tracks';
 export * from './users-profile';
 export * from './models';
