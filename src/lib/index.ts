@@ -2,6 +2,7 @@ export * from './albums';
 export * from './artists';
 export * from './browse';
 export * from './driver';
+export * from './episodes';
 export * from './follow';
 export * from './library';
 export * from './personalization';
