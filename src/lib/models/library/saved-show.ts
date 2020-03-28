@@ -1,4 +1,4 @@
-import ShowSimplified from '../shows/show-simplified';
+import ShowSimplified from '../show/show-simplified';
 
 class SavedShow {
     addedAt: string;

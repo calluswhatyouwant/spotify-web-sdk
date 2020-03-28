@@ -26,7 +26,7 @@ export { default as Playlist } from './playlist/playlist';
 export { default as PlaylistSimplified } from './playlist/playlist-simplified';
 export { default as PlaylistTrack } from './playlist/playlist-track';
 export { default as SearchResults } from './search/search-results';
-export { default as ShowSimplified } from './shows/show';
+export { default as ShowSimplified } from './show/show';
 export { default as AudioAnalysis } from './track/audio-analysis';
 export { default as AudioFeatures } from './track/audio-features';
 export { default as Track } from './track/track';
