@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+-   Podcast-related retrieval and searching endpoints: `getEpisode`, `getSeveralEpisodes`, `getCurrentUserSavedShows`, `searchShows`, `searchEpisodes`.
+-   Podcast-related models: `EpisodeSimplified`, `Episode`, `SavedShow`, `Show`, `ShowSimplified`.
+-   `actions` to `CurrentlyPlaying` and `Episode` as a possible `item` type.
+-   `episodes` and `shows` as possible attributes in `SearchResults`.
+-   `additionalTypes` to the query parameters of `getCurrentUserCurrentlyPlayingTrack` and `getUserPlaybackInformation` to allow considering an `Episode` as the currently playing media.
+-   `'shows'` as a possible value for the `type` in `areSavedToCurrentUserLibrary`.
+
+### Changed
+
+-   `saveAlbumsOrTracksForCurrentUser` renamed to `saveToCurrentUserLibrary` and support to shows.
+-   `removeAlbumsOrTracksForCurrentUser` renamed to `removeFromCurrentUserLibrary` and support to shows.
+
 ## [0.5.2] - 2019-10-27
 
 ### Added

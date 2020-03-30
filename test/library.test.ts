@@ -14,8 +14,8 @@ import {
     getCurrentUserSavedTracks,
     SavedTrack,
     areSavedToCurrentUserLibrary,
-    saveAlbumsOrTracksForCurrentUser,
-    removeAlbumsOrTracksForCurrentUser,
+    saveToCurrentUserLibrary,
+    removeFromCurrentUserLibrary,
 } from '../src/lib';
 import { savedAlbumsMock } from './mocks/library/saved-albums.mock';
 import { savedTracksMock } from './mocks/library/saved-tracks.mock';
@@ -133,7 +133,7 @@ describe('Library requests', () => {
         });
     });
 
-    describe('#saveAlbumsOrTracksForCurrentUser()', () => {
+    describe('#saveToCurrentUserLibrary()', () => {
         describe('type tracks', () => {
             beforeEach(() => {
                 nock('https://api.spotify.com/v1')
@@ -142,7 +142,7 @@ describe('Library requests', () => {
             });
 
             it('response should be empty', async () => {
-                const savedResponse = await saveAlbumsOrTracksForCurrentUser(
+                const savedResponse = await saveToCurrentUserLibrary(
                     ['2jpDioAB9tlYXMdXDK3BGl'],
                     'tracks'
                 );
@@ -158,7 +158,7 @@ describe('Library requests', () => {
             });
 
             it('response should be empty', async () => {
-                const savedResponse = await saveAlbumsOrTracksForCurrentUser(
+                const savedResponse = await saveToCurrentUserLibrary(
                     ['3VNWq8rTnQG6fM1eldSpZ0'],
                     'albums'
                 );
@@ -167,7 +167,7 @@ describe('Library requests', () => {
         });
     });
 
-    describe('#removeAlbumsOrTracksForCurrentUser()', () => {
+    describe('#removeFromCurrentUserLibrary()', () => {
         describe('type tracks', () => {
             beforeEach(() => {
                 nock('https://api.spotify.com/v1')
@@ -176,7 +176,7 @@ describe('Library requests', () => {
             });
 
             it('response should be empty', async () => {
-                const removeResponse = await removeAlbumsOrTracksForCurrentUser(
+                const removeResponse = await removeFromCurrentUserLibrary(
                     ['2jpDioAB9tlYXMdXDK3BGl'],
                     'tracks'
                 );
@@ -192,7 +192,7 @@ describe('Library requests', () => {
             });
 
             it('response should be empty', async () => {
-                const removeResponse = await removeAlbumsOrTracksForCurrentUser(
+                const removeResponse = await removeFromCurrentUserLibrary(
                     ['3VNWq8rTnQG6fM1eldSpZ0'],
                     'albums'
                 );

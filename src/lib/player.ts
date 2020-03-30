@@ -27,10 +27,12 @@ export const getCurrentUserRecentlyPlayedTracks = async (params?: {
 
 export const getCurrentUserCurrentlyPlayingTrack = async (params?: {
     market?: string;
+    additionalTypes?: 'track' | 'episode' | ['track', 'episode'];
 }) => {
+    const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().get(
         '/me/player/currently-playing',
-        { params }
+        { params: snakeCaseParams }
     );
     return new CurrentlyPlaying(response.data);
 };
@@ -44,9 +46,11 @@ export const getUserAvailableDevices = async () => {
 
 export const getUserPlaybackInformation = async (params?: {
     market?: string;
+    additionalTypes?: 'track' | 'episode' | ['track', 'episode'];
 }) => {
+    const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().get('/me/player/', {
-        params,
+        params: snakeCaseParams,
     });
     return new CurrentlyPlayingContext(response.data);
 };

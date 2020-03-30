@@ -6,6 +6,8 @@ import {
     PlaylistSimplified,
     Track,
     SearchResults,
+    ShowSimplified,
+    EpisodeSimplified,
 } from './models';
 
 const genericSearch = async (params: {
@@ -70,4 +72,30 @@ export const searchTracks = async (
     const params = { q: query, type: 'track', ...options };
     const searchResults = await genericSearch(params);
     return new Page<Track>(searchResults.data, Track, 'tracks');
+};
+
+export const searchShows = async (
+    query: string,
+    options?: { market?: string; limit?: number; offset?: number }
+) => {
+    const params = { q: query, type: 'show', ...options };
+    const searchResults = await genericSearch(params);
+    return new Page<ShowSimplified>(
+        searchResults.data,
+        ShowSimplified,
+        'shows'
+    );
+};
+
+export const searchEpisodes = async (
+    query: string,
+    options?: { market?: string; limit?: number; offset?: number }
+) => {
+    const params = { q: query, type: 'episode', ...options };
+    const searchResults = await genericSearch(params);
+    return new Page<EpisodeSimplified>(
+        searchResults.data,
+        EpisodeSimplified,
+        'episodes'
+    );
 };
