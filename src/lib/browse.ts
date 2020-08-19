@@ -16,7 +16,7 @@ export const getCategory = async (
         country?: string;
         locale?: string;
     }
-) => {
+): Promise<Category> => {
     const response = await getAxiosSpotifyInstance().get(
         `/browse/categories/${id}`,
         { params }
@@ -31,7 +31,7 @@ export const getCategoryPlaylists = async (
         limit?: number;
         offset?: number;
     }
-) => {
+): Promise<Page<PlaylistSimplified>> => {
     const response = await getAxiosSpotifyInstance().get(
         `/browse/categories/${id}/playlists`,
         { params }
@@ -48,7 +48,7 @@ export const getCategories = async (params?: {
     locale?: string;
     limit?: number;
     offset?: number;
-}) => {
+}): Promise<Page<Category>> => {
     const response = await getAxiosSpotifyInstance().get('/browse/categories', {
         params,
     });
@@ -61,7 +61,7 @@ export const getFeaturedPlaylists = async (params?: {
     timestamp?: string;
     limit?: number;
     offset?: number;
-}) => {
+}): Promise<Page<PlaylistSimplified>> => {
     const response = await getAxiosSpotifyInstance().get(
         '/browse/featured-playlists',
         { params }
@@ -77,7 +77,7 @@ export const getNewReleases = async (params?: {
     country?: string;
     limit?: number;
     offset?: number;
-}) => {
+}): Promise<Page<AlbumSimplified>> => {
     const response = await getAxiosSpotifyInstance().get(
         '/browse/new-releases',
         { params }
@@ -92,7 +92,7 @@ export const getRecommendations = async (params?: {
     seedGenres?: string[];
     seedTracks?: string[];
     [rest: string]: any;
-}) => {
+}): Promise<Recommendations> => {
     const updatedParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().get('/recommendations', {
         params: updatedParams,

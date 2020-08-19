@@ -4,7 +4,7 @@ import { Show, ShowSimplified, Page, EpisodeSimplified } from './models';
 export const getSeveralShows = async (
     ids: string[],
     params?: { market?: string }
-) => {
+): Promise<ShowSimplified[]> => {
     const response = await getAxiosSpotifyInstance().get('/shows', {
         params: { ids: ids.join(','), ...params },
     });
@@ -13,7 +13,10 @@ export const getSeveralShows = async (
     );
 };
 
-export const getShow = async (id: string, params?: { market?: string }) => {
+export const getShow = async (
+    id: string,
+    params?: { market?: string }
+): Promise<Show> => {
     const response = await getAxiosSpotifyInstance().get(`/shows/${id}`, {
         params,
     });
@@ -27,7 +30,7 @@ export const getShowEpisodes = async (
         offset?: number;
         market?: string;
     }
-) => {
+): Promise<Page<EpisodeSimplified>> => {
     const response = await getAxiosSpotifyInstance().get(
         `/shows/${id}/episodes`,
         { params }

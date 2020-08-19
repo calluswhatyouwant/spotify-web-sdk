@@ -4,7 +4,7 @@ import { Episode } from './models';
 export const getSeveralEpisodes = async (
     ids: string[],
     params?: { market?: string }
-) => {
+): Promise<Episode[]> => {
     const response = await getAxiosSpotifyInstance().get('/episodes', {
         params: { ids: ids.join(','), ...params },
     });
@@ -13,7 +13,10 @@ export const getSeveralEpisodes = async (
     );
 };
 
-export const getEpisode = async (id: string, params?: { market?: string }) => {
+export const getEpisode = async (
+    id: string,
+    params?: { market?: string }
+): Promise<Episode> => {
     const response = await getAxiosSpotifyInstance().get(`/episodes/${id}`, {
         params,
     });
