@@ -33,7 +33,7 @@ export const search = async (
 export const searchAlbums = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<AlbumSimplified>> => {
     const params = { q: query, type: 'album', ...options };
     const searchResults = await genericSearch(params);
     return new Page<AlbumSimplified>(
@@ -46,7 +46,7 @@ export const searchAlbums = async (
 export const searchArtists = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<Artist>> => {
     const params = { q: query, type: 'artist', ...options };
     const searchResults = await genericSearch(params);
     return new Page<Artist>(searchResults.data, Artist, 'artists');
@@ -55,7 +55,7 @@ export const searchArtists = async (
 export const searchPlaylists = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<PlaylistSimplified>> => {
     const params = { q: query, type: 'playlist', ...options };
     const searchResults = await genericSearch(params);
     return new Page<PlaylistSimplified>(
@@ -68,7 +68,7 @@ export const searchPlaylists = async (
 export const searchTracks = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<Track>> => {
     const params = { q: query, type: 'track', ...options };
     const searchResults = await genericSearch(params);
     return new Page<Track>(searchResults.data, Track, 'tracks');
@@ -77,7 +77,7 @@ export const searchTracks = async (
 export const searchShows = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<ShowSimplified>> => {
     const params = { q: query, type: 'show', ...options };
     const searchResults = await genericSearch(params);
     return new Page<ShowSimplified>(
@@ -90,7 +90,7 @@ export const searchShows = async (
 export const searchEpisodes = async (
     query: string,
     options?: { market?: string; limit?: number; offset?: number }
-) => {
+): Promise<Page<EpisodeSimplified>> => {
     const params = { q: query, type: 'episode', ...options };
     const searchResults = await genericSearch(params);
     return new Page<EpisodeSimplified>(

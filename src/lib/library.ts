@@ -4,7 +4,7 @@ import { Page, SavedAlbum, SavedShow, SavedTrack } from './models';
 export const areSavedToCurrentUserLibrary = async (
     ids: string[],
     type: 'tracks' | 'albums' | 'shows'
-) => {
+): Promise<Boolean[]> => {
     const params = { ids: ids.join() };
     const response = await getAxiosSpotifyInstance().get(
         `/me/${type}/contains`,
@@ -17,7 +17,7 @@ export const getCurrentUserSavedAlbums = async (params?: {
     limit?: number;
     offset?: number;
     market?: string;
-}) => {
+}): Promise<Page<SavedAlbum>> => {
     const response = await getAxiosSpotifyInstance().get('/me/albums', {
         params,
     });
@@ -28,7 +28,7 @@ export const getCurrentUserSavedTracks = async (params?: {
     limit?: number;
     offset?: number;
     market?: string;
-}) => {
+}): Promise<Page<SavedTrack>> => {
     const response = await getAxiosSpotifyInstance().get('/me/tracks', {
         params,
     });
@@ -39,7 +39,7 @@ export const getCurrentUserSavedShows = async (params?: {
     limit?: number;
     offset?: number;
     market?: string;
-}) => {
+}): Promise<Page<SavedShow>> => {
     const response = await getAxiosSpotifyInstance().get('/me/shows', {
         params,
     });
@@ -49,7 +49,7 @@ export const getCurrentUserSavedShows = async (params?: {
 export const saveToCurrentUserLibrary = async (
     ids: string[],
     type: 'albums' | 'tracks' | 'shows'
-) => {
+): Promise<string> => {
     const response = await getAxiosSpotifyInstance().put(`/me/${type}`, {
         ids,
     });
@@ -59,7 +59,7 @@ export const saveToCurrentUserLibrary = async (
 export const removeFromCurrentUserLibrary = async (
     ids: string[],
     type: 'albums' | 'tracks' | 'shows'
-) => {
+): Promise<string> => {
     const data = { ids };
     const response = await getAxiosSpotifyInstance().delete(`/me/${type}`, {
         data,

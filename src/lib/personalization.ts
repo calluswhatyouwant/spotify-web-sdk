@@ -5,7 +5,7 @@ export const getCurrentUserTopArtists = async (params?: {
     limit?: number;
     offset?: number;
     range?: string;
-}) => {
+}): Promise<Page<Artist>> => {
     const response = await getAxiosSpotifyInstance().get(
         'https://api.spotify.com/v1/me/top/artists',
         { params }
@@ -17,7 +17,7 @@ export const getCurrentUserTopTracks = async (params?: {
     limit?: number;
     offset?: number;
     range?: string;
-}) => {
+}): Promise<Page<Track>> => {
     const response = await getAxiosSpotifyInstance().get(
         'https://api.spotify.com/v1/me/top/tracks',
         { params }

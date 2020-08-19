@@ -5,10 +5,11 @@ import {
     PlaylistSimplified,
     Page,
     Image,
+    PlaylistVersion,
 } from './models';
 import { propertiesToSnakeCase } from './util';
 
-export const getPlaylist = async (id: string) => {
+export const getPlaylist = async (id: string): Promise<Playlist> => {
     const response = await getAxiosSpotifyInstance().get(`/playlists/${id}`);
     return new Playlist(response.data);
 };
@@ -21,7 +22,7 @@ export const getPlaylistTracks = async (
         offset?: number;
         market?: string;
     }
-) => {
+): Promise<Page<PlaylistTrack>> => {
     const response = await getAxiosSpotifyInstance().get(
         `/playlists/${id}/tracks`,
         { params }
@@ -35,7 +36,7 @@ export const getUserPlaylists = async (
         limit?: number;
         offset?: number;
     }
-) => {
+): Promise<Page<PlaylistSimplified>> => {
     const response = await getAxiosSpotifyInstance().get(
         `/users/${id}/playlists`,
         { params }
@@ -46,14 +47,14 @@ export const getUserPlaylists = async (
 export const getCurrentUserPlaylists = async (params?: {
     limit?: number;
     offset?: number;
-}) => {
+}): Promise<Page<PlaylistSimplified>> => {
     const response = await getAxiosSpotifyInstance().get('/me/playlists', {
         params,
     });
     return new Page<PlaylistSimplified>(response.data, PlaylistSimplified);
 };
 
-export const getPlaylistCoverImage = async (id: string) => {
+export const getPlaylistCoverImage = async (id: string): Promise<Image[]> => {
     const response = await getAxiosSpotifyInstance().get(
         `playlists/${id}/images`
     );
@@ -64,7 +65,7 @@ export const createPlaylist = async (
     userId: string,
     name: string,
     params?: { public?: boolean; collaborative?: boolean; description?: string }
-) => {
+): Promise<Playlist> => {
     const data = { name, ...params };
     const response = await getAxiosSpotifyInstance().post(
         `/users/${userId}/playlists`,
@@ -77,13 +78,13 @@ export const addTracksToPlaylist = async (
     playlistId: string,
     trackUris: string[],
     position?: number
-) => {
+): Promise<PlaylistVersion> => {
     const data = { position, uris: trackUris };
     const response = await getAxiosSpotifyInstance().post(
         `/playlists/${playlistId}/tracks`,
         data
     );
-    return response.data;
+    return new PlaylistVersion(response.data);
 };
 
 export const changePlaylistDetails = async (
@@ -94,7 +95,7 @@ export const changePlaylistDetails = async (
         collaborative?: boolean;
         description?: string;
     }
-) => {
+): Promise<string> => {
     const response = await getAxiosSpotifyInstance().put(`/playlists/${id}`, {
         ...params,
     });
@@ -109,19 +110,19 @@ export const reorderPlaylistTracks = async (
         insertBefore?: number;
         snapshotId?: string;
     }
-) => {
+): Promise<PlaylistVersion> => {
     const data = propertiesToSnakeCase({ rangeStart, ...params });
     const response = await getAxiosSpotifyInstance().put(
         `/playlists/${id}/tracks`,
         data
     );
-    return response.data;
+    return new PlaylistVersion(response.data);
 };
 
 export const replacePlaylistTracks = async (
     id: string,
     trackUris: string[]
-) => {
+): Promise<string> => {
     const response = await getAxiosSpotifyInstance().put(
         `/playlists/${id}/tracks`,
         { uris: trackUris }
@@ -129,7 +130,10 @@ export const replacePlaylistTracks = async (
     return response.data;
 };
 
-export const uploadPlaylistCoverImage = async (id: string, imageData: any) => {
+export const uploadPlaylistCoverImage = async (
+    id: string,
+    imageData: any
+): Promise<string> => {
     const response = await getAxiosSpotifyInstance().put(
         `/playlists/${id}/images`,
         { imageData },
@@ -147,7 +151,7 @@ export const removeTracksFromPlaylist = async (
     id: string,
     tracks: TrackToBeRemoved[],
     snapshotId?: string
-) => {
+): Promise<PlaylistVersion> => {
     const data = { tracks, snapshot_id: snapshotId };
     const response = await getAxiosSpotifyInstance().delete(
         `/playlists/${id}/tracks`,
@@ -155,5 +159,5 @@ export const removeTracksFromPlaylist = async (
             data,
         }
     );
-    return response.data;
+    return new PlaylistVersion(response.data);
 };

@@ -27,6 +27,7 @@ export { default as PlayHistory } from './player/play-history';
 export { default as Playlist } from './playlist/playlist';
 export { default as PlaylistSimplified } from './playlist/playlist-simplified';
 export { default as PlaylistTrack } from './playlist/playlist-track';
+export { default as PlaylistVersion } from './playlist/playlist-version';
 export { default as SearchResults } from './search/search-results';
 export { default as Show } from './show/show';
 export { default as ShowSimplified } from './show/show-simplified';
