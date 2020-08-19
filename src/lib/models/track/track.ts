@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import differenceBy from 'lodash.differenceby';
+import intersectionBy from 'lodash.intersectionby';
 
 import AlbumSimplified from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
@@ -23,11 +24,11 @@ class Track extends TrackSimplified {
     }
 
     get mainArtists(): ArtistSimplified[] {
-        return _.intersectionBy(this.artists, this.album.artists, 'id');
+        return intersectionBy(this.artists, this.album.artists, 'id');
     }
 
     get featuredArtists(): ArtistSimplified[] {
-        return _.differenceBy(this.artists, this.album.artists, 'id');
+        return differenceBy(this.artists, this.album.artists, 'id');
     }
 
     get releaseYear() {
