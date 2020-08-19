@@ -1,13 +1,14 @@
-import _ from 'lodash';
+import keys from 'lodash.keys';
+import snakeCase from 'lodash.snakecase';
 
 export const propertiesToSnakeCase = (object: any, bodyParams?: boolean) => {
     const updatedObject: any = {};
-    const keys = _.keys(object);
-    keys.forEach((key: any) => {
+    const objectKeys = keys(object);
+    objectKeys.forEach((key: any) => {
         const value = object[key];
-        if (_.isArray(value) && !bodyParams) {
-            updatedObject[_.snakeCase(key)] = value.join();
-        } else updatedObject[_.snakeCase(key)] = value;
+        if (Array.isArray(value) && !bodyParams) {
+            updatedObject[snakeCase(key)] = value.join();
+        } else updatedObject[snakeCase(key)] = value;
     });
     return updatedObject;
 };

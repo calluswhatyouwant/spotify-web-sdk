@@ -1,3 +1,4 @@
+import snakeCase from 'lodash.snakecase';
 import { expect } from 'chai';
 
 import {
@@ -17,8 +18,6 @@ import {
     Category,
     RecommendationSeed,
 } from '../../src/lib/models';
-
-import _ from 'lodash';
 
 export const checkMatchingArtistSimplifiedAttributes = (
     response: ArtistSimplified,
@@ -208,7 +207,7 @@ const checkMatchingObjectAttributes = (
     attributes: string[]
 ) => {
     for (const responseKey of attributes) {
-        const mockKey = _.snakeCase(responseKey);
+        const mockKey = snakeCase(responseKey);
         expect(response)
             .to.have.property(responseKey)
             .that.is.eql(mock[mockKey]);

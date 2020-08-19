@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import AlbumSimplified from './album-simplified';
 import Page from '../paging/page';
 import TrackSimplified from '../track/track-simplified';
@@ -51,7 +49,9 @@ class Album extends AlbumSimplified {
 
     async getDurationMs(): Promise<number> {
         const tracks = await this.getAllTracks();
-        return _.sum(tracks.map(track => track.durationMs));
+        return tracks
+            .map(track => track.durationMs)
+            .reduce((duration1, duration2) => duration1 + duration2, 0);
     }
 }
 

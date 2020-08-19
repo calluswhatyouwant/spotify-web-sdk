@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import omit from 'lodash.omit';
+import pick from 'lodash.pick';
 
 import { propertiesToSnakeCase } from './util';
 import { getAxiosSpotifyInstance } from './driver';
@@ -113,8 +114,8 @@ export const startUserPlayback = async (params?: {
     offset?: Offset;
     positionMs?: number;
 }) => {
-    const queryParams = propertiesToSnakeCase(_.pick(params, 'deviceId'));
-    const bodyParams = propertiesToSnakeCase(_.omit(params, 'deviceId'), true);
+    const queryParams = propertiesToSnakeCase(pick(params, 'deviceId'));
+    const bodyParams = propertiesToSnakeCase(omit(params, 'deviceId'), true);
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/play',
         bodyParams,
