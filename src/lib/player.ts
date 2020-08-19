@@ -15,7 +15,7 @@ export const getCurrentUserRecentlyPlayedTracks = async (params?: {
     limit?: number;
     before?: string;
     after?: string;
-}) => {
+}): Promise<CursorBasedPage<PlayHistory>> => {
     if (params && params.before && params.after) {
         throw new Error("Only one of 'before' or 'after' should be specified");
     }
@@ -29,7 +29,7 @@ export const getCurrentUserRecentlyPlayedTracks = async (params?: {
 export const getCurrentUserCurrentlyPlayingTrack = async (params?: {
     market?: string;
     additionalTypes?: 'track' | 'episode' | ['track', 'episode'];
-}) => {
+}): Promise<CurrentlyPlaying> => {
     const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().get(
         '/me/player/currently-playing',
@@ -38,7 +38,7 @@ export const getCurrentUserCurrentlyPlayingTrack = async (params?: {
     return new CurrentlyPlaying(response.data);
 };
 
-export const getUserAvailableDevices = async () => {
+export const getUserAvailableDevices = async (): Promise<Device[]> => {
     const response = await getAxiosSpotifyInstance().get('/me/player/devices');
     return response.data.devices.map(
         (deviceJson: any) => new Device(deviceJson)
@@ -48,7 +48,7 @@ export const getUserAvailableDevices = async () => {
 export const getUserPlaybackInformation = async (params?: {
     market?: string;
     additionalTypes?: 'track' | 'episode' | ['track', 'episode'];
-}) => {
+}): Promise<CurrentlyPlayingContext> => {
     const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().get('/me/player/', {
         params: snakeCaseParams,
@@ -56,7 +56,9 @@ export const getUserPlaybackInformation = async (params?: {
     return new CurrentlyPlayingContext(response.data);
 };
 
-export const pauseUserPlayback = async (params?: { deviceId?: string }) => {
+export const pauseUserPlayback = async (params?: {
+    deviceId?: string;
+}): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/pause',
@@ -69,7 +71,7 @@ export const pauseUserPlayback = async (params?: { deviceId?: string }) => {
 export const seekToPositionInCurrentlyPlayingTrack = async (
     positionMs: number,
     params?: { deviceId?: string }
-) => {
+): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase({ positionMs, ...params });
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/seek',
@@ -82,7 +84,7 @@ export const seekToPositionInCurrentlyPlayingTrack = async (
 export const setRepeatModeOnUserPlayback = async (
     state: 'track' | 'context' | 'off',
     params?: { deviceId?: string }
-) => {
+): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase({ state, ...params });
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/repeat',
@@ -95,7 +97,7 @@ export const setRepeatModeOnUserPlayback = async (
 export const setVolumeForUserPlayback = async (
     volumePercent: number,
     params?: { deviceId?: string }
-) => {
+): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase({ volumePercent, ...params });
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/volume',
@@ -112,8 +114,8 @@ export const startUserPlayback = async (params?: {
     contextUri?: string;
     uris?: string[];
     offset?: Offset;
-    positionMs?: number;
-}) => {
+    positionMs?: number;                                   
+}): Promise<string> => {
     const queryParams = propertiesToSnakeCase(pick(params, 'deviceId'));
     const bodyParams = propertiesToSnakeCase(omit(params, 'deviceId'), true);
     const response = await getAxiosSpotifyInstance().put(
@@ -124,14 +126,16 @@ export const startUserPlayback = async (params?: {
     return response.data;
 };
 
-export const resumeUserPlayback = async (params?: { deviceId?: string }) => {
+export const resumeUserPlayback = async (params?: {
+    deviceId?: string;
+}): Promise<string> => {
     return startUserPlayback(params);
 };
 
 export const toggleShuffleForUserPlayback = async (
     state: boolean,
     params?: { deviceId?: string }
-) => {
+): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase({ state, ...params });
     const response = await getAxiosSpotifyInstance().put(
         '/me/player/shuffle',
@@ -144,7 +148,7 @@ export const toggleShuffleForUserPlayback = async (
 export const transferUserPlayback = async (
     deviceIds: string[],
     params?: { play?: boolean }
-) => {
+): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase(
         {
             deviceIds,
@@ -161,7 +165,7 @@ export const transferUserPlayback = async (
 
 export const skipUserPlaybackToNextTrack = async (params?: {
     deviceId?: string;
-}) => {
+}): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().post(
         '/me/player/next',
@@ -173,7 +177,7 @@ export const skipUserPlaybackToNextTrack = async (params?: {
 
 export const skipUserPlaybackToPreviousTrack = async (params?: {
     deviceId?: string;
-}) => {
+}): Promise<string> => {
     const snakeCaseParams = propertiesToSnakeCase(params);
     const response = await getAxiosSpotifyInstance().post(
         '/me/player/previous',

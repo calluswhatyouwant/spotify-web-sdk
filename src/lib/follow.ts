@@ -70,10 +70,12 @@ export const checkUsersFollowingPlaylist = async (
     return response.data;
 };
 
+// TODO Improve responses based on Spotify
+
 export const followArtistsOrUsers = async (
     ids: string[],
     type: 'artist' | 'user'
-) => {
+): Promise<string> => {
     const params = { type };
     const response = await getAxiosSpotifyInstance().put(
         '/me/following',
@@ -83,7 +85,10 @@ export const followArtistsOrUsers = async (
     return response.data;
 };
 
-export const followPlaylist = async (id: string, publicFollow?: boolean) => {
+export const followPlaylist = async (
+    id: string,
+    publicFollow?: boolean
+): Promise<string> => {
     const response = await getAxiosSpotifyInstance().put(
         `/playlists/${id}/followers`,
         { public: publicFollow }
@@ -94,7 +99,7 @@ export const followPlaylist = async (id: string, publicFollow?: boolean) => {
 export const unfollowArtistsOrUsers = async (
     ids: string[],
     type: 'artist' | 'user'
-) => {
+): Promise<string> => {
     const params = { type };
     const data = { ids };
     const response = await getAxiosSpotifyInstance().delete('/me/following', {
@@ -104,7 +109,7 @@ export const unfollowArtistsOrUsers = async (
     return response.data;
 };
 
-export const unfollowPlaylist = async (id: string) => {
+export const unfollowPlaylist = async (id: string): Promise<string> => {
     const response = await getAxiosSpotifyInstance().delete(
         `/playlists/${id}/followers`
     );
