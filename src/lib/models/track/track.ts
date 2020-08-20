@@ -1,9 +1,24 @@
-import differenceBy from 'lodash.differenceby';
-import intersectionBy from 'lodash.intersectionby';
-
 import AlbumSimplified from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
 import TrackSimplified from './track-simplified';
+
+const differenceBy = <T, P extends keyof T>(
+    array: T[],
+    toRemove: T[],
+    prop: P
+): T[] => {
+    const uniques: Set<T[P]> = new Set(toRemove.map(obj => obj[prop]));
+    return array.filter(obj => !uniques.has(obj[prop]));
+};
+
+const intersectionBy = <T, P extends keyof T>(
+    array: T[],
+    toRemove: T[],
+    prop: P
+): T[] => {
+    const uniques: Set<T[P]> = new Set(toRemove.map(obj => obj[prop]));
+    return array.filter(obj => uniques.has(obj[prop]));
+};
 
 class Track extends TrackSimplified {
     album: AlbumSimplified;
