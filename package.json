@@ -10,7 +10,7 @@
         "Robson Junior <jrobsonjr16@gmail.com> (https://github.com/JRobsonJr)"
     ],
     "license": "MIT",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "dependencies": {
         "axios": "^0.18.1",
         "lodash.differenceby": "^4.8.0",
