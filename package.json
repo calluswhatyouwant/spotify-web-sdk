@@ -13,11 +13,6 @@
     "version": "0.7.0",
     "dependencies": {
         "axios": "^0.18.1",
-        "lodash.differenceby": "^4.8.0",
-        "lodash.intersectionby": "^4.7.0",
-        "lodash.keys": "^4.2.0",
-        "lodash.omit": "^4.5.0",
-        "lodash.pick": "^4.4.0",
         "lodash.snakecase": "^4.1.1"
     },
     "scripts": {
@@ -52,11 +47,6 @@
     "main": "build/index.js",
     "devDependencies": {
         "@types/chai": "^4.1.7",
-        "@types/lodash.differenceby": "^4.8.6",
-        "@types/lodash.intersectionby": "^4.7.6",
-        "@types/lodash.keys": "^4.2.6",
-        "@types/lodash.omit": "^4.5.6",
-        "@types/lodash.pick": "^4.4.6",
         "@types/lodash.snakecase": "^4.1.6",
         "@types/mocha": "^5.2.5",
         "@types/nock": "^9.3.0",
