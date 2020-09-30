@@ -3,11 +3,11 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A website for testing",
+    "tagline": "aqui é onde vou colocar meu site",
     "docs": {
       "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
+        "title": "Home",
+        "sidebar_label": "Nosso projeto"
       },
       "doc2": {
         "title": "document number 2"
