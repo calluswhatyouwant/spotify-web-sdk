@@ -7,7 +7,7 @@ import {
     checkMatchingPublicUserAttributes,
 } from './common/matching-attributes.test';
 
-import { init, getCurrentUserProfile, getUserProfile } from './../src/lib';
+import { init, getCurrentUserProfile, getUserProfile } from '../../src/lib';
 
 describe('Users profile requests', () => {
     beforeEach(() => {

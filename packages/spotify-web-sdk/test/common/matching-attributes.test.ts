@@ -17,7 +17,7 @@ import {
     ArtistSimplified,
     Category,
     RecommendationSeed,
-} from '../../src/lib/models';
+} from '../../../src/lib/models';
 
 export const checkMatchingArtistSimplifiedAttributes = (
     response: ArtistSimplified,
