@@ -1,10 +1,21 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "Instalation": ["instalation"],
+    "Albums": ["albums"],
+    "Artists": ["artists"],
+    "Browse": ["browse"],
+    "Driver": ["driver"],
+    "Episodes": ["episodes"],
+    "Follow": ["follow"],
+    "Library": ["library"],
+    "Personalization": ["personalization"],
+    "Player": ["player"],
+    "Playlists": ["playlists"],
+    "Search": ["search"],
+    "Shows": ["shows"],
+    "Tracks": ["tracks"],
+    "Users Profile": ["users-profile"],
+    "Pagination": ["pagination"]
+
   }
 }

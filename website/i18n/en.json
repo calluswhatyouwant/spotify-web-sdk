@@ -5,21 +5,54 @@
     "previous": "Previous",
     "tagline": "aqui é onde vou colocar meu site",
     "docs": {
-      "doc1": {
-        "title": "Home",
-        "sidebar_label": "Nosso projeto"
+      "albums": {
+        "title": "albums"
       },
-      "doc2": {
-        "title": "document number 2"
+      "artists": {
+        "title": "artists"
       },
-      "doc3": {
-        "title": "This is document number 3"
+      "browse": {
+        "title": "browse"
       },
-      "doc4": {
-        "title": "Other Document"
+      "driver": {
+        "title": "driver"
       },
-      "doc5": {
-        "title": "Fifth Document"
+      "episodes": {
+        "title": "episodes"
+      },
+      "follow": {
+        "title": "follow"
+      },
+      "instalation": {
+        "title": "Instalation"
+      },
+      "library": {
+        "title": "library"
+      },
+      "pagination": {
+        "title": "Pagination",
+        "sidebar_label": "Pagination"
+      },
+      "personalization": {
+        "title": "personalization"
+      },
+      "player": {
+        "title": "player"
+      },
+      "playlists": {
+        "title": "playlists"
+      },
+      "search": {
+        "title": "search"
+      },
+      "shows": {
+        "title": "Shows"
+      },
+      "tracks": {
+        "title": "Tracks"
+      },
+      "users-profile": {
+        "title": "Users Profile"
       }
     },
     "links": {
@@ -29,9 +62,22 @@
       "Blog": "Blog"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Instalation": "Instalation",
+      "Albums": "Albums",
+      "Artists": "Artists",
+      "Browse": "Browse",
+      "Driver": "Driver",
+      "Episodes": "Episodes",
+      "Follow": "Follow",
+      "Library": "Library",
+      "Personalization": "Personalization",
+      "Player": "Player",
+      "Playlists": "Playlists",
+      "Search": "Search",
+      "Shows": "Shows",
+      "Tracks": "Tracks",
+      "Users Profile": "Users Profile",
+      "Pagination": "Pagination"
     }
   },
   "pages-strings": {
