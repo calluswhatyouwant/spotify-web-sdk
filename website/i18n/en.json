@@ -5,54 +5,239 @@
     "previous": "Previous",
     "tagline": "aqui é onde vou colocar meu site",
     "docs": {
-      "albums": {
-        "title": "albums"
+      "albums/getAlbum": {
+        "title": "getAlbum"
       },
-      "artists": {
-        "title": "artists"
+      "albums/getAlbumTracks": {
+        "title": "getAlbumTracks"
       },
-      "browse": {
-        "title": "browse"
+      "albums/getSeveralAlbums": {
+        "title": "getSeveralAlbums"
       },
-      "driver": {
-        "title": "driver"
+      "artists/getArtist": {
+        "title": "getArtist"
       },
-      "episodes": {
-        "title": "episodes"
+      "artists/getArtistAlbums": {
+        "title": "getArtistAlbums"
       },
-      "follow": {
-        "title": "follow"
+      "artists/getArtistRelatedArtists": {
+        "title": "getArtistRelatedArtists"
       },
-      "instalation": {
+      "artists/getArtistTopTracks": {
+        "title": "getArtistTopTracks"
+      },
+      "artists/getSeveralArtists": {
+        "title": "getSeveralArtists"
+      },
+      "browse/getCategories": {
+        "title": "getCategories"
+      },
+      "browse/getCategory": {
+        "title": "getCategory"
+      },
+      "browse/getCategoryPlaylists": {
+        "title": "getCategoryPlaylists"
+      },
+      "browse/getFeaturedPlaylists": {
+        "title": "getFeaturedPlaylists"
+      },
+      "browse/getNewReleases": {
+        "title": "getNewReleases"
+      },
+      "browse/getRecommendations": {
+        "title": "getRecommendations"
+      },
+      "driver/getAxiosSpotifyInstance": {
+        "title": "driver/getAxiosSpotifyInstance"
+      },
+      "driver/getToken": {
+        "title": "driver/getToken"
+      },
+      "driver/init": {
+        "title": "init"
+      },
+      "episodes/getEpisode": {
+        "title": "episodes/getEpisode"
+      },
+      "episodes/getSeveralEpisodes": {
+        "title": "episodes/getSeveralEpisodes"
+      },
+      "follow/checkUsersFollowingPlaylist": {
+        "title": "follow/checkUsersFollowingPlaylist"
+      },
+      "follow/followArtistsOrUsers": {
+        "title": "follow/followArtistsOrUsers"
+      },
+      "follow/followPlaylist": {
+        "title": "follow/followPlaylist"
+      },
+      "follow/getFollowedArtists": {
+        "title": "follow/getFollowedArtists"
+      },
+      "follow/isFollowing": {
+        "title": "follow/isFollowing"
+      },
+      "follow/unfollowArtistsOrUsers": {
+        "title": "follow/unfollowArtistsOrUsers"
+      },
+      "follow/unfollowPlaylist": {
+        "title": "follow/unfollowPlaylist"
+      },
+      "instalation/instalation": {
         "title": "Instalation"
       },
-      "library": {
-        "title": "library"
+      "library/areSavedToCurrentUserLibrary": {
+        "title": "library/areSavedToCurrentUserLibrary"
       },
-      "pagination": {
-        "title": "Pagination",
-        "sidebar_label": "Pagination"
+      "library/getCurrentUserSavedAlbums": {
+        "title": "library/getCurrentUserSavedAlbums"
       },
-      "personalization": {
-        "title": "personalization"
+      "library/getCurrentUserSavedShows": {
+        "title": "library/getCurrentUserSavedShows"
       },
-      "player": {
-        "title": "player"
+      "library/getCurrentUserSavedTracks": {
+        "title": "library/getCurrentUserSavedTracks"
       },
-      "playlists": {
-        "title": "playlists"
+      "library/removeFromCurrentUserLibrary": {
+        "title": "library/removeFromCurrentUserLibrary"
       },
-      "search": {
-        "title": "search"
+      "library/saveToCurrentUserLibrary": {
+        "title": "library/saveToCurrentUserLibrary"
       },
-      "shows": {
-        "title": "Shows"
+      "personalization/getCurrentUserTopArtists": {
+        "title": "personalization/getCurrentUserTopArtists"
       },
-      "tracks": {
-        "title": "Tracks"
+      "personalization/getCurrentUserTopTracks": {
+        "title": "personalization/getCurrentUserTopTracks"
       },
-      "users-profile": {
-        "title": "Users Profile"
+      "player/getCurrentUserCurrentlyPlayingTrack": {
+        "title": "player/getCurrentUserCurrentlyPlayingTrack"
+      },
+      "player/getCurrentUserRecentlyPlayedTracks": {
+        "title": "player/getCurrentUserRecentlyPlayedTracks"
+      },
+      "player/getUserAvaliableDevices": {
+        "title": "player/getUserAvaliableDevices"
+      },
+      "player/getUserPlaybackInformation": {
+        "title": "player/getUserPlaybackInformation"
+      },
+      "player/pauseUserPlayback": {
+        "title": "player/pauseUserPlayback"
+      },
+      "player/resumeUserPlayback": {
+        "title": "player/resumeUserPlayback"
+      },
+      "player/seekToPositionInCurrentlyPlayingTrack": {
+        "title": "player/seekToPositionInCurrentlyPlayingTrack"
+      },
+      "player/setRepeatModeOnUserPlayback": {
+        "title": "player/setRepeatModeOnUserPlayback"
+      },
+      "player/setVolumeForUserPlayback": {
+        "title": "player/setVolumeForUserPlayback"
+      },
+      "player/skipUserPlaybackToNextTrack": {
+        "title": "player/skipUserPlaybackToNextTrack"
+      },
+      "player/skipUserPlaybackToPreviousTrack": {
+        "title": "player/skipUserPlaybackToPreviousTrack"
+      },
+      "player/startUserPlayback": {
+        "title": "player/startUserPlayback"
+      },
+      "player/toggleShuffleForUserPlayback": {
+        "title": "player/toggleShuffleForUserPlayback"
+      },
+      "player/transferUserPlayback": {
+        "title": "player/transferUserPlayback"
+      },
+      "playlists/addTracksToPlaylist": {
+        "title": "playlists/addTracksToPlaylist"
+      },
+      "playlists/changePlaylistDetails": {
+        "title": "playlists/changePlaylistDetails"
+      },
+      "playlists/createPlaylist": {
+        "title": "playlists/createPlaylist"
+      },
+      "playlists/getCurrentUserPlaylists": {
+        "title": "playlists/getCurrentUserPlaylists"
+      },
+      "playlists/getPlaylist": {
+        "title": "playlists/getPlaylist"
+      },
+      "playlists/getPlaylistCoverImage": {
+        "title": "playlists/getPlaylistCoverImage"
+      },
+      "playlists/getPlaylistTracks": {
+        "title": "playlists/getPlaylistTracks"
+      },
+      "playlists/getUserPlaylists": {
+        "title": "playlists/getUserPlaylists"
+      },
+      "playlists/removeTracksFromPlaylist": {
+        "title": "playlists/removeTracksFromPlaylist"
+      },
+      "playlists/reorderPlaylistTracks": {
+        "title": "playlists/reorderPlaylistTracks"
+      },
+      "playlists/replacePlaylistTracks": {
+        "title": "playlists/replacePlaylistTracks"
+      },
+      "playlists/uploadPlaylistCoverImage": {
+        "title": "playlists/uploadPlaylistCoverImage"
+      },
+      "search/search": {
+        "title": "search/search"
+      },
+      "search/searchAlbums": {
+        "title": "search/searchAlbums"
+      },
+      "search/searchArtists": {
+        "title": "search/searchArtists"
+      },
+      "search/searchEpisodes": {
+        "title": "search/searchEpisodes"
+      },
+      "search/searchPlaylists": {
+        "title": "search/searchPlaylists"
+      },
+      "search/searchShows": {
+        "title": "search/searchShows"
+      },
+      "search/searchTracks": {
+        "title": "search/searchTracks"
+      },
+      "shows/getSeveralShows": {
+        "title": "shows/getSeveralShows"
+      },
+      "shows/getShow": {
+        "title": "shows/getShow"
+      },
+      "shows/getShowEpisodes": {
+        "title": "shows/getShowEpisodes"
+      },
+      "tracks/getAudioAnalysisForTrack": {
+        "title": "tracks/getAudioAnalysisForTrack"
+      },
+      "tracks/getAudioFeaturesForSeveralTracks": {
+        "title": "tracks/getAudioFeaturesForSeveralTracks"
+      },
+      "tracks/getAudioFeaturesForTrack": {
+        "title": "tracks/getAudioFeaturesForTrack"
+      },
+      "tracks/getSeveralTracks": {
+        "title": "tracks/getSeveralTracks"
+      },
+      "tracks/getTrack": {
+        "title": "tracks/getTrack"
+      },
+      "users-profiles/getCurrentUserProfile": {
+        "title": "users-profiles/getCurrentUserProfile"
+      },
+      "users-profiles/getUserProfile": {
+        "title": "users-profiles/getUserProfile"
       }
     },
     "links": {
@@ -62,7 +247,7 @@
       "Blog": "Blog"
     },
     "categories": {
-      "Instalation": "Instalation",
+      "Getting started": "Getting started",
       "Albums": "Albums",
       "Artists": "Artists",
       "Browse": "Browse",

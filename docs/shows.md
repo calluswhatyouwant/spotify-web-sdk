@@ -1,5 +1,0 @@
----
-id: shows
-title: Shows
----
-

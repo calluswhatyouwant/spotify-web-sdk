@@ -1,4 +1,0 @@
----
-id: albums
-title: Albums
----

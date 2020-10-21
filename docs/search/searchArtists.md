@@ -1,0 +1,4 @@
+---
+id: searchArtists
+title: searchArtists
+---

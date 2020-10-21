@@ -1,21 +1,117 @@
 {
   "docs": {
-    "Instalation": ["instalation"],
-    "Albums": ["albums"],
-    "Artists": ["artists"],
-    "Browse": ["browse"],
-    "Driver": ["driver"],
-    "Episodes": ["episodes"],
-    "Follow": ["follow"],
-    "Library": ["library"],
-    "Personalization": ["personalization"],
-    "Player": ["player"],
-    "Playlists": ["playlists"],
-    "Search": ["search"],
-    "Shows": ["shows"],
-    "Tracks": ["tracks"],
-    "Users Profile": ["users-profile"],
-    "Pagination": ["pagination"]
+    "Getting started": [
+       "instalation/instalation"
+      ],
+    "Albums": [
+       "albums/getAlbum",
+       "albums/getAlbumTracks",
+       "albums/getSeveralAlbums"
+      ],
+    "Artists": [
+       "artists/getArtist",
+       "artists/getArtistAlbums",
+       "artists/getArtistRelatedArtists",
+       "artists/getArtistTopTracks",
+       "artists/getSeveralArtists"
+    ],
+    "Browse": [
+       "browse/getCategory",
+       "browse/getCategoryPlaylists",
+       "browse/getCategories",
+       "browse/getFeaturedPlaylists",
+       "browse/getNewReleases",
+       "browse/getRecommendations"
+    ],
+    "Driver": [
+       "driver/init",
+       "driver/getToken",
+       "driver/getAxiosSpotifyInstance"
+    ],
+    "Episodes": [
+       "episodes/getSeveralEpisodes",
+       "episodes/getEpisode"
+    ],
+    "Follow": [
+       "follow/getFollowedArtists",
+       "follow/isFollowing",
+       "follow/checkUsersFollowingPlaylist",
+       "follow/followArtistsOrUsers",
+       "follow/followPlaylist",
+       "follow/unfollowArtistsOrUsers",
+       "follow/unfollowPlaylist"
+    ],
+    "Library": [
+       "library/areSavedToCurrentUserLibrary",
+       "library/getCurrentUserSavedAlbums",
+       "library/getCurrentUserSavedTracks",
+       "library/getCurrentUserSavedShows",
+       "library/saveToCurrentUserLibrary",
+       "library/removeFromCurrentUserLibrary"
+    ],
+    "Personalization": [
+       "personalization/getCurrentUserTopArtists",
+       "personalization/getCurrentUserTopTracks"
+    ],
+    "Player": [
+       "player/getCurrentUserRecentlyPlayedTracks",
+       "player/getCurrentUserCurrentlyPlayingTrack",
+       "player/getUserAvailableDevices",
+       "player/getUserPlaybackInformation",
+       "player/pauseUserPlayback",
+       "player/seekToPositionInCurrentlyPlayingTrack",
+       "player/setRepeatModeOnUserPlayback",
+       "player/setVolumeForUserPlayback",
+       "player/startUserPlayback",
+       "player/resumeUserPlayback",
+       "player/toggleShuffleForUserPlayback",
+       "player/transferUserPlayback",
+       "player/skipUserPlaybackToNextTrack",
+       "player/skipUserPlaybackToPreviousTrack"
+
+    ],
+    "Playlists": [
+       "playlists/getPlaylist",
+       "playlists/getPlaylistTracks",
+       "playlists/getUserPlaylists",
+       "playlists/getCurrentUserPlaylists",
+       "playlists/getPlaylistCoverImage",
+       "playlists/createPlaylist",
+       "playlists/addTracksToPlaylist",
+       "playlists/changePlaylistDetails",
+       "playlists/reorderPlaylistTracks",
+       "playlists/replacePlaylistTracks",
+       "playlists/uploadPlaylistCoverImage",
+       "playlists/removeTracksFromPlaylist"
+    ],
+    "Search": [
+       "search/search",
+       "search/searchAlbums",
+       "search/searchArtists",
+       "search/searchPlaylists",
+       "search/searchTracks",
+       "search/searchShows",
+       "search/searchEpisodes"
+    ],
+    "Shows": [
+       "shows/getSeveralShows",
+       "shows/getShow",
+       "shows/getShowEpisodes"
+    ],
+    "Tracks": [
+       "tracks/getSeveralTracks",
+       "tracks/getTrack",
+       "tracks/getAudioAnalysisForTrack",
+       "tracks/getAudioFeaturesForTrack",
+       "tracks/getAudioFeaturesForSeveralTracks"
+    ],
+    "Users Profile": [
+       "users-profiles/getCurrentUserProfile",
+       "user-profiles/getUserProfile"
+    ],
+    "Pagination": [
+       "pagination/"
+    ]
 
   }
 }

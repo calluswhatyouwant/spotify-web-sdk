@@ -1,4 +1,0 @@
----
-id: personalization
-title: Personalization
----
