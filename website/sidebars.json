@@ -24,7 +24,6 @@
        "browse/getRecommendations"
     ],
     "Driver": [
-       "driver/init",
        "driver/getToken",
        "driver/getAxiosSpotifyInstance"
     ],

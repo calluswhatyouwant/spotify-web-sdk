@@ -53,9 +53,6 @@
       "driver/getToken": {
         "title": "driver/getToken"
       },
-      "driver/init": {
-        "title": "init"
-      },
       "episodes/getEpisode": {
         "title": "episodes/getEpisode"
       },
