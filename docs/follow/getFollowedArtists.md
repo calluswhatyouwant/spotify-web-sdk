@@ -1,0 +1,4 @@
+---
+id: getFollowedArtists
+title: getFollowedArtists
+---

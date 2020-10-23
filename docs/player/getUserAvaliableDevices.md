@@ -1,0 +1,4 @@
+---
+id: getUserAvaliableDevices
+title: getUserAvaliableDevices
+---

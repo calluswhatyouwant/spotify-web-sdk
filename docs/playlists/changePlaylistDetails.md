@@ -1,0 +1,4 @@
+---
+id: changePlaylistDetails
+title: changePlaylistDetails
+---

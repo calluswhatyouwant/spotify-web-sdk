@@ -1,0 +1,4 @@
+---
+id: getPlaylistCoverImage
+title: getPlaylistCoverImage
+---

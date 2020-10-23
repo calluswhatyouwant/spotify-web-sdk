@@ -1,0 +1,4 @@
+---
+id: getToken
+title: getToken
+---
