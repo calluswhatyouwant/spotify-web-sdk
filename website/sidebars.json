@@ -23,10 +23,6 @@
        "browse/getNewReleases",
        "browse/getRecommendations"
     ],
-    "Driver": [
-       "driver/getToken",
-       "driver/getAxiosSpotifyInstance"
-    ],
     "Episodes": [
        "episodes/getSeveralEpisodes",
        "episodes/getEpisode"
@@ -108,6 +104,10 @@
        "users-profiles/getCurrentUserProfile",
        "user-profiles/getUserProfile"
     ],
+    "Driver": [
+      "driver/getToken",
+      "driver/getAxiosSpotifyInstance"
+   ],
     "Pagination": [
        "pagination/"
     ]
