@@ -248,7 +248,6 @@
       "Albums": "Albums",
       "Artists": "Artists",
       "Browse": "Browse",
-      "Driver": "Driver",
       "Episodes": "Episodes",
       "Follow": "Follow",
       "Library": "Library",
@@ -259,6 +258,7 @@
       "Shows": "Shows",
       "Tracks": "Tracks",
       "Users Profile": "Users Profile",
+      "Driver": "Driver",
       "Pagination": "Pagination"
     }
   },
