@@ -46,16 +46,6 @@ If you notice any other bugs or you have any ideas to improve our SDK, feel free
 
 Check out our [CONTRIBUTING](./CONTRIBUTING.md) file!
 
-### Maintainers
-
-[@JoseRenan](http://github.com/JoseRenan) and [@JRobsonJr](http://github.com/JRobsonJr)
-
-### Hall of Fame
-
-[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/0)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/0)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/1)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/1)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/2)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/2)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/3)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/3)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/4)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/4)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/5)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/5)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/6)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/6)[![](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/images/7)](https://sourcerer.io/fame/JRobsonJr/calluswhatyouwant/spotify-web-sdk/links/7)
-
-Made with [hall-of-fame](https://github.com/sourcerer-io/hall-of-fame).
-
 ## License
 
 [MIT](./LICENSE)

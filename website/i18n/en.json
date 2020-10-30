@@ -225,10 +225,10 @@
         "title": "tracks/getAudioFeaturesForTrack"
       },
       "tracks/getSeveralTracks": {
-        "title": "tracks/getSeveralTracks"
+        "title": "getSeveralTracks"
       },
       "tracks/getTrack": {
-        "title": "tracks/getTrack"
+        "title": "getTrack"
       },
       "users-profiles/getCurrentUserProfile": {
         "title": "users-profiles/getCurrentUserProfile"
