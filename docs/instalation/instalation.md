@@ -32,6 +32,10 @@ spotify.init({ token: 'YOUR SPOTIFY TOKEN HERE!' }); // You should only need to 
 spotify.getTrack('3LOpHuEpjkL4T1Zcjhko8w'); // Or any other track id.
 ```
 
+Liked it?  
+To see all functionalities of the SDK, check the next sections, where all of the functions will be presented and explained with all of its details and ways to use it. The functions are grouped by sections, which represents units of the Spotify system (such as Albums, Artists, Tracks).   
+Use the button down below at the end of the page or click here to get to know more about our SDK functionalities, section by section.
+
 ## Community
 
 As aforementioned, this project exists because we believe that we can support each other to create a better experience for everyone.  
