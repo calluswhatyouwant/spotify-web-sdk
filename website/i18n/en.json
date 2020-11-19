@@ -216,13 +216,13 @@
         "title": "shows/getShowEpisodes"
       },
       "tracks/getAudioAnalysisForTrack": {
-        "title": "tracks/getAudioAnalysisForTrack"
+        "title": "getAudioAnalysisForTrack"
       },
       "tracks/getAudioFeaturesForSeveralTracks": {
-        "title": "tracks/getAudioFeaturesForSeveralTracks"
+        "title": "getAudioFeaturesForSeveralTracks"
       },
       "tracks/getAudioFeaturesForTrack": {
-        "title": "tracks/getAudioFeaturesForTrack"
+        "title": "getAudioFeaturesForTrack"
       },
       "tracks/getSeveralTracks": {
         "title": "getSeveralTracks"
