@@ -28,3 +28,4 @@ If the show is not avaliabe in your given market field, then a null value will b
 ```javascript
 import * as spotify from 'spotify-web-sdk';
 spotify.getSeveralShows('Show 1 ID here,Show 2 ID here,Show 3 ID here');
+```
