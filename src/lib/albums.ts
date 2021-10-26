@@ -1,5 +1,6 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Album, TrackSimplified, Page } from './models';
+import { RawAlbum } from './models/album/album';
 
 export const getAlbum = async (
     id: string,
@@ -26,7 +27,9 @@ export const getSeveralAlbums = async (
     const config = { params: { ...params, ids: ids.join(',') } };
     const response = await getAxiosSpotifyInstance().get('/albums', config);
 
-    return response.data.albums.map((albumJson: any) => new Album(albumJson));
+    return response.data.albums.map(
+        (albumJson: RawAlbum) => new Album(albumJson)
+    );
 };
 
 export const getAlbumTracks = async (

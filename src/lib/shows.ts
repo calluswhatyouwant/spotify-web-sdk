@@ -1,5 +1,6 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Show, ShowSimplified, Page, EpisodeSimplified } from './models';
+import { RawShowSimplified } from './models/show/show-simplified';
 
 export const getSeveralShows = async (
     ids: string[],
@@ -9,7 +10,7 @@ export const getSeveralShows = async (
         params: { ids: ids.join(','), ...params },
     });
     return response.data.shows.map(
-        (showJson: any) => new ShowSimplified(showJson)
+        (showJson: RawShowSimplified) => new ShowSimplified(showJson)
     );
 };
 

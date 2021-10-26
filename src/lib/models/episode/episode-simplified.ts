@@ -1,4 +1,4 @@
-import { RawExternalUrls } from '../common/externalUrls';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
 import Image, { RawImage } from '../common/image';
 
 export interface RawEpisodeSimplified {
@@ -26,7 +26,7 @@ class EpisodeSimplified {
     description: string;
     durationMs: number;
     explicit: boolean;
-    externalUrls: any;
+    externalUrls: ExternalUrls;
     href: string;
     id: string;
     images: Image[];

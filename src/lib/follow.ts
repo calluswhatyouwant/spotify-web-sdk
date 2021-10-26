@@ -1,5 +1,6 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Artist } from './models';
+import { RawArtist } from './models/artist/artist';
 
 export const getFollowedArtists = async (params?: {
     limit?: number;
@@ -20,7 +21,7 @@ export const getFollowedArtists = async (params?: {
     );
 
     return response.data.artists.items.map(
-        (artistJson: any) => new Artist(artistJson)
+        (artistJson: RawArtist) => new Artist(artistJson)
     );
 };
 
