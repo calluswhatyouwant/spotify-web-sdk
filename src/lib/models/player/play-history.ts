@@ -1,21 +1,28 @@
-import Context from './context';
-import Track from '../track/track';
+import Album from '../album/album';
+import Artist from '../artist/artist';
+import Context, { RawContext } from './context';
+import Playlist from '../playlist/playlist';
+import Track, { RawTrack } from '../track/track';
 import { getAlbum, getArtist, getPlaylist } from '../..';
+
+export interface RawPlayHistory {
+    track: RawTrack;
+    played_at: string;
+    context: RawContext | null;
+}
 
 class PlayHistory {
     track: Track;
-
     playedAt: string;
-
     context: Context | null;
 
-    constructor(json: any) {
-        this.track = new Track(json.track);
-        this.playedAt = json.played_at;
-        this.context = json.context ? new Context(json.context) : null;
+    constructor(raw: RawPlayHistory) {
+        this.track = new Track(raw.track);
+        this.playedAt = raw.played_at;
+        this.context = raw.context ? new Context(raw.context) : null;
     }
 
-    getContextData(): Promise<any> {
+    getContextData(): Promise<Album | Artist | Playlist> {
         if (this.context) {
             const [, type, id] = this.context.uri.split(':');
             switch (type) {

@@ -1,14 +1,18 @@
-class Image {
-    height: number;
-
+export interface RawImage {
+    height: number | null;
     url: string;
+    width: number | null;
+}
 
-    width: number;
+class Image {
+    height: number | null;
+    url: string;
+    width: number | null;
 
-    constructor(json: any) {
-        this.height = json.height;
-        this.url = json.url;
-        this.width = json.width;
+    constructor(raw: RawImage) {
+        this.height = raw.height;
+        this.url = raw.url;
+        this.width = raw.width;
     }
 }
 

@@ -1,17 +1,23 @@
-import RecommendationSeed from './recommendation-seed';
-import TrackSimplified from '../track/track-simplified';
+import RecommendationSeed, {
+    RawRecommendationSeed,
+} from './recommendation-seed';
+import TrackSimplified, { RawTrackSimplified } from '../track/track-simplified';
+
+export interface RawRecommendations {
+    seeds: RawRecommendationSeed[];
+    tracks: RawTrackSimplified[];
+}
 
 class Recommendations {
     seeds: RecommendationSeed[];
-
     tracks: TrackSimplified[];
 
-    constructor(json: any) {
-        this.seeds = json.seeds.map(
-            (seedJson: any) => new RecommendationSeed(seedJson)
+    constructor(raw: RawRecommendations) {
+        this.seeds = raw.seeds.map(
+            seedJson => new RecommendationSeed(seedJson)
         );
-        this.tracks = json.tracks.map(
-            (trackJson: any) => new TrackSimplified(trackJson)
+        this.tracks = raw.tracks.map(
+            trackJson => new TrackSimplified(trackJson)
         );
     }
 }

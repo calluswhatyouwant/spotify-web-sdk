@@ -1,14 +1,18 @@
 import EpisodeSimplified from '../episode/episode-simplified';
-import Page from '../paging/page';
-import ShowSimplified from './show-simplified';
+import Page, { RawPage } from '../paging/page';
+import ShowSimplified, { RawShowSimplified } from './show-simplified';
+
+export interface RawShow extends RawShowSimplified {
+    episodes: RawPage;
+}
 
 class Show extends ShowSimplified {
     episodes: Page<EpisodeSimplified>;
 
-    constructor(json: any) {
-        super(json);
+    constructor(raw: RawShow) {
+        super(raw);
         this.episodes = new Page<EpisodeSimplified>(
-            json.episodes,
+            raw.episodes,
             EpisodeSimplified
         );
     }

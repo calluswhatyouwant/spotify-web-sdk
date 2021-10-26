@@ -1,19 +1,23 @@
-import Image from '../common/image';
+import Image, { RawImage } from '../common/image';
+
+export interface RawCategory {
+    href: string;
+    icons: RawImage[];
+    id: string;
+    name: string;
+}
 
 class Category {
     href: string;
-
     icons: Image[];
-
     id: string;
-
     name: string;
 
-    constructor(json: any) {
-        this.href = json.href;
-        this.icons = json.icons.map((iconJson: any) => new Image(iconJson));
-        this.id = json.id;
-        this.name = json.name;
+    constructor(raw: RawCategory) {
+        this.href = raw.href;
+        this.icons = raw.icons.map(rawIcon => new Image(rawIcon));
+        this.id = raw.id;
+        this.name = raw.name;
     }
 }
 

@@ -1,36 +1,39 @@
-import Followers from '../common/followers';
-import Image from '../common/image';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+import Followers, { RawFollowers } from '../common/followers';
+import Image, { RawImage } from '../common/image';
+
+export interface RawPublicUser {
+    display_name: string | null;
+    external_urls: RawExternalUrls;
+    followers?: RawFollowers;
+    href: string;
+    id: string;
+    images?: RawImage[];
+    type: 'user';
+    uri: string;
+}
 
 class PublicUser {
-    displayName: string;
-
-    externalUrls: any;
-
+    displayName: string | null;
+    externalUrls: ExternalUrls;
     followers?: Followers;
-
     href: string;
-
     id: string;
-
     images?: Image[];
-
     type: 'user';
-
     uri: string;
 
-    constructor(json: any) {
-        this.displayName = json.display_name;
-        this.externalUrls = json.external_urls;
-        if (json.followers) this.followers = new Followers(json.followers);
-        this.href = json.href;
-        this.id = json.id;
-        if (json.images) {
-            this.images = json.images.map(
-                (imageJson: any) => new Image(imageJson)
-            );
+    constructor(raw: RawPublicUser) {
+        this.displayName = raw.display_name;
+        this.externalUrls = raw.external_urls;
+        if (raw.followers) this.followers = new Followers(raw.followers);
+        this.href = raw.href;
+        this.id = raw.id;
+        if (raw.images) {
+            this.images = raw.images.map(imageJson => new Image(imageJson));
         }
-        this.type = json.type;
-        this.uri = json.uri;
+        this.type = raw.type;
+        this.uri = raw.uri;
     }
 }
 

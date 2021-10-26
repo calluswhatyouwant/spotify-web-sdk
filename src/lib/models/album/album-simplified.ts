@@ -1,52 +1,65 @@
-import ArtistSimplified from '../artist/artist-simplified';
-import Image from '../common/image';
+import ArtistSimplified, {
+    RawArtistSimplified,
+} from '../artist/artist-simplified';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+import Image, { RawImage } from '../common/image';
+
+type AlbumGroup = 'album' | 'single' | 'compilation' | 'appears_on';
+
+type AlbumType = 'album' | 'single' | 'compilation';
+
+type ReleaseDatePrecision = 'year' | 'month' | 'day';
+
+export interface RawAlbumSimplified {
+    album_group?: AlbumGroup;
+    album_type: AlbumType;
+    artists: RawArtistSimplified[];
+    available_markets: string[];
+    external_urls: RawExternalUrls;
+    href: string;
+    id: string;
+    images: RawImage[];
+    name: string;
+    release_date: string;
+    release_date_precision: ReleaseDatePrecision;
+    restrictions?: any;
+    type: 'album';
+    uri: string;
+}
 
 class AlbumSimplified {
-    albumGroup: 'album' | 'single' | 'compilation' | 'appears_on';
-
-    albumType: 'album' | 'single' | 'compilation';
-
+    albumGroup?: AlbumGroup;
+    albumType: AlbumType;
     artists: ArtistSimplified[];
-
     availableMarkets: string[];
-
-    externalUrls: any;
-
+    externalUrls: ExternalUrls;
     href: string;
-
     id: string;
-
     images: Image[];
-
     name: string;
-
     releaseDate: string;
-
-    releaseDatePrecision: 'year' | 'month' | 'day';
-
+    releaseDatePrecision: ReleaseDatePrecision;
     restrictions: any;
-
     type: 'album';
-
     uri: string;
 
-    constructor(json: any) {
-        this.albumGroup = json.album_group;
-        this.albumType = json.album_type;
-        this.artists = json.artists.map(
-            (artistJson: any) => new ArtistSimplified(artistJson)
+    constructor(raw: RawAlbumSimplified) {
+        this.albumGroup = raw.album_group;
+        this.albumType = raw.album_type;
+        this.artists = raw.artists.map(
+            rawArtist => new ArtistSimplified(rawArtist)
         );
-        this.availableMarkets = json.available_markets;
-        this.externalUrls = json.external_urls;
-        this.href = json.href;
-        this.id = json.id;
-        this.images = json.images.map((imageJson: any) => new Image(imageJson));
-        this.name = json.name;
-        this.releaseDate = json.release_date;
-        this.releaseDatePrecision = json.release_date_precision;
-        this.restrictions = json.restrictions;
-        this.type = json.type;
-        this.uri = json.uri;
+        this.availableMarkets = raw.available_markets;
+        this.externalUrls = raw.external_urls;
+        this.href = raw.href;
+        this.id = raw.id;
+        this.images = raw.images.map(rawImage => new Image(rawImage));
+        this.name = raw.name;
+        this.releaseDate = raw.release_date;
+        this.releaseDatePrecision = raw.release_date_precision;
+        this.restrictions = raw.restrictions;
+        this.type = raw.type;
+        this.uri = raw.uri;
     }
 
     get stringArtists(): string {

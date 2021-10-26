@@ -1,60 +1,67 @@
-import ArtistSimplified from '../artist/artist-simplified';
+import ArtistSimplified, {
+    RawArtistSimplified,
+} from '../artist/artist-simplified';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+
+export interface RawTrackSimplified {
+    artists: RawArtistSimplified[];
+    available_markets: string[];
+    disc_number: number;
+    duration_ms: number;
+    explicit: boolean;
+    external_urls: RawExternalUrls;
+    href: string;
+    id: string;
+    is_playable: boolean;
+    linked_from: any;
+    restrictions: any;
+    name: string;
+    preview_url: string;
+    track_number: number;
+    type: 'track';
+    uri: string;
+    is_local: boolean;
+}
 
 class TrackSimplified {
     artists: ArtistSimplified[];
-
     availableMarkets: string[];
-
     discNumber: number;
-
     durationMs: number;
-
     explicit: boolean;
-
-    externalUrls: any;
-
+    externalUrls: ExternalUrls;
     href: string;
-
     id: string;
-
     isPlayable: boolean;
-
     linkedFrom: any;
-
     restrictions: any;
-
     name: string;
-
     previewUrl: string;
-
     trackNumber: number;
-
     type: 'track';
-
     uri: string;
-
     isLocal: boolean;
 
-    constructor(json: any) {
-        this.artists = json.artists.map(
-            (artistJson: any) => new ArtistSimplified(artistJson)
+    constructor(raw: RawTrackSimplified) {
+        this.artists = raw.artists.map(
+            rawArtist => new ArtistSimplified(rawArtist)
         );
-        this.availableMarkets = json.available_markets;
-        this.discNumber = json.disc_number;
-        this.durationMs = json.duration_ms;
-        this.explicit = json.explicit;
-        this.externalUrls = json.external_urls;
-        this.href = json.href;
-        this.id = json.id;
-        this.isPlayable = json.is_playable;
-        this.linkedFrom = json.linked_from;
-        this.restrictions = json.restrictions;
-        this.name = json.name;
-        this.previewUrl = json.preview_url;
-        this.trackNumber = json.track_number;
-        this.type = json.type;
-        this.uri = json.uri;
-        this.isLocal = json.is_local;
+        this.availableMarkets = raw.available_markets;
+        this.discNumber = raw.disc_number;
+        this.durationMs = raw.duration_ms;
+        this.explicit = raw.explicit;
+        this.externalUrls = new ExternalUrls(raw.external_urls);
+        this.href = raw.href;
+        this.id = raw.id;
+        this.isPlayable = raw.is_playable;
+        this.linkedFrom = raw.linked_from;
+        this.restrictions = raw.restrictions;
+        this.name = raw.name;
+        this.previewUrl = raw.preview_url;
+        this.trackNumber = raw.track_number;
+        this.type = raw.type;
+        this.uri = raw.uri;
+        this.isLocal = raw.is_local;
     }
 
     get stringArtists(): string {
