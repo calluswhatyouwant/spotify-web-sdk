@@ -1,40 +1,55 @@
 import { getAxiosSpotifyInstance } from '../../driver';
 
+export interface RawPage {
+    href: string;
+    items: any[];
+    limit: number;
+    next: string | null;
+    offset: number;
+    previous: string | null;
+    total: number;
+}
+
+export interface WrappedRawPage {
+    [wrapper: string]: RawPage;
+}
+
 class Page<T> {
     private t: new (json: any) => T;
-
     href: string;
-
     items: T[];
-
     limit: number;
-
-    private next: string;
-
+    private next: string | null;
     offset: number;
-
-    private previous: string;
-
+    private previous: string | null;
     total: number;
-
     wrapper?: string;
 
-    constructor(json: any, t: new (json: any) => T, wrapper?: string) {
+    constructor(
+        raw: RawPage | WrappedRawPage,
+        t: new (json: any) => T,
+        wrapper?: string
+    ) {
         this.wrapper = wrapper;
-        let unwrappedJson = json;
-        if (wrapper) unwrappedJson = unwrappedJson[wrapper];
+
+        let unwrappedRaw: RawPage;
+
+        if (wrapper) {
+            unwrappedRaw = (raw as WrappedRawPage)[wrapper];
+        } else {
+            unwrappedRaw = raw as RawPage;
+        }
+
         this.t = t;
-        this.href = unwrappedJson.href;
-        this.items = unwrappedJson.items.map((json: any) => new t(json));
-        this.limit = unwrappedJson.limit;
-        this.next = unwrappedJson.next
-            ? unwrappedJson.next.split('?')[1]
+        this.href = unwrappedRaw.href;
+        this.items = unwrappedRaw.items.map(rawItem => new t(rawItem));
+        this.limit = unwrappedRaw.limit;
+        this.next = unwrappedRaw.next ? unwrappedRaw.next.split('?')[1] : null;
+        this.offset = unwrappedRaw.offset;
+        this.previous = unwrappedRaw.previous
+            ? unwrappedRaw.previous.split('?')[1]
             : null;
-        this.offset = unwrappedJson.offset;
-        this.previous = unwrappedJson.previous
-            ? unwrappedJson.previous.split('?')[1]
-            : null;
-        this.total = unwrappedJson.total;
+        this.total = unwrappedRaw.total;
     }
 
     get queryParams(): any {

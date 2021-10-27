@@ -10,6 +10,7 @@ import {
     Device,
     CurrentlyPlayingContext,
 } from './models';
+import { RawDevice } from './models/player/device';
 
 export const getCurrentUserRecentlyPlayedTracks = async (params?: {
     limit?: number;
@@ -41,7 +42,7 @@ export const getCurrentUserCurrentlyPlayingTrack = async (params?: {
 export const getUserAvailableDevices = async (): Promise<Device[]> => {
     const response = await getAxiosSpotifyInstance().get('/me/player/devices');
     return response.data.devices.map(
-        (deviceJson: any) => new Device(deviceJson)
+        (deviceJson: RawDevice) => new Device(deviceJson)
     );
 };
 
@@ -114,7 +115,7 @@ export const startUserPlayback = async (params?: {
     contextUri?: string;
     uris?: string[];
     offset?: Offset;
-    positionMs?: number;                                   
+    positionMs?: number;
 }): Promise<string> => {
     const queryParams = propertiesToSnakeCase(pick(params, 'deviceId'));
     const bodyParams = propertiesToSnakeCase(omit(params, 'deviceId'), true);

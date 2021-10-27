@@ -1,20 +1,23 @@
-import Followers from '../common/followers';
-import Page from '../paging/page';
+import Followers, { RawFollowers } from '../common/followers';
+import Page, { RawPage } from '../paging/page';
 import PlaylistTrack from './playlist-track';
-import PlaylistSimplified from './playlist-simplified';
+import PlaylistSimplified, {
+    RawPlaylistSimplified,
+} from './playlist-simplified';
+
+export interface RawPlaylist extends RawPlaylistSimplified {
+    followers: RawFollowers;
+    tracks: RawPage;
+}
 
 class Playlist extends PlaylistSimplified {
-    description: boolean;
-
     followers: Followers;
-
     tracks: Page<PlaylistTrack>;
 
-    constructor(json: any) {
-        super(json);
-        this.description = json.description;
-        this.followers = new Followers(json.followers);
-        this.tracks = new Page<PlaylistTrack>(json.tracks, PlaylistTrack);
+    constructor(raw: RawPlaylist) {
+        super(raw);
+        this.followers = new Followers(raw.followers);
+        this.tracks = new Page<PlaylistTrack>(raw.tracks, PlaylistTrack);
     }
 }
 

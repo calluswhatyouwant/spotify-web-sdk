@@ -1,22 +1,33 @@
 import { getAxiosSpotifyInstance } from '../../driver';
 
+interface Cursors {
+    after: string;
+    before: string;
+}
+
+export interface RawCursorBasedPage {
+    href: string;
+    items: any[];
+    limit: number;
+    next: string;
+    cursors: Cursors;
+}
+
 class CursorBasedPage<T> {
     private t: new (json: any) => T;
     href: string;
     items: T[];
     limit: number;
-    next: string;
-    cursors: any;
-    total: number;
+    next: string | null;
+    cursors: Cursors;
 
-    constructor(json: any, t: new (json: any) => T) {
+    constructor(raw: RawCursorBasedPage, t: new (json: any) => T) {
         this.t = t;
-        this.href = json.href;
-        this.items = json.items.map((json: any) => new t(json));
-        this.limit = json.limit;
-        this.next = json.next ? json.next.split('?')[1] : null;
-        this.cursors = json.cursors;
-        this.total = json.total;
+        this.href = raw.href;
+        this.items = raw.items.map(rawItem => new t(rawItem));
+        this.limit = raw.limit;
+        this.next = raw.next ? raw.next.split('?')[1] : null;
+        this.cursors = raw.cursors;
     }
 
     get queryParams(): any {

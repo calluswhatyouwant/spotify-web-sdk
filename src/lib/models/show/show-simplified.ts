@@ -1,55 +1,60 @@
-import Copyright from '../common/copyright';
-import Image from '../common/image';
+import Copyright, { RawCopyright } from '../common/copyright';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+import Image, { RawImage } from '../common/image';
+
+export interface RawShowSimplified {
+    available_markets: string[];
+    copyrights: RawCopyright[];
+    description: string;
+    explicit: boolean;
+    external_urls: RawExternalUrls;
+    href: string;
+    id: string;
+    images: RawImage[];
+    is_externally_hosted: boolean | null;
+    languages: string[];
+    media_type: string;
+    name: string;
+    publisher: string;
+    type: 'show';
+    uri: string;
+}
 
 class ShowSimplified {
     availableMarkets: string[];
-
     copyrights: Copyright[];
-
     description: string;
-
     explicit: boolean;
-
-    externalUrls: any;
-
+    externalUrls: ExternalUrls;
     href: string;
-
     id: string;
-
     images: Image[];
-
     isExternallyHosted: boolean | null;
-
     languages: string[];
-
     mediaType: string;
-
     name: string;
-
     publisher: string;
-
     type: 'show';
-
     uri: string;
 
-    constructor(json: any) {
-        this.availableMarkets = json.available_markets;
-        this.copyrights = json.copyrights.map(
-            (copyrightJson: any) => new Copyright(copyrightJson)
+    constructor(raw: RawShowSimplified) {
+        this.availableMarkets = raw.available_markets;
+        this.copyrights = raw.copyrights.map(
+            rawCopyright => new Copyright(rawCopyright)
         );
-        this.description = json.description;
-        this.explicit = json.explicit;
-        this.externalUrls = json.external_urls;
-        this.href = json.href;
-        this.id = json.id;
-        this.images = json.images.map((imageJson: any) => new Image(imageJson));
-        this.isExternallyHosted = json.is_externally_hosted;
-        this.languages = json.languages;
-        this.mediaType = json.media_type;
-        this.name = json.name;
-        this.publisher = json.publisher;
-        this.type = json.type;
-        this.uri = json.uri;
+        this.description = raw.description;
+        this.explicit = raw.explicit;
+        this.externalUrls = raw.external_urls;
+        this.href = raw.href;
+        this.id = raw.id;
+        this.images = raw.images.map(rawImage => new Image(rawImage));
+        this.isExternallyHosted = raw.is_externally_hosted;
+        this.languages = raw.languages;
+        this.mediaType = raw.media_type;
+        this.name = raw.name;
+        this.publisher = raw.publisher;
+        this.type = raw.type;
+        this.uri = raw.uri;
     }
 }
 

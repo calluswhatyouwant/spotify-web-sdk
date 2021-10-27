@@ -1,5 +1,6 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Episode } from './models';
+import { RawEpisode } from './models/episode/episode';
 
 export const getSeveralEpisodes = async (
     ids: string[],
@@ -9,7 +10,7 @@ export const getSeveralEpisodes = async (
         params: { ids: ids.join(','), ...params },
     });
     return response.data.episodes.map(
-        (episodeJson: any) => new Episode(episodeJson)
+        (episodeJson: RawEpisode) => new Episode(episodeJson)
     );
 };
 

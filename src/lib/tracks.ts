@@ -1,5 +1,7 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Track, AudioAnalysis, AudioFeatures } from './models';
+import { RawAudioFeatures } from './models/track/audio-features';
+import { RawTrack } from './models/track/track';
 
 export const getSeveralTracks = async (
     ids: string[],
@@ -15,7 +17,9 @@ export const getSeveralTracks = async (
     const response = await getAxiosSpotifyInstance().get('/tracks', {
         params: { ids: ids.join(','), ...params },
     });
-    return response.data.tracks.map((trackJson: any) => new Track(trackJson));
+    return response.data.tracks.map(
+        (trackJson: RawTrack) => new Track(trackJson)
+    );
 };
 
 export const getTrack = async (
@@ -55,6 +59,7 @@ export const getAudioFeaturesForSeveralTracks = async (
         config
     );
     return response.data.audio_features.map(
-        (audioFeaturesJson: any) => new AudioFeatures(audioFeaturesJson)
+        (audioFeaturesJson: RawAudioFeatures) =>
+            new AudioFeatures(audioFeaturesJson)
     );
 };

@@ -1,5 +1,7 @@
 import { getAxiosSpotifyInstance } from './driver';
 import { Artist, Track, Page, AlbumSimplified } from './models';
+import { RawArtist } from './models/artist/artist';
+import { RawTrack } from './models/track/track';
 
 export const getArtist = async (id: string): Promise<Artist> => {
     const response = await getAxiosSpotifyInstance().get(`/artists/${id}`);
@@ -17,7 +19,7 @@ export const getSeveralArtists = async (ids: string[]): Promise<Artist[]> => {
     const config = { params: { ids } };
     const response = await getAxiosSpotifyInstance().get('/artists', config);
     return response.data.artists.map(
-        (artistJson: any) => new Artist(artistJson)
+        (artistJson: RawArtist) => new Artist(artistJson)
     );
 };
 
@@ -53,7 +55,7 @@ export const getArtistRelatedArtists = async (
         `/artists/${id}/related-artists`
     );
     return response.data.artists.map(
-        (artistJson: any) => new Artist(artistJson)
+        (artistJson: RawArtist) => new Artist(artistJson)
     );
 };
 
@@ -66,5 +68,7 @@ export const getArtistTopTracks = async (
         `/artists/${id}/top-tracks`,
         config
     );
-    return response.data.tracks.map((trackJson: any) => new Track(trackJson));
+    return response.data.tracks.map(
+        (trackJson: RawTrack) => new Track(trackJson)
+    );
 };

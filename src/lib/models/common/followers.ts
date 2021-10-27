@@ -1,11 +1,15 @@
-class Followers {
-    href: string;
+export interface RawFollowers {
+    href: string | null;
+    total: number;
+}
 
+class Followers {
+    href: string | null;
     total: number;
 
-    constructor(json: any) {
-        this.href = json.href;
-        this.total = json.total;
+    constructor(raw: RawFollowers) {
+        this.href = raw.href;
+        this.total = raw.total;
     }
 }
 

@@ -1,22 +1,27 @@
 import differenceBy from 'lodash.differenceby';
 import intersectionBy from 'lodash.intersectionby';
 
-import AlbumSimplified from '../album/album-simplified';
+import AlbumSimplified, { RawAlbumSimplified } from '../album/album-simplified';
 import ArtistSimplified from '../artist/artist-simplified';
-import TrackSimplified from './track-simplified';
+import ExternalIds, { RawExternalIds } from '../common/externalIds';
+import TrackSimplified, { RawTrackSimplified } from './track-simplified';
+
+export interface RawTrack extends RawTrackSimplified {
+    album: RawAlbumSimplified;
+    external_ids: RawExternalIds;
+    popularity: number;
+}
 
 class Track extends TrackSimplified {
     album: AlbumSimplified;
-
-    externalIds: any;
-
+    externalIds: ExternalIds;
     popularity: number;
 
-    constructor(json: any) {
-        super(json);
-        this.album = new AlbumSimplified(json.album);
-        this.externalIds = json.external_ids;
-        this.popularity = json.popularity;
+    constructor(raw: RawTrack) {
+        super(raw);
+        this.album = new AlbumSimplified(raw.album);
+        this.externalIds = raw.external_ids;
+        this.popularity = raw.popularity;
     }
 
     get albumName() {

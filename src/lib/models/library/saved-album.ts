@@ -1,14 +1,17 @@
-import Album from '../album/album';
+import Album, { RawAlbum } from '../album/album';
+
+export interface RawSavedAlbum {
+    added_at: string;
+    album: RawAlbum;
+}
 
 class SavedAlbum {
     addedAt: string;
-
-    // Timestamp
     album: Album;
 
-    constructor(json: any) {
-        this.addedAt = json.added_at;
-        this.album = new Album(json.album);
+    constructor(raw: RawSavedAlbum) {
+        this.addedAt = raw.added_at;
+        this.album = new Album(raw.album);
     }
 }
 

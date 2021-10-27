@@ -1,4 +1,4 @@
-import Page from '../paging/page';
+import Page, { WrappedRawPage } from '../paging/page';
 import AlbumSimplified from '../album/album-simplified';
 import Artist from '../artist/artist';
 import EpisodeSimplified from '../episode/episode-simplified';
@@ -14,40 +14,36 @@ class SearchResults {
     episodes?: Page<EpisodeSimplified>;
     shows?: Page<ShowSimplified>;
 
-    constructor(json: any) {
-        if (json.albums) {
+    constructor(raw: WrappedRawPage) {
+        if (raw.albums) {
             this.albums = new Page<AlbumSimplified>(
-                json,
+                raw,
                 AlbumSimplified,
                 'albums'
             );
         }
-        if (json.artists) {
-            this.artists = new Page<Artist>(json, Artist, 'artists');
+        if (raw.artists) {
+            this.artists = new Page<Artist>(raw, Artist, 'artists');
         }
-        if (json.playlists) {
+        if (raw.playlists) {
             this.playlists = new Page<PlaylistSimplified>(
-                json,
+                raw,
                 PlaylistSimplified,
                 'playlists'
             );
         }
-        if (json.tracks) {
-            this.tracks = new Page<Track>(json, Track, 'tracks');
+        if (raw.tracks) {
+            this.tracks = new Page<Track>(raw, Track, 'tracks');
         }
-        if (json.episodes) {
+        if (raw.episodes) {
             this.episodes = new Page<EpisodeSimplified>(
-                json,
+                raw,
                 EpisodeSimplified,
                 'episodes'
             );
         }
-        if (json.shows) {
-            this.shows = new Page<ShowSimplified>(
-                json,
-                ShowSimplified,
-                'shows'
-            );
+        if (raw.shows) {
+            this.shows = new Page<ShowSimplified>(raw, ShowSimplified, 'shows');
         }
     }
 }

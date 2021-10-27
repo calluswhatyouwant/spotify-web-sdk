@@ -1,31 +1,37 @@
-import AlbumSimplified from './album-simplified';
-import Page from '../paging/page';
+import AlbumSimplified, { RawAlbumSimplified } from './album-simplified';
+import Page, { RawPage } from '../paging/page';
 import TrackSimplified from '../track/track-simplified';
+import Copyright, { RawCopyright } from '../common/copyright';
+import ExternalIds, { RawExternalIds } from '../common/externalIds';
+
+export interface RawAlbum extends RawAlbumSimplified {
+    copyrights: RawCopyright[];
+    external_ids: RawExternalIds;
+    genres: string[];
+    label: string;
+    popularity: number;
+    total_tracks: number;
+    tracks: RawPage;
+}
 
 class Album extends AlbumSimplified {
-    copyrights: any[];
-
-    externalIds: any;
-
+    copyrights: Copyright[];
+    externalIds: ExternalIds;
     genres: string[];
-
     label: string;
-
     popularity: number;
-
     totalTracks: number;
-
     tracks: Page<TrackSimplified>;
 
-    constructor(json: any) {
-        super(json);
-        this.copyrights = json.copyrights;
-        this.externalIds = json.external_ids;
-        this.genres = json.genres;
-        this.label = json.label;
-        this.popularity = json.popularity;
-        this.totalTracks = json.total_tracks;
-        this.tracks = new Page<TrackSimplified>(json.tracks, TrackSimplified);
+    constructor(raw: RawAlbum) {
+        super(raw);
+        this.copyrights = raw.copyrights;
+        this.externalIds = raw.external_ids;
+        this.genres = raw.genres;
+        this.label = raw.label;
+        this.popularity = raw.popularity;
+        this.totalTracks = raw.total_tracks;
+        this.tracks = new Page<TrackSimplified>(raw.tracks, TrackSimplified);
     }
 
     async getAllTracks(): Promise<TrackSimplified[]> {

@@ -1,44 +1,49 @@
-import Followers from '../common/followers';
-import Image from '../common/image';
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+import Followers, { RawFollowers } from '../common/followers';
+import Image, { RawImage } from '../common/image';
+
+export interface RawPrivateUser {
+    birthdate: string;
+    country: string;
+    display_name: string;
+    email: string;
+    external_urls: RawExternalUrls;
+    followers: RawFollowers;
+    href: string;
+    id: string;
+    images: RawImage[];
+    product: string;
+    type: 'user';
+    uri: string;
+}
 
 class PrivateUser {
     birthdate: string;
-
     country: string;
-
     displayName: string;
-
     email: string;
-
-    externalUrls: any;
-
+    externalUrls: ExternalUrls;
     followers: Followers;
-
     href: string;
-
     id: string;
-
     images: Image[];
-
     product: string;
-
     type: 'user';
-
     uri: string;
 
-    constructor(json: any) {
-        this.birthdate = json.birthdate;
-        this.country = json.country;
-        this.displayName = json.display_name;
-        this.email = json.email;
-        this.externalUrls = json.external_urls;
-        this.followers = new Followers(json.followers);
-        this.href = json.href;
-        this.id = json.id;
-        this.images = json.images.map((imageJson: any) => new Image(imageJson));
-        this.product = json.product;
-        this.type = json.type;
-        this.uri = json.uri;
+    constructor(raw: RawPrivateUser) {
+        this.birthdate = raw.birthdate;
+        this.country = raw.country;
+        this.displayName = raw.display_name;
+        this.email = raw.email;
+        this.externalUrls = new ExternalUrls(raw.external_urls);
+        this.followers = new Followers(raw.followers);
+        this.href = raw.href;
+        this.id = raw.id;
+        this.images = raw.images.map(imageJson => new Image(imageJson));
+        this.product = raw.product;
+        this.type = raw.type;
+        this.uri = raw.uri;
     }
 }
 

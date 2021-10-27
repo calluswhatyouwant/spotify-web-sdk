@@ -1,14 +1,17 @@
-import Track from '../track/track';
+import Track, { RawTrack } from '../track/track';
+
+export interface RawSavedTrack {
+    added_at: string;
+    track: RawTrack;
+}
 
 class SavedTrack {
     addedAt: string;
-
-    // Timestamp
     track: Track;
 
-    constructor(json: any) {
-        this.addedAt = json.added_at;
-        this.track = new Track(json.track);
+    constructor(raw: RawSavedTrack) {
+        this.addedAt = raw.added_at;
+        this.track = new Track(raw.track);
     }
 }
 

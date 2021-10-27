@@ -7,6 +7,7 @@ import {
     Image,
     PlaylistVersion,
 } from './models';
+import { RawImage } from './models/common/image';
 import { propertiesToSnakeCase } from './util';
 
 export const getPlaylist = async (id: string): Promise<Playlist> => {
@@ -58,7 +59,7 @@ export const getPlaylistCoverImage = async (id: string): Promise<Image[]> => {
     const response = await getAxiosSpotifyInstance().get(
         `playlists/${id}/images`
     );
-    return response.data.map((imageJson: any) => new Image(imageJson));
+    return response.data.map((imageJson: RawImage) => new Image(imageJson));
 };
 
 export const createPlaylist = async (

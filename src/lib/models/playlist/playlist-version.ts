@@ -1,8 +1,12 @@
+export interface RawPlaylistVersion {
+    snapshot_id: string;
+}
+
 class PlaylistVersion {
     snapshotId: string;
 
-    constructor(json: any) {
-        this.snapshotId = json.snapshot_id;
+    constructor(raw: RawPlaylistVersion) {
+        this.snapshotId = raw.snapshot_id;
     }
 }
 

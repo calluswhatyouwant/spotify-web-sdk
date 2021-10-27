@@ -1,22 +1,28 @@
-import Track from '../track/track';
-import PublicUser from '../user/user-public';
+import Track, { RawTrack } from '../track/track';
+import PublicUser, { RawPublicUser } from '../user/user-public';
 
-class PlaylistTrack {
+export interface RawPlaylistItem {
+    added_at: string;
+    added_by: RawPublicUser;
+    is_local: boolean;
+    track: RawTrack;
+    video_thumbnail: { url: string | null };
+}
+
+class PlaylistItem {
     addedAt: string;
-
-    // Timestamp
     addedBy: PublicUser;
-
     isLocal: boolean;
-
     track: Track;
+    videoThumbnail: { url: string | null };
 
-    constructor(json: any) {
-        this.addedAt = json.added_at;
-        this.addedBy = new PublicUser(json.added_by);
-        this.isLocal = json.is_local;
-        this.track = new Track(json.track);
+    constructor(raw: RawPlaylistItem) {
+        this.addedAt = raw.added_at;
+        this.addedBy = new PublicUser(raw.added_by);
+        this.isLocal = raw.is_local;
+        this.track = new Track(raw.track);
+        this.videoThumbnail = raw.video_thumbnail;
     }
 }
 
-export default PlaylistTrack;
+export default PlaylistItem;

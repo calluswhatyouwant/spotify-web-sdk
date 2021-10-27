@@ -1,12 +1,16 @@
-import EpisodeSimplified from './episode-simplified';
-import ShowSimplified from '../show/show-simplified';
+import EpisodeSimplified, { RawEpisodeSimplified } from './episode-simplified';
+import ShowSimplified, { RawShowSimplified } from '../show/show-simplified';
+
+export interface RawEpisode extends RawEpisodeSimplified {
+    show: RawShowSimplified;
+}
 
 class Episode extends EpisodeSimplified {
     show: ShowSimplified;
 
-    constructor(json: any) {
-        super(json);
-        this.show = new ShowSimplified(json.show);
+    constructor(raw: any) {
+        super(raw);
+        this.show = new ShowSimplified(raw.show);
     }
 }
 

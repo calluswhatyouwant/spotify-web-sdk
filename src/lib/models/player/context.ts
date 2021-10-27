@@ -1,17 +1,23 @@
+import ExternalUrls, { RawExternalUrls } from '../common/externalUrls';
+
+export interface RawContext {
+    type: string;
+    href: string;
+    external_urls: RawExternalUrls;
+    uri: string;
+}
+
 class Context {
     type: string;
-
     href: string;
-
-    externalUrls: any;
-
+    externalUrls: ExternalUrls;
     uri: string;
 
-    constructor(json: any) {
-        this.type = json.type;
-        this.href = json.href;
-        this.externalUrls = json.external_urls;
-        this.uri = json.uri;
+    constructor(raw: RawContext) {
+        this.type = raw.type;
+        this.href = raw.href;
+        this.externalUrls = new ExternalUrls(raw.external_urls);
+        this.uri = raw.uri;
     }
 }
 

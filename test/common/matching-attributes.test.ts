@@ -169,7 +169,7 @@ export const checkMatchingCursorBasedPageAttributes = (
     response: CursorBasedPage<any>,
     mock: any
 ) => {
-    const attributes = ['cursors', 'href', 'limit', 'total'];
+    const attributes = ['cursors', 'href', 'limit'];
     checkMatchingObjectAttributes(response, mock, attributes);
     expect(response.items).to.have.lengthOf(mock.items.length);
     expect(response.next).to.be.equal(mock.next.split('?')[1]);
